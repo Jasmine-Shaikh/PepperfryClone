@@ -11,6 +11,9 @@ const colors = {
     800: "#153e75",
     700: "#2a69ac",
   },
+  pepperfry : {
+    orange : "#e75a16"
+  }
 };
 
 const theme = extendTheme({ colors });
