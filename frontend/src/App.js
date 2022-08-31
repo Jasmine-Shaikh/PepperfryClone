@@ -1,10 +1,10 @@
-import './App.css';
+import ProductCategory from "./pages/ProductCategory";
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <>
+      <ProductCategory />
+    </>
   );
 }
 
