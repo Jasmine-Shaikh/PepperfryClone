@@ -74,7 +74,7 @@ const ProductDetails = () => {
           <Image
             rounded={"md"}
             alt={"product image"}
-            src={product.image}
+            src={product?.img[0]}
             fit={"cover"}
             align={"center"}
             w={"100%"}
@@ -88,10 +88,10 @@ const ProductDetails = () => {
               fontWeight={600}
               fontSize={{ base: "2xl", sm: "4xl", lg: "5xl" }}
             >
-              {product.name}
+              {console.log(product)}
             </Heading>
             <Text color={"#FF7135"} fontWeight={900} fontSize={"2xl"}>
-              By {product.details.brand}
+              By {product.details?.brand}
             </Text>
           </Box>
           <Box>
