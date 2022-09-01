@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import { LoginContextProvider } from './context/LoginContext';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const colors = {
@@ -20,10 +21,12 @@ const theme = extendTheme({ colors });
 
 root.render(
   <React.StrictMode>
+      <LoginContextProvider>
     <BrowserRouter>
       <ChakraProvider theme={theme}>
         <App />
       </ChakraProvider>
     </BrowserRouter>
+    </LoginContextProvider>
   </React.StrictMode>
 );
