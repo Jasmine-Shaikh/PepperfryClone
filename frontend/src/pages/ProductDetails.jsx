@@ -1,6 +1,7 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
 import { StarIcon } from "@chakra-ui/icons";
+import { Carousel } from "react-responsive-carousel";
 import {
   Select,
   Box,
@@ -71,17 +72,23 @@ const ProductDetails = () => {
         spacing={{ base: 8, md: 10 }}
         py={{ base: 18, md: 24 }}
       >
-        <Flex>
-          <Image
-            rounded={"md"}
-            alt={"product image"}
-            src={product.img ? product.img[0] : null}
-            fit={"cover"}
-            align={"center"}
-            w={"100%"}
-            h={{ base: "100%", sm: "400px", lg: "500px" }}
-          />
-        </Flex>
+          <Box w="100%" p={4} color="white" >
+          <Carousel infiniteLoop>
+            {product?.img?.map((images) => {
+             return(
+             <Image
+              rounded={"md"}
+              alt={"product image"}
+              src={images}
+              fit={"cover"}
+              align={"center"}
+              w={"100%"}
+              h={{ base: "100%", sm: "400px", lg: "500px" }}
+            />
+            )}
+            )}
+          </Carousel>
+          </Box>
         <Stack fontFamily={'Manrope, sans-serif'} scrollBehavior={"auto"} spacing={{ base: 6, md: 10 }}>
           <Box fontFamily={'Manrope, sans-serif'} as={"header"}>
             <Heading
@@ -329,7 +336,7 @@ const ProductDetails = () => {
         <SimpleGrid w="full" columns={{ base: 1, md: 5 }} spacing={3}>
           <Box>
             <Image
-              h={{ base: "100%", sm: "250px", lg: "300px" }}
+              h={{ base: "100%", sm: "250px", lg: "250px" }}
               src="https://ii1.pepperfry.com/media/catalog/product/s/i/494x544/siramika-solid-wood-stool-in-rustic-teak-finish---mudramark-by-pepperfry-siramika-solid-wood-stool-i-qrar8c.jpg"
             />
             <Text>Siramika Solid Wood Stoo...</Text>
@@ -337,7 +344,7 @@ const ProductDetails = () => {
           </Box>
           <Box>
             <Image
-              h={{ base: "100%", sm: "250px", lg: "300px" }}
+              h={{ base: "100%", sm: "250px", lg: "250px" }}
               src="https://ii1.pepperfry.com/media/catalog/product/z/e/494x544/zenzi-wing-chair-in-multi-colour-by-arra-zenzi-wing-chair-in-multi-colour-by-arra-wwutkd.jpg"
             />
             <Text>Zenzi Wing Chair In Multi C...</Text>
@@ -345,7 +352,7 @@ const ProductDetails = () => {
           </Box>
           <Box>
             <Image
-              h={{ base: "100%", sm: "250px", lg: "300px" }}
+              h={{ base: "100%", sm: "250px", lg: "250px" }}
               src="https://ii1.pepperfry.com/media/catalog/product/t/h/494x544/the-begum-wing-chair-bohemian-paisleys-in-black-colour-by-chumbak-the-begum-wing-chair-bohemian-pais-x6dbfr.jpg"
             />
             <Text>The Begum Wing Chair in B...</Text>
@@ -353,7 +360,7 @@ const ProductDetails = () => {
           </Box>
           <Box>
             <Image
-              h={{ base: "100%", sm: "250px", lg: "300px" }}
+              h={{ base: "100%", sm: "250px", lg: "250px" }}
               src="https://ii1.pepperfry.com/media/catalog/product/t/u/440x484/turquoise-ceramic-be-a-flamingo-table-vase-by-gaia-turquoise-ceramic-be-a-flamingo-table-vase-by-gai-sunyog.jpg"
             />
             <Text>Turquoise Ceramic Be A Fla...</Text>
@@ -361,7 +368,7 @@ const ProductDetails = () => {
           </Box>
           <Box>
             <Image
-              h={{ base: "100%", sm: "250px", lg: "300px" }}
+              h={{ base: "100%", sm: "250px", lg: "250px" }}
               src="https://ii1.pepperfry.com/media/catalog/product/d/a/440x484/dark-brown-sheesham-wood-tree-of-life-book-end-book-end-by-exclusivelane-dark-brown-sheesham-wood-tr-bd0f1b.jpg"
             />
             <Text>Dark Brown Sheesham Wood...</Text>
