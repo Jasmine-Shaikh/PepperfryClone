@@ -438,7 +438,7 @@ export const ProductsPage = () => {
                 </label>
               </div>
             </div>
-            <RangeSlider width="95%" aria-label={["min", "max"]} defaultValue={[1, 100]} onChange={(value: number): void => {setDepth(value)}} colorScheme="orange">
+            <RangeSlider width="95%" aria-label={["min", "max"]} defaultValue={[1, 100]} onChange={(value) => {setDepth(value)}} colorScheme="orange">
               <RangeSliderTrack>
                 <RangeSliderFilledTrack />
               </RangeSliderTrack>
@@ -471,7 +471,7 @@ export const ProductsPage = () => {
                 style={{ display: "flex", padding: "0px", margin: "0px" }}
               ></div>
             </div>
-            <RangeSlider width="95%" aria-label={["min", "max"]} defaultValue={[1, 100]} onChange={(value: number): void => {setHeight(value)}} colorScheme="orange">
+            <RangeSlider width="95%" aria-label={["min", "max"]} defaultValue={[1, 100]} onChange={(value)=> {setHeight(value)}} colorScheme="orange">
               <RangeSliderTrack>
                 <RangeSliderFilledTrack />
               </RangeSliderTrack>
@@ -504,7 +504,7 @@ export const ProductsPage = () => {
                 style={{ display: "flex", padding: "0px", margin: "0px" }}
               ></div>
             </div>
-            <RangeSlider width="95%" aria-label={["min", "max"]} defaultValue={[1, 100]} onChange={(value: number): void => {setWidth(value)}} colorScheme="orange">
+            <RangeSlider width="95%" aria-label={["min", "max"]} defaultValue={[1, 100]} onChange={(value) => {setWidth(value)}} colorScheme="orange">
               <RangeSliderTrack>
                 <RangeSliderFilledTrack />
               </RangeSliderTrack>
