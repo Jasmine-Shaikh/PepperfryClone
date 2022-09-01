@@ -159,7 +159,7 @@ function ProductCard(product) {
         display: "flex",
         flexDirection: "column",
         width: "320px",
-        height: "580px",
+        // height: "500px",
         textAlign: "left",
         padding: "10px",
       }}
@@ -209,6 +209,9 @@ function ProductCard(product) {
         </Heading>
         <p style={{ padding: "10px 0px 0px 0px" }}>
           {"Earn cashback ₹ " + Math.floor(price / 2)}
+        </p>
+        <p style={{ padding: "10px 0px 0px 0px" }}>
+          {`Ships in 1 day`}
         </p>
       </div>
     </div>
@@ -400,17 +403,6 @@ export const ProductsPage = () => {
               padding="15px 0px 15px 0px"
             >
               Style
-            </Heading>
-          </div>
-          <hr />
-          <div>
-            <Heading
-              as="h5"
-              size="sm"
-              textAlign="left"
-              padding="15px 0px 15px 0px"
-            >
-              Color Swatch
             </Heading>
           </div>
           <hr />
