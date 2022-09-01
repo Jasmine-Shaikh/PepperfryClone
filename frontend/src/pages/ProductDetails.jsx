@@ -37,14 +37,14 @@ const ProductDetails = () => {
   const [product, setProduct] = React.useState({});
 
   React.useEffect(() => {
-    fetch("http://localhost:8080/products/sofas/2")
+    fetch("http://localhost:8080/products/sofas/4")
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, []);
 
   const getRatings = () => {
     const stars = [];
-    for (var i = 0; i <= product.rating; i++) {
+    for (var i = 0; i < 5; i++) {
       stars.push(
         <StarIcon mx={"2px"} w={6} h={6} color={"#FFAA1F"} key={uuid()} />
       );
@@ -63,8 +63,9 @@ const ProductDetails = () => {
       );
     return opts;
   };
+
   return (
-    <Container maxW={"7xl"}>
+    <Container fontFamily={'Manrope, sans-serif'} maxW={"7xl"}>
       <SimpleGrid
         columns={{ base: 1, lg: 2 }}
         spacing={{ base: 8, md: 10 }}
@@ -74,28 +75,30 @@ const ProductDetails = () => {
           <Image
             rounded={"md"}
             alt={"product image"}
-            src={product?.img[0]}
+            src={product.img ? product.img[0] : null}
             fit={"cover"}
             align={"center"}
             w={"100%"}
             h={{ base: "100%", sm: "400px", lg: "500px" }}
           />
         </Flex>
-        <Stack scrollBehavior={"auto"} spacing={{ base: 6, md: 10 }}>
-          <Box as={"header"}>
+        <Stack fontFamily={'Manrope, sans-serif'} scrollBehavior={"auto"} spacing={{ base: 6, md: 10 }}>
+          <Box fontFamily={'Manrope, sans-serif'} as={"header"}>
             <Heading
+              fontFamily={'Manrope, sans-serif'}
               lineHeight={1.1}
-              fontWeight={600}
-              fontSize={{ base: "2xl", sm: "4xl", lg: "5xl" }}
+              fontWeight={400}
+              fontSize={{ base: "2xl", sm: "4xl", lg: "20px" }}
             >
-              {console.log(product)}
+              {product?.name}
             </Heading>
-            <Text color={"#FF7135"} fontWeight={900} fontSize={"2xl"}>
+            <Text padding={'0px'} color={"#FF7135"} fontWeight={700} fontSize={"16px"} marginTop={"8px"}>
               By {product.details?.brand}
             </Text>
           </Box>
-          <Box>
-            {getRatings()} ({Math.floor(Math.random() * 500) + 1} Ratings)
+          <Box paddingTop={0} display={"inline-flex"} fontSize={'14px'} color={'#848484'} fontFamily={'Manrope, sans-serif'} fontWeight={600}>
+            {getRatings()} ({Math.floor(Math.random() * 500) + 1} Ratings )
+             &nbsp; <Text color={"black"}>{  product?.details?.warranty}</Text>
           </Box>
           <Stack
             spacing={{ base: 4, sm: 6 }}
@@ -112,12 +115,13 @@ const ProductDetails = () => {
             >
               <Text
                 textAlign={"left"}
-                color={useColorModeValue("gray.500", "gray.400")}
-                fontSize={{ base: "2xl", sm: "4xl", lg: "5xl" }}
+                fontSize={{ base: "2xl", sm: "4xl", lg: "24px" }}
                 fontWeight={"900"}
+                marginTop={"-30px"}
+                color={"black"}
+                fontFamily={"Manrope, sans-serif"}
               >
-                ₹ {eval(Math.floor(price()), 0.001)} (
-                {Math.floor((product.discount / product.mrp) * 100)}% off)
+                ₹ {product?.offer_price}
               </Text>
               <Text
                 color={useColorModeValue("gray.500", "gray.400")}
@@ -125,7 +129,7 @@ const ProductDetails = () => {
                 left={0}
                 fontWeight={"300"}
               >
-                Save ₹ {product.mrp - price()} <s>MRP ₹ {product.mrp}</s> (Inc
+                Save ₹ {product?.total_savings} <s>MRP ₹ {product?.actual_price}</s> (Inc
                 of all taxes)
               </Text>
               <Divider />
@@ -139,8 +143,8 @@ const ProductDetails = () => {
                 }
               />
               <InputGroup size="md">
-                <Text fontWeight={"700"}>DELIVERY</Text>
-                <VStack>
+                <Text width={"15%"} fontWeight={"700"} fontSize='12px'>DELIVERY</Text>
+                <Stack>
                   <Text fontSize={"14px"} mx={"20px"}>
                     Enter Pincode to get Delivery Date, Assembly Information and
                     other details
@@ -169,99 +173,14 @@ const ProductDetails = () => {
                       🛠️ Assembly Charges as applicable <b>Pincode Required</b>
                     </Text>
                   </Text>
-                </VStack>
+                </Stack>
               </InputGroup>
               <Divider />
-              <Text fontSize={"lg"}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                aliquid amet at delectus doloribus dolorum expedita hic, ipsum
-                maxime modi nam officiis porro, quae, quisquam quos
-                reprehenderit velit? Natus, totam.
-              </Text>
-            </VStack>
-            <Box>
-              <Text
-                fontSize={{ base: "16px", lg: "18px" }}
-                color={useColorModeValue("yellow.500", "yellow.300")}
-                fontWeight={"500"}
-                textTransform={"uppercase"}
-                mb={"4"}
-              >
-                Features
-              </Text>
-
-              <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-                <List spacing={2}>
-                  <ListItem>Chronograph</ListItem>
-                  <ListItem>Master Chronometer Certified</ListItem>{" "}
-                  <ListItem>Tachymeter</ListItem>
-                </List>
-                <List spacing={2}>
-                  <ListItem>Anti‑magnetic</ListItem>
-                  <ListItem>Chronometer</ListItem>
-                  <ListItem>Small seconds</ListItem>
-                </List>
-              </SimpleGrid>
-            </Box>
-            <Box>
-              <Text
-                fontSize={{ base: "16px", lg: "18px" }}
-                color={useColorModeValue("yellow.500", "yellow.300")}
-                fontWeight={"500"}
-                textTransform={"uppercase"}
-                mb={"4"}
-              >
-                Product Details
-              </Text>
-
-              <List spacing={2}>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Between lugs:
-                  </Text>{" "}
-                  20 mm
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Bracelet:
-                  </Text>{" "}
-                  leather strap
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Case:
-                  </Text>{" "}
-                  Steel
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Case diameter:
-                  </Text>{" "}
-                  42 mm
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Dial color:
-                  </Text>{" "}
-                  Black
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Crystal:
-                  </Text>{" "}
-                  Domed, scratch‑resistant sapphire crystal with anti‑reflective
-                  treatment inside
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Water resistance:
-                  </Text>{" "}
-                  5 bar (50 metres / 167 feet){" "}
-                </ListItem>
-              </List>
-            </Box>
+              <Stack direction="row" alignItems="baseline" justifyContent={"right"}>
+            <MdLocalShipping />
+            <Text>2-3 business days delivery</Text>
           </Stack>
-          <SimpleGrid columns={{ base: 1, md: 3 }} spacing={3}>
+              <SimpleGrid columns={{ base: 1, md: 3 }} spacing={3}>
             <Select
               rounded={"none"}
               w={"full"}
@@ -313,10 +232,91 @@ const ProductDetails = () => {
               Buy Now
             </Button>
           </SimpleGrid>
-
-          <Stack direction="row" alignItems="center" justifyContent={"center"}>
-            <MdLocalShipping />
-            <Text>2-3 business days delivery</Text>
+            </VStack>
+            <Divider/>
+            <Box>
+              <Flex fontFamily={'Manrope, sans-serif'} fontSize='12px' gap={3}>
+                <Box width={"25%"} fontWeight={"700"} ><b>MORE OFFERS</b></Box>
+                <Box fontSize='14px' >
+                  <Text>
+                    <b fontWeight={'700'}>ICICI Bank Full SwipeCode: ICICI3000</b> <br />
+                    Get Extra 10% off on Full Swipe purchases through ICICI Bank Cards. Not applicable on EMI transactions. Maximum Discount Rs 3000
+                  </Text>
+                  <Divider />
+                  <Text>
+                    <b fontWeight={'700'}>Extra 10% Off On HDFC Bank Debit & Credit Card No Cost EMICode: HDFCPFY10</b> <br />
+                    Get Extra 10% Off Up to Rs.3500 Off on HDFC Bank Debit & Credit Card EMI Transactions
+                    
+                  </Text>
+                  <Divider />
+                  <Text>
+                    <b fontWeight={'700'}>Get BYJU's Power Program for Free on Every Transaction with us</b> <br />
+                    BYJU's Power Program Free on every Order - 3 Live Tuition Classes and 15 Days Free Acess to BYJU's Premium App
+                  </Text>
+                  <Divider />
+                  <Text>
+                    <b fontWeight={'700'}>Extra 10% Off On HDFC Bank Debit & Credit Card No Cost EMICode: HDFCPFY10</b><br />
+                    Get Extra 10% Off Up to Rs.3500 Off on HDFC Bank Debit & Credit Card EMI Transactions
+                  </Text>
+                  <Divider />
+                  <Text>
+                    <b fontWeight={'700'}>Extra 10% Off Upto Rs.4000 on Rupay Credit CardsCode: RUPAYPF10</b> <br />
+                    Get Extra 10% Off on Rupay Credit Cards. Max Discount of Rs.4,000
+                  </Text>
+                </Box>
+              </Flex>
+            </Box>
+            <Box name="productDetails">
+             <Flex fontFamily={'Manrope, sans-serif'}  gap={3}>
+              <Text fontSize='12px' width={"25%"} fontWeight={"700"}>DETAILS</Text>
+              <SimpleGrid fontSize={"16px"} columns={{base:1,md:2}} gap={3}>
+               <Box>
+                <Text>Brand</Text> <Divider />
+                <b>{product?.details?.brand}</b>
+               </Box>
+               <Box>
+                <Text>Dimensions(In Inches)</Text> <Divider />
+                <b>{product?.details?.dimensions}</b>
+               </Box>
+               <Box>
+                <Text>Weight</Text> <Divider />
+                <b>{product?.details?.weight}</b>
+               </Box>
+               <Box>
+                <Text>Warranty</Text> <Divider />
+                <b>{product?.details?.warranty}</b>
+               </Box>
+               <Box>
+                <Text>Assembly</Text> <Divider />
+                <b>{product?.details?.assembly}</b>
+               </Box>
+               <Box>
+                <Text>Primary Material</Text> <Divider />
+                <b>{product?.details? product.details["primary material"] : null}</b>
+               </Box>
+               <Box>
+                <Text>Room Type</Text> <Divider />
+                <b>{product?.details ? product.details["room type"] : null }</b>
+               </Box>
+               <Box>
+                <Text>Seater</Text> <Divider />
+                <b>{product.seater}</b>
+               </Box>
+               <Box>
+                <Text>Seating Height</Text> <Divider />
+                <b>{product?.details? product.details["seating height"] : null }</b>
+               </Box>
+               <Box>
+                <Text>Product Rating</Text> <Divider />
+                <b>{}</b>
+               </Box>
+               <Box>
+                <Text>Sku</Text> <Divider />
+                <b>{product?._id}</b>
+               </Box>
+              </SimpleGrid>
+             </Flex>
+            </Box>
           </Stack>
         </Stack>
       </SimpleGrid>
