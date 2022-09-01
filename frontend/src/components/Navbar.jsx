@@ -63,7 +63,7 @@ const Navbar = () => {
   const handleRegisterForm = async (e) => {
     console.log(registerData);
     try {
-      let data = await fetch("http://localhost:8080/register", {
+      let data = await fetch("http://localhost:3080/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -93,7 +93,7 @@ const Navbar = () => {
   const handleLoginForm = async (e) => {
     e.preventDefault();
     try {
-      let data = await fetch("http://localhost:8080/login", {
+      let data = await fetch("http://localhost:3080/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
