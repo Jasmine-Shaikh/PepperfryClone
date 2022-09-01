@@ -12,10 +12,11 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "devStart": "nodemon ./index",
+        "dev": "nodemon .",
         "start": "node index.js"
     },
     "author": "",
     "license": "ISC",
     "description": ""
+
 }

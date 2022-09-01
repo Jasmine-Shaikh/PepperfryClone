@@ -4,7 +4,6 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { LoginContextProvider } from './context/LoginContext';
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const colors = {
   brand: {
@@ -16,8 +15,8 @@ const colors = {
     orange : "#e75a16"
   }
 };
-
 const theme = extendTheme({ colors });
+
 
 root.render(
   <React.StrictMode>
