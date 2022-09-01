@@ -2,6 +2,7 @@ import React from "react";
 import { v4 as uuid } from "uuid";
 import { StarIcon } from "@chakra-ui/icons";
 import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {
   Select,
   Box,
@@ -38,7 +39,7 @@ const ProductDetails = () => {
   const [product, setProduct] = React.useState({});
 
   React.useEffect(() => {
-    fetch("http://localhost:8080/products/sofas/4")
+    fetch("http://localhost:8080/products/sofas/2")
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, []);
@@ -66,46 +67,73 @@ const ProductDetails = () => {
   };
 
   return (
-    <Container fontFamily={'Manrope, sans-serif'} maxW={"7xl"}>
+    <Container fontFamily={"Manrope, sans-serif"} maxW={"7xl"}>
       <SimpleGrid
         columns={{ base: 1, lg: 2 }}
         spacing={{ base: 8, md: 10 }}
         py={{ base: 18, md: 24 }}
       >
-          <Box w="100%" p={4} color="white" >
-          <Carousel infiniteLoop>
-            {product?.img?.map((images) => {
-             return(
-             <Image
-              rounded={"md"}
-              alt={"product image"}
-              src={images}
-              fit={"cover"}
-              align={"center"}
-              w={"100%"}
-              h={{ base: "100%", sm: "400px", lg: "500px" }}
-            />
-            )}
-            )}
-          </Carousel>
+        <Flex>
+          <Box w="100%" p={4} color="white">
+            <Carousel
+              useKeyboardArrows
+              transitionTime={1000}
+              showThumbs={true}
+              showArrows={true}
+              infiniteLoop
+            >
+              {product?.img?.map((images) => {
+                return (
+                  <div>
+                    <img
+                      rounded={"md"}
+                      alt={"product image"}
+                      src={images}
+                      fit={"cover"}
+                      align={"center"}
+                      w={"100%"}
+                      h={{ base: "100%", sm: "400px", lg: "500px" }}
+                    />
+                  </div>
+                );
+              })}
+            </Carousel>
           </Box>
-        <Stack fontFamily={'Manrope, sans-serif'} scrollBehavior={"auto"} spacing={{ base: 6, md: 10 }}>
-          <Box fontFamily={'Manrope, sans-serif'} as={"header"}>
+        </Flex>
+        <Stack
+          fontFamily={"Manrope, sans-serif"}
+          scrollBehavior={"auto"}
+          spacing={{ base: 6, md: 10 }}
+        >
+          <Box fontFamily={"Manrope, sans-serif"} as={"header"}>
             <Heading
-              fontFamily={'Manrope, sans-serif'}
+              fontFamily={"Manrope, sans-serif"}
               lineHeight={1.1}
               fontWeight={400}
               fontSize={{ base: "2xl", sm: "4xl", lg: "20px" }}
             >
               {product?.name}
             </Heading>
-            <Text padding={'0px'} color={"#FF7135"} fontWeight={700} fontSize={"16px"} marginTop={"8px"}>
+            <Text
+              padding={"0px"}
+              color={"#FF7135"}
+              fontWeight={700}
+              fontSize={"16px"}
+              marginTop={"8px"}
+            >
               By {product.details?.brand}
             </Text>
           </Box>
-          <Box paddingTop={0} display={"inline-flex"} fontSize={'14px'} color={'#848484'} fontFamily={'Manrope, sans-serif'} fontWeight={600}>
+          <Box
+            paddingTop={0}
+            display={"inline-flex"}
+            fontSize={"14px"}
+            color={"#848484"}
+            fontFamily={"Manrope, sans-serif"}
+            fontWeight={600}
+          >
             {getRatings()} ({Math.floor(Math.random() * 500) + 1} Ratings )
-             &nbsp; <Text color={"black"}>{  product?.details?.warranty}</Text>
+            &nbsp; <Text color={"black"}>{product?.details?.warranty}</Text>
           </Box>
           <Stack
             spacing={{ base: 4, sm: 6 }}
@@ -136,8 +164,8 @@ const ProductDetails = () => {
                 left={0}
                 fontWeight={"300"}
               >
-                Save ₹ {product?.total_savings} <s>MRP ₹ {product?.actual_price}</s> (Inc
-                of all taxes)
+                Save ₹ {product?.total_savings}{" "}
+                <s>MRP ₹ {product?.actual_price}</s> (Inc of all taxes)
               </Text>
               <Divider />
               <Text>
@@ -150,7 +178,9 @@ const ProductDetails = () => {
                 }
               />
               <InputGroup size="md">
-                <Text width={"15%"} fontWeight={"700"} fontSize='12px'>DELIVERY</Text>
+                <Text width={"15%"} fontWeight={"700"} fontSize="12px">
+                  DELIVERY
+                </Text>
                 <Stack>
                   <Text fontSize={"14px"} mx={"20px"}>
                     Enter Pincode to get Delivery Date, Assembly Information and
@@ -183,146 +213,192 @@ const ProductDetails = () => {
                 </Stack>
               </InputGroup>
               <Divider />
-              <Stack direction="row" alignItems="baseline" justifyContent={"right"}>
-            <MdLocalShipping />
-            <Text>2-3 business days delivery</Text>
-          </Stack>
+              <Stack
+                direction="row"
+                alignItems="baseline"
+                justifyContent={"right"}
+              >
+                <MdLocalShipping />
+                <Text>2-3 business days delivery</Text>
+              </Stack>
               <SimpleGrid columns={{ base: 1, md: 3 }} spacing={3}>
-            <Select
-              rounded={"none"}
-              w={"full"}
-              mt={8}
-              h={"60px"}
-              size={"lg"}
-              _hover={{
-                transform: "translateY(2px)",
-                boxShadow: "lg",
-              }}
-              placeholder={"Qty"}
-            >
-              <option value="1" selected>
-                1
-              </option>
-              {selectQuantity()}
-            </Select>
-            <Button
-              rounded={"none"}
-              w={"full"}
-              mt={8}
-              size={"lg"}
-              h={"60px"}
-              bg={"none"}
-              border="1px solid black"
-              color={useColorModeValue("black", "white.900")}
-              textTransform={"uppercase"}
-              _hover={{
-                transform: "translateY(2px)",
-                boxShadow: "lg",
-              }}
-            >
-              Add to cart
-            </Button>
-            <Button
-              rounded={"none"}
-              w={"full"}
-              mt={8}
-              size={"lg"}
-              h={"60px"}
-              bg={"#FF7135"}
-              color={useColorModeValue("white", "gray.900")}
-              textTransform={"uppercase"}
-              _hover={{
-                transform: "translateY(2px)",
-                boxShadow: "lg",
-              }}
-            >
-              Buy Now
-            </Button>
-          </SimpleGrid>
+                <Select
+                  rounded={"none"}
+                  w={"full"}
+                  mt={8}
+                  h={"60px"}
+                  size={"lg"}
+                  _hover={{
+                    transform: "translateY(2px)",
+                    boxShadow: "lg",
+                  }}
+                  placeholder={"Qty"}
+                >
+                  <option value="1" selected>
+                    1
+                  </option>
+                  {selectQuantity()}
+                </Select>
+                <Button
+                  rounded={"none"}
+                  w={"full"}
+                  mt={8}
+                  size={"lg"}
+                  h={"60px"}
+                  bg={"none"}
+                  border="1px solid black"
+                  color={useColorModeValue("black", "white.900")}
+                  textTransform={"uppercase"}
+                  _hover={{
+                    transform: "translateY(2px)",
+                    boxShadow: "lg",
+                  }}
+                >
+                  Add to cart
+                </Button>
+                <Button
+                  rounded={"none"}
+                  w={"full"}
+                  mt={8}
+                  size={"lg"}
+                  h={"60px"}
+                  bg={"#FF7135"}
+                  color={useColorModeValue("white", "gray.900")}
+                  textTransform={"uppercase"}
+                  _hover={{
+                    transform: "translateY(2px)",
+                    boxShadow: "lg",
+                  }}
+                >
+                  Buy Now
+                </Button>
+              </SimpleGrid>
             </VStack>
-            <Divider/>
+            <Divider />
             <Box>
-              <Flex fontFamily={'Manrope, sans-serif'} fontSize='12px' gap={3}>
-                <Box width={"25%"} fontWeight={"700"} ><b>MORE OFFERS</b></Box>
-                <Box fontSize='14px' >
+              <Flex fontFamily={"Manrope, sans-serif"} fontSize="12px" gap={3}>
+                <Box width={"25%"} fontWeight={"700"}>
+                  <b>MORE OFFERS</b>
+                </Box>
+                <Box fontSize="14px">
                   <Text>
-                    <b fontWeight={'700'}>ICICI Bank Full SwipeCode: ICICI3000</b> <br />
-                    Get Extra 10% off on Full Swipe purchases through ICICI Bank Cards. Not applicable on EMI transactions. Maximum Discount Rs 3000
+                    <b fontWeight={"700"}>
+                      ICICI Bank Full SwipeCode: ICICI3000
+                    </b>{" "}
+                    <br />
+                    Get Extra 10% off on Full Swipe purchases through ICICI Bank
+                    Cards. Not applicable on EMI transactions. Maximum Discount
+                    Rs 3000
                   </Text>
                   <Divider />
                   <Text>
-                    <b fontWeight={'700'}>Extra 10% Off On HDFC Bank Debit & Credit Card No Cost EMICode: HDFCPFY10</b> <br />
-                    Get Extra 10% Off Up to Rs.3500 Off on HDFC Bank Debit & Credit Card EMI Transactions
-                    
+                    <b fontWeight={"700"}>
+                      Extra 10% Off On HDFC Bank Debit & Credit Card No Cost
+                      EMICode: HDFCPFY10
+                    </b>{" "}
+                    <br />
+                    Get Extra 10% Off Up to Rs.3500 Off on HDFC Bank Debit &
+                    Credit Card EMI Transactions
                   </Text>
                   <Divider />
                   <Text>
-                    <b fontWeight={'700'}>Get BYJU's Power Program for Free on Every Transaction with us</b> <br />
-                    BYJU's Power Program Free on every Order - 3 Live Tuition Classes and 15 Days Free Acess to BYJU's Premium App
+                    <b fontWeight={"700"}>
+                      Get BYJU's Power Program for Free on Every Transaction
+                      with us
+                    </b>{" "}
+                    <br />
+                    BYJU's Power Program Free on every Order - 3 Live Tuition
+                    Classes and 15 Days Free Acess to BYJU's Premium App
                   </Text>
                   <Divider />
                   <Text>
-                    <b fontWeight={'700'}>Extra 10% Off On HDFC Bank Debit & Credit Card No Cost EMICode: HDFCPFY10</b><br />
-                    Get Extra 10% Off Up to Rs.3500 Off on HDFC Bank Debit & Credit Card EMI Transactions
+                    <b fontWeight={"700"}>
+                      Extra 10% Off On HDFC Bank Debit & Credit Card No Cost
+                      EMICode: HDFCPFY10
+                    </b>
+                    <br />
+                    Get Extra 10% Off Up to Rs.3500 Off on HDFC Bank Debit &
+                    Credit Card EMI Transactions
                   </Text>
                   <Divider />
                   <Text>
-                    <b fontWeight={'700'}>Extra 10% Off Upto Rs.4000 on Rupay Credit CardsCode: RUPAYPF10</b> <br />
-                    Get Extra 10% Off on Rupay Credit Cards. Max Discount of Rs.4,000
+                    <b fontWeight={"700"}>
+                      Extra 10% Off Upto Rs.4000 on Rupay Credit CardsCode:
+                      RUPAYPF10
+                    </b>{" "}
+                    <br />
+                    Get Extra 10% Off on Rupay Credit Cards. Max Discount of
+                    Rs.4,000
                   </Text>
                 </Box>
               </Flex>
             </Box>
             <Box name="productDetails">
-             <Flex fontFamily={'Manrope, sans-serif'}  gap={3}>
-              <Text fontSize='12px' width={"25%"} fontWeight={"700"}>DETAILS</Text>
-              <SimpleGrid fontSize={"16px"} columns={{base:1,md:2}} gap={3}>
-               <Box>
-                <Text>Brand</Text> <Divider />
-                <b>{product?.details?.brand}</b>
-               </Box>
-               <Box>
-                <Text>Dimensions(In Inches)</Text> <Divider />
-                <b>{product?.details?.dimensions}</b>
-               </Box>
-               <Box>
-                <Text>Weight</Text> <Divider />
-                <b>{product?.details?.weight}</b>
-               </Box>
-               <Box>
-                <Text>Warranty</Text> <Divider />
-                <b>{product?.details?.warranty}</b>
-               </Box>
-               <Box>
-                <Text>Assembly</Text> <Divider />
-                <b>{product?.details?.assembly}</b>
-               </Box>
-               <Box>
-                <Text>Primary Material</Text> <Divider />
-                <b>{product?.details? product.details["primary material"] : null}</b>
-               </Box>
-               <Box>
-                <Text>Room Type</Text> <Divider />
-                <b>{product?.details ? product.details["room type"] : null }</b>
-               </Box>
-               <Box>
-                <Text>Seater</Text> <Divider />
-                <b>{product.seater}</b>
-               </Box>
-               <Box>
-                <Text>Seating Height</Text> <Divider />
-                <b>{product?.details? product.details["seating height"] : null }</b>
-               </Box>
-               <Box>
-                <Text>Product Rating</Text> <Divider />
-                <b>{}</b>
-               </Box>
-               <Box>
-                <Text>Sku</Text> <Divider />
-                <b>{product?._id}</b>
-               </Box>
-              </SimpleGrid>
-             </Flex>
+              <Flex fontFamily={"Manrope, sans-serif"} gap={3}>
+                <Text fontSize="12px" width={"25%"} fontWeight={"700"}>
+                  DETAILS
+                </Text>
+                <SimpleGrid
+                  fontSize={"16px"}
+                  columns={{ base: 1, md: 2 }}
+                  gap={3}
+                >
+                  <Box>
+                    <Text>Brand</Text> <Divider />
+                    <b>{product?.details?.brand}</b>
+                  </Box>
+                  <Box>
+                    <Text>Dimensions(In Inches)</Text> <Divider />
+                    <b>{product?.details?.dimensions}</b>
+                  </Box>
+                  <Box>
+                    <Text>Weight</Text> <Divider />
+                    <b>{product?.details?.weight}</b>
+                  </Box>
+                  <Box>
+                    <Text>Warranty</Text> <Divider />
+                    <b>{product?.details?.warranty}</b>
+                  </Box>
+                  <Box>
+                    <Text>Assembly</Text> <Divider />
+                    <b>{product?.details?.assembly}</b>
+                  </Box>
+                  <Box>
+                    <Text>Primary Material</Text> <Divider />
+                    <b>
+                      {product?.details
+                        ? product.details["primary material"]
+                        : null}
+                    </b>
+                  </Box>
+                  <Box>
+                    <Text>Room Type</Text> <Divider />
+                    <b>
+                      {product?.details ? product.details["room type"] : null}
+                    </b>
+                  </Box>
+                  <Box>
+                    <Text>Seater</Text> <Divider />
+                    <b>{product.seater}</b>
+                  </Box>
+                  <Box>
+                    <Text>Seating Height</Text> <Divider />
+                    <b>
+                      {product?.details
+                        ? product.details["seating height"]
+                        : null}
+                    </b>
+                  </Box>
+                  <Box>
+                    <Text>Product Rating</Text> <Divider />
+                    <b>{}</b>
+                  </Box>
+                  <Box>
+                    <Text>Sku</Text> <Divider />
+                    <b>{product?._id}</b>
+                  </Box>
+                </SimpleGrid>
+              </Flex>
             </Box>
           </Stack>
         </Stack>
