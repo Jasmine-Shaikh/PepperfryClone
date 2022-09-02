@@ -22,125 +22,6 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
-const productDetails = [
-  {
-    id: 1,
-    name: "Esteban 3 Seater Half Leather Sofa in Grey Colour",
-    img: [
-      "https://ii1.pepperfry.com/media/catalog/product/e/s/800x400/esteban-3-seater-half-leather-sofa-in-grey-colour-by-casacraft-esteban-3-seater-half-leather-sofa-in-8akxht.jpg",
-      "https://ii1.pepperfry.com/media/catalog/product/e/s/800x400/esteban-half-leather-three-seater-sofa-in-grey-colour-by-casacraft-esteban-half-leather-three-seater-nqijeg.jpg",
-      "https://ii1.pepperfry.com/media/catalog/product/e/s/800x400/esteban-half-leather-three-seater-sofa-in-grey-colour-by-casacraft-esteban-half-leather-three-seater-qoh0xi.jpg",
-      "https://ii1.pepperfry.com/media/catalog/product/e/s/800x400/esteban-half-leather-three-seater-sofa-in-grey-colour-by-casacraft-esteban-half-leather-three-seater-ra9orm.jpg",
-    ],
-    madeBy: "CasaCraft by Pepperfry",
-    offer_price: "1,13,999",
-    actual_price: "1,84,999",
-    total_savings: "71,000 (38% Off)",
-    price: 113999,
-    seater: 3,
-    details: {
-      brand: "CasaCraft",
-      dimensions:
-        "H 35 x W 83 x D 38; Seating Height -18 (All dimension in inches)",
-      weight: "64 KG",
-      warranty: "36 Months' Warranty",
-      assembly: "Carpenter Assembly",
-      primary_material: "Half Leather",
-      room_type: "Living Room",
-      seating_height: 18,
-      overview:
-        "Casacraft offers the best in comfort with elan. The collections are a series of modern trendy designs, simple yet striking and represent the ideals of minimalism. The designs are a perfect blend of functionality and exceptional aesthetics. Each piece is crafted with passion and follows international standards on quality and style. Contemporary Style Sofas are very current and in trend. Its a very fluid, simplistic style which takes its cues from the in-vogue polishes, textures and colours of the season and is bereft of any ornamentation or embellishments. In this style you can see nods to modern, traditional, art deco and even futuristic design.",
-    },
-  },
-  {
-    id: 1,
-    name: "Esteban 3 Seater Half Leather Sofa in Grey Colour",
-    img: [
-      "https://ii1.pepperfry.com/media/catalog/product/e/s/800x400/esteban-3-seater-half-leather-sofa-in-grey-colour-by-casacraft-esteban-3-seater-half-leather-sofa-in-8akxht.jpg",
-      "https://ii1.pepperfry.com/media/catalog/product/e/s/800x400/esteban-half-leather-three-seater-sofa-in-grey-colour-by-casacraft-esteban-half-leather-three-seater-nqijeg.jpg",
-      "https://ii1.pepperfry.com/media/catalog/product/e/s/800x400/esteban-half-leather-three-seater-sofa-in-grey-colour-by-casacraft-esteban-half-leather-three-seater-qoh0xi.jpg",
-      "https://ii1.pepperfry.com/media/catalog/product/e/s/800x400/esteban-half-leather-three-seater-sofa-in-grey-colour-by-casacraft-esteban-half-leather-three-seater-ra9orm.jpg",
-    ],
-    madeBy: "CasaCraft by Pepperfry",
-    offer_price: "1,13,999",
-    actual_price: "1,84,999",
-    total_savings: "71,000 (38% Off)",
-    price: 113999,
-    seater: 3,
-    details: {
-      brand: "CasaCraft",
-      dimensions:
-        "H 35 x W 83 x D 38; Seating Height -18 (All dimension in inches)",
-      weight: "64 KG",
-      warranty: "36 Months' Warranty",
-      assembly: "Carpenter Assembly",
-      primary_material: "Half Leather",
-      room_type: "Living Room",
-      seating_height: 18,
-      overview:
-        "Casacraft offers the best in comfort with elan. The collections are a series of modern trendy designs, simple yet striking and represent the ideals of minimalism. The designs are a perfect blend of functionality and exceptional aesthetics. Each piece is crafted with passion and follows international standards on quality and style. Contemporary Style Sofas are very current and in trend. Its a very fluid, simplistic style which takes its cues from the in-vogue polishes, textures and colours of the season and is bereft of any ornamentation or embellishments. In this style you can see nods to modern, traditional, art deco and even futuristic design.",
-    },
-  },
-  {
-    id: 1,
-    name: "Esteban 3 Seater Half Leather Sofa in Grey Colour",
-    img: [
-      "https://ii1.pepperfry.com/media/catalog/product/e/s/800x400/esteban-3-seater-half-leather-sofa-in-grey-colour-by-casacraft-esteban-3-seater-half-leather-sofa-in-8akxht.jpg",
-      "https://ii1.pepperfry.com/media/catalog/product/e/s/800x400/esteban-half-leather-three-seater-sofa-in-grey-colour-by-casacraft-esteban-half-leather-three-seater-nqijeg.jpg",
-      "https://ii1.pepperfry.com/media/catalog/product/e/s/800x400/esteban-half-leather-three-seater-sofa-in-grey-colour-by-casacraft-esteban-half-leather-three-seater-qoh0xi.jpg",
-      "https://ii1.pepperfry.com/media/catalog/product/e/s/800x400/esteban-half-leather-three-seater-sofa-in-grey-colour-by-casacraft-esteban-half-leather-three-seater-ra9orm.jpg",
-    ],
-    madeBy: "CasaCraft by Pepperfry",
-    offer_price: "1,13,999",
-    actual_price: "1,84,999",
-    total_savings: "71,000 (38% Off)",
-    price: 113999,
-    seater: 3,
-    details: {
-      brand: "CasaCraft",
-      dimensions:
-        "H 35 x W 83 x D 38; Seating Height -18 (All dimension in inches)",
-      weight: "64 KG",
-      warranty: "36 Months' Warranty",
-      assembly: "Carpenter Assembly",
-      primary_material: "Half Leather",
-      room_type: "Living Room",
-      seating_height: 18,
-      overview:
-        "Casacraft offers the best in comfort with elan. The collections are a series of modern trendy designs, simple yet striking and represent the ideals of minimalism. The designs are a perfect blend of functionality and exceptional aesthetics. Each piece is crafted with passion and follows international standards on quality and style. Contemporary Style Sofas are very current and in trend. Its a very fluid, simplistic style which takes its cues from the in-vogue polishes, textures and colours of the season and is bereft of any ornamentation or embellishments. In this style you can see nods to modern, traditional, art deco and even futuristic design.",
-    },
-  },
-  {
-    id: 1,
-    name: "Esteban 3 Seater Half Leather Sofa in Grey Colour",
-    img: [
-      "https://ii1.pepperfry.com/media/catalog/product/e/s/800x400/esteban-3-seater-half-leather-sofa-in-grey-colour-by-casacraft-esteban-3-seater-half-leather-sofa-in-8akxht.jpg",
-      "https://ii1.pepperfry.com/media/catalog/product/e/s/800x400/esteban-half-leather-three-seater-sofa-in-grey-colour-by-casacraft-esteban-half-leather-three-seater-nqijeg.jpg",
-      "https://ii1.pepperfry.com/media/catalog/product/e/s/800x400/esteban-half-leather-three-seater-sofa-in-grey-colour-by-casacraft-esteban-half-leather-three-seater-qoh0xi.jpg",
-      "https://ii1.pepperfry.com/media/catalog/product/e/s/800x400/esteban-half-leather-three-seater-sofa-in-grey-colour-by-casacraft-esteban-half-leather-three-seater-ra9orm.jpg",
-    ],
-    madeBy: "CasaCraft by Pepperfry",
-    offer_price: "1,13,999",
-    actual_price: "1,84,999",
-    total_savings: "71,000 (38% Off)",
-    price: 113999,
-    seater: 3,
-    details: {
-      brand: "CasaCraft",
-      dimensions:
-        "H 35 x W 83 x D 38; Seating Height -18 (All dimension in inches)",
-      weight: "64 KG",
-      warranty: "36 Months' Warranty",
-      assembly: "Carpenter Assembly",
-      primary_material: "Half Leather",
-      room_type: "Living Room",
-      seating_height: 18,
-      overview:
-        "Casacraft offers the best in comfort with elan. The collections are a series of modern trendy designs, simple yet striking and represent the ideals of minimalism. The designs are a perfect blend of functionality and exceptional aesthetics. Each piece is crafted with passion and follows international standards on quality and style. Contemporary Style Sofas are very current and in trend. Its a very fluid, simplistic style which takes its cues from the in-vogue polishes, textures and colours of the season and is bereft of any ornamentation or embellishments. In this style you can see nods to modern, traditional, art deco and even futuristic design.",
-    },
-  },
-];
-
 const filterCard=(ele)=>{
 
   return(
@@ -244,10 +125,14 @@ const sortFunction=(sort, pageData)=>{
       }
     }else if(sort=="rel"){
       pageData.sort((a,b)=>{
-        return a.id-b.id
+        return a.price-b.price
       })
     }
     return pageData
+}
+
+const dataFiltering=()=>{
+
 }
 export const ProductsPage = () => {
   const [sort, setSort] = React.useState("");
@@ -257,7 +142,9 @@ export const ProductsPage = () => {
   const [width, setWidth] =React.useState(false);
   const [height, setHeight] =React.useState(false);
   const [pageData, setPageData]=React.useState([]);
-  const [filters, setFilters]=React.useState([1,2,3,4,5])
+  const [rateFilter, setRateFilter]=React.useState([])
+  const [filters, setFilters]=React.useState([1,2,3,4,5]);
+
 
 
   React.useEffect(()=>{
@@ -319,14 +206,11 @@ export const ProductsPage = () => {
             <h4 style={{ textAlign: "left" }}></h4>
             <RadioGroup onChange={setSort} sort={sort} >
               <Stack direction="column">
-                <Radio
-                  size="lg"
-                  colorScheme="orange"
-                  value="rel"
-                  defaultChecked
-                  border="2px solid grey"
-                >
+                {/* <Radio size="lg" colorScheme="orange" value="rel" border="2px solid grey">
                   Relevance
+                </Radio> */}
+                <Radio size="lg" colorScheme="orange" value="rel">
+                Relevance
                 </Radio>
                 <Radio size="lg" colorScheme="orange" value="hl">
                   Highest Priced First
@@ -376,23 +260,23 @@ export const ProductsPage = () => {
             >
               Price
             </Heading>
-            <Checkbox size="lg" colorScheme="orange">Under ₹ 5,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={5000} onChange={(e)=>{console.log(e.target.value)}}>Under ₹ 5,000</Checkbox>
             <br />
-            <Checkbox size="lg">₹ 5,001 to 10,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={10000}>₹ 5,001 to 10,000</Checkbox>
             <br />
-            <Checkbox size="lg">₹ 10,001 to 20,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={20000}>₹ 10,001 to 20,000</Checkbox>
             <br />
-            <Checkbox size="lg">₹ 20,001 to 30,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={30000}>₹ 20,001 to 30,000</Checkbox>
             <br />
-            <Checkbox size="lg">₹ 30,001 to 40,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={40000}>₹ 30,001 to 40,000</Checkbox>
             <br />
-            <Checkbox size="lg">₹ 40,001 to 50,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={50000}>₹ 40,001 to 50,000</Checkbox>
             <br />
-            <Checkbox size="lg">₹ 50,001 to 60,000 </Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={60000}>₹ 50,001 to 60,000 </Checkbox>
             <br />
-            <Checkbox size="lg">₹ 70,001 to 80,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={80000}>₹ 70,001 to 80,000</Checkbox>
             <br />
-            <Checkbox size="lg">₹ 80,001 to 90,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={90000}>₹ 80,001 to 90,000</Checkbox>
           </div>
           <hr />
           <div>
