@@ -1,4 +1,3 @@
-
 //initial commit
 require("dotenv").config()
 const express = require('express');
@@ -16,4 +15,3 @@ app.use(userRouter)
 app.use('/products', products)
 
 app.listen(port, () => { console.log(`app running on http://localhost:${port}`); })
-
