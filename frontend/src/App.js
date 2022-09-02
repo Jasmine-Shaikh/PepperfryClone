@@ -1,3 +1,4 @@
+
 import { Route, Routes } from 'react-router-dom';
 import React from 'react';
 import Pages from './pages/Pages';
@@ -7,6 +8,9 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import { ProductsPage } from './pages/ProductsPage';
+// import Cart from './pages/Cart';
+import Cart from './components/Cart';
+import Checkout from './pages/Checkout';
 
 
 function App() {
@@ -17,6 +21,11 @@ function App() {
         <Route path='ProductCategory' element={<ProductCategory />} />
         <Route path='ProductsPage' element={<ProductsPage />} />
         <Route path='productDetails' element={<ProductDetails />} />
+      </Route>
+      <Route path='/checkout' element={ <Checkout />}>
+      <Route path='cart' element={<Cart />} />
+        {/* <Route index element={<Cart />} /> */}
+        {/* <Route path='address' element={} /> */}
       </Route>
     </Routes>
   </>

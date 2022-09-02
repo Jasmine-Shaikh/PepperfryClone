@@ -92,7 +92,6 @@ function SplitWithImage({ title = "Beds and Mattress", types = ["Single Bed, Mat
                 </GridItem>
                 <GridItem colSpan={"5"}>
                     <Image
-                        border={"2px red solid"}
                         rounded={'md'}
                         alt={'feature image'}
                         src={

@@ -1,3 +1,4 @@
+
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -27,4 +28,5 @@ root.render(
     </BrowserRouter>
     </LoginContextProvider>
   </React.StrictMode>
+
 );
