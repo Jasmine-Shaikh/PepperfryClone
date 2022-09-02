@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/aria-proptypes */
 import React from "react";
 import {
   border,
@@ -20,6 +21,7 @@ import {
   SliderThumb,
   SliderMark,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const productDetails = [
   {
@@ -154,6 +156,7 @@ function ProductCard(product) {
     details,
   } = product;
   return (
+    <Link to={"/ProductDetails"}>
     <div
       style={{
         display: "flex",
@@ -168,7 +171,7 @@ function ProductCard(product) {
         <img
           style={{ width: "100%", height: "350px" }}
           src={img[0]}
-          alt="Product Image"
+          alt="Product"
         />
       </div>
       <div
@@ -214,7 +217,9 @@ function ProductCard(product) {
           {`Ships in 1 day`}
         </p>
       </div>
-    </div>
+      </div>
+    </Link>
+
   );
 }
 
@@ -222,9 +227,9 @@ export const ProductsPage = () => {
   const [sort, setSort] = React.useState("");
   const [discount, setDiscount] = React.useState("");
   const [units, setUnits] = React.useState(false);
-  const [depth, setDepth] =React.useState(false);
-  const [width, setWidth] =React.useState(false);
-  const [height, setHeight] =React.useState(false)
+  const [depth, setDepth] = React.useState(false);
+  const [width, setWidth] = React.useState(false);
+  const [height, setHeight] = React.useState(false)
 
   return (
     <div
@@ -235,11 +240,7 @@ export const ProductsPage = () => {
         alignItems: "left",
       }}
     >
-      <div>Navbar</div>
-      <hr />
-      <div>below the navbar</div>
-      <hr />
-      <div>filters section</div>
+
       <div style={{ display: "flex" }}>
         <div
           style={{
@@ -265,7 +266,6 @@ export const ProductsPage = () => {
             >
               Sort by
             </Heading>
-            <h4 style={{ textAlign: "left" }}></h4>
             <RadioGroup onChange={setSort} sort={sort}>
               <Stack direction="column">
                 <Radio
@@ -438,7 +438,7 @@ export const ProductsPage = () => {
                 </label>
               </div>
             </div>
-            <RangeSlider width="95%" aria-label={["min", "max"]} defaultValue={[1, 100]} onChange={(value) => {setDepth(value)}} colorScheme="orange">
+            <RangeSlider width="95%" aria-label={["min", "max"]} defaultValue={[1, 100]} onChange={(value) => { setDepth(value) }} colorScheme="orange">
               <RangeSliderTrack>
                 <RangeSliderFilledTrack />
               </RangeSliderTrack>
@@ -446,15 +446,15 @@ export const ProductsPage = () => {
               <RangeSliderThumb index={1} />
             </RangeSlider>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <u style={{padding:"5px"}}>
-                <Text fontSize="md"  blockSize="max-content">
-                  {units? (Math.round((depth[0]/20))) : (Math.round(((depth[0]/20)*12)))}
+              <u style={{ padding: "5px" }}>
+                <Text fontSize="md" blockSize="max-content">
+                  {units ? (Math.round((depth[0] / 20))) : (Math.round(((depth[0] / 20) * 12)))}
                   {units ? "ft" : "in"}
                 </Text>
               </u>
-              <u style={{padding:"5px"}}>
+              <u style={{ padding: "5px" }}>
                 <Text fontSize="md" blockSize="max-content">
-                  {units? (Math.round((depth[1]/20))) : (Math.round(((depth[1]/20)*12)))}
+                  {units ? (Math.round((depth[1] / 20))) : (Math.round(((depth[1] / 20) * 12)))}
                   {units ? "ft" : "in"}
                 </Text>
               </u>
@@ -471,7 +471,7 @@ export const ProductsPage = () => {
                 style={{ display: "flex", padding: "0px", margin: "0px" }}
               ></div>
             </div>
-            <RangeSlider width="95%" aria-label={["min", "max"]} defaultValue={[1, 100]} onChange={(value)=> {setHeight(value)}} colorScheme="orange">
+            <RangeSlider width="95%" aria-label={["min", "max"]} defaultValue={[1, 100]} onChange={(value) => { setHeight(value) }} colorScheme="orange">
               <RangeSliderTrack>
                 <RangeSliderFilledTrack />
               </RangeSliderTrack>
@@ -479,15 +479,15 @@ export const ProductsPage = () => {
               <RangeSliderThumb index={1} />
             </RangeSlider>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <u style={{padding:"5px"}}>
-                <Text fontSize="md"  blockSize="max-content">
-                  {units? (Math.round((height[0]/15))) : (Math.round(((height[0]/15)*12)))}
+              <u style={{ padding: "5px" }}>
+                <Text fontSize="md" blockSize="max-content">
+                  {units ? (Math.round((height[0] / 15))) : (Math.round(((height[0] / 15) * 12)))}
                   {units ? "ft" : "in"}
                 </Text>
               </u>
-              <u style={{padding:"5px"}}>
+              <u style={{ padding: "5px" }}>
                 <Text fontSize="md" blockSize="max-content">
-                  {units? (Math.round((height[1]/15))) : (Math.round(((height[1]/15)*12)))}
+                  {units ? (Math.round((height[1] / 15))) : (Math.round(((height[1] / 15) * 12)))}
                   {units ? "ft" : "in"}
                 </Text>
               </u>
@@ -504,7 +504,7 @@ export const ProductsPage = () => {
                 style={{ display: "flex", padding: "0px", margin: "0px" }}
               ></div>
             </div>
-            <RangeSlider width="95%" aria-label={["min", "max"]} defaultValue={[1, 100]} onChange={(value) => {setWidth(value)}} colorScheme="orange">
+            <RangeSlider width="95%" aria-label={["min", "max"]} defaultValue={[1, 100]} onChange={(value) => { setWidth(value) }} colorScheme="orange">
               <RangeSliderTrack>
                 <RangeSliderFilledTrack />
               </RangeSliderTrack>
@@ -512,15 +512,15 @@ export const ProductsPage = () => {
               <RangeSliderThumb index={1} />
             </RangeSlider>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <u style={{padding:"5px"}}>
-                <Text fontSize="md"  blockSize="max-content">
-                  {units? (Math.round((width[0]/17))) : (Math.round(((width[0]/17)*12)))}
+              <u style={{ padding: "5px" }}>
+                <Text fontSize="md" blockSize="max-content">
+                  {units ? (Math.round((width[0] / 17))) : (Math.round(((width[0] / 17) * 12)))}
                   {units ? "ft" : "in"}
                 </Text>
               </u>
-              <u style={{padding:"5px"}}>
+              <u style={{ padding: "5px" }}>
                 <Text fontSize="md" blockSize="max-content">
-                  {units? (Math.round((width[1]/17))) : (Math.round(((width[1]/17)*12)))}
+                  {units ? (Math.round((width[1] / 17))) : (Math.round(((width[1] / 17) * 12)))}
                   {units ? "ft" : "in"}
                 </Text>
               </u>

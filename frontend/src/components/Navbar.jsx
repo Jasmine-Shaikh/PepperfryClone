@@ -276,7 +276,7 @@ const Navbar = () => {
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="">Furniture</Link>
+              <Link to="/ProductCategory">Furniture</Link>
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}

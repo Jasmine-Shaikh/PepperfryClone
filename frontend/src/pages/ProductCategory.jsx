@@ -11,6 +11,7 @@ import {
     Img,
     Box,
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 const inWithTheNew = [
     {
@@ -40,12 +41,11 @@ const happyCustomer = [
 const topBrands = [{ imgUrl: 'https://ii1.pepperfry.com/media/wysiwyg/banners/Web_Beds_TopBrands_01_2X_29042022.jpg' }, { imgUrl: 'https://ii2.pepperfry.com/media/wysiwyg/banners/Web_Beds_TopBrands_02_2X_29042022.jpg' }, { imgUrl: 'https://ii3.pepperfry.com/media/wysiwyg/banners/Web_Beds_TopBrands_03_2X_29042022.jpg' }, { imgUrl: 'https://ii1.pepperfry.com/media/wysiwyg/banners/Web_Beds_TopBrands_04_2X_29042022.jpg' }, { imgUrl: 'https://ii2.pepperfry.com/media/wysiwyg/banners/Web_Beds_TopBrands_05_2X_29042022.jpg' }, { imgUrl: 'https://ii3.pepperfry.com/media/wysiwyg/banners/Web_Beds_TopBrands_06_2X_29042022.jpg' }]
 
 const needHelp = [{ imgUrl: 'https://ii1.pepperfry.com/media/wysiwyg/banners/hp_need_help_p_1.jpg', subTitle: `Here's How To Choose The Right Sofa` },
-    { imgUrl: "https://ii2.pepperfry.com/media/wysiwyg/banners/hp_need_help_p_2.jpg", subTitle: "How To Buy A Perfect Bed For Your Room" },
-    { imgUrl: "https://ii3.pepperfry.com/media/wysiwyg/banners/hp_need_help_p_3.jpg", subTitle: "Your Guide To Buy The Perfect Mattress" },
-    { imgUrl: "https://ii1.pepperfry.com/media/wysiwyg/banners/hp_need_help_p_4.jpg", subTitle: "Everything About Cabinets And" },
-    {
-        imgUrl: "https://ii2.pepperfry.com/media/wysiwyg/banners/hp_need_help_p_5.jpg", subTitle: "What To Look For While Buying A Chair" },
-    { imgUrl: "https://ii3.pepperfry.com/media/wysiwyg/banners/hp_need_help_p_6.jpg", subTitle: "" }]
+{ imgUrl: "https://ii2.pepperfry.com/media/wysiwyg/banners/hp_need_help_p_2.jpg", subTitle: "How To Buy A Perfect Bed For Your Room" },
+{ imgUrl: "https://ii3.pepperfry.com/media/wysiwyg/banners/hp_need_help_p_3.jpg", subTitle: "Your Guide To Buy The Perfect Mattress" },
+{ imgUrl: "https://ii1.pepperfry.com/media/wysiwyg/banners/hp_need_help_p_4.jpg", subTitle: "Everything About Cabinets And" },
+{ imgUrl: "https://ii2.pepperfry.com/media/wysiwyg/banners/hp_need_help_p_5.jpg", subTitle: "What To Look For While Buying A Chair" },
+{ imgUrl: "https://ii3.pepperfry.com/media/wysiwyg/banners/hp_need_help_p_6.jpg", subTitle: "" }]
 
 function ProductCategory() {
     return (
@@ -114,8 +114,10 @@ function AlwaysInTrend({ items = [{ imgUrl: "https://ii3.pepperfry.com/media/wys
                 {
                     items?.map(item =>
                         <GridItem w='100%' >
-                            <Img src={item.imgUrl} />
-                            <Text fontSize={"xl"} >{item.title}</Text>
+                            <Link to={"/ProductsPage"}>
+                                <Img src={item.imgUrl} />
+                                <Text fontSize={"xl"} >{item.title}</Text>
+                            </Link>
                         </GridItem>
                     )
                 }
@@ -216,7 +218,7 @@ function ThreePartImg({ items, heading }) {
 function SixPartImg({ items, heading }) {
     return (
         <>
-            <Heading margin={"40px 0 20px 0"}>{heading }</Heading>
+            <Heading margin={"40px 0 20px 0"}>{heading}</Heading>
             <Grid margin={"0 0 40px 0"} templateColumns='repeat(6, 1fr)' gap={6}>
 
                 {
