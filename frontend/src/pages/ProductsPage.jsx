@@ -20,6 +20,7 @@ import {
   SliderThumb,
   SliderMark,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const productDetails = [
   {
@@ -140,6 +141,17 @@ const productDetails = [
   },
 ];
 
+const filterCard=(ele)=>{
+
+  return(
+    <div style={{width:"100px", border:"2px solid black"}}>
+      <h2>
+        {ele}
+      </h2>
+    </div>
+  )
+}
+
 function ProductCard(product) {
   const {
     id,
@@ -154,6 +166,7 @@ function ProductCard(product) {
     details,
   } = product;
   return (
+    <Link to='/sofas/'>
     <div
       style={{
         display: "flex",
@@ -215,16 +228,50 @@ function ProductCard(product) {
         </p>
       </div>
     </div>
+    </Link>
   );
 }
-
+const sortFunction=(sort, pageData)=>{
+  if(sort!==""){
+      if(sort=="lh"){
+        pageData.sort((a,b)=>{
+          return a.price-b.price
+        })
+      }else if(sort=="hl"){
+        pageData.sort((a,b)=>{
+          return b.price-a.price
+        })
+      }
+    }else if(sort=="rel"){
+      pageData.sort((a,b)=>{
+        return a.id-b.id
+      })
+    }
+    return pageData
+}
 export const ProductsPage = () => {
   const [sort, setSort] = React.useState("");
   const [discount, setDiscount] = React.useState("");
   const [units, setUnits] = React.useState(false);
   const [depth, setDepth] =React.useState(false);
   const [width, setWidth] =React.useState(false);
-  const [height, setHeight] =React.useState(false)
+  const [height, setHeight] =React.useState(false);
+  const [pageData, setPageData]=React.useState([]);
+  const [filters, setFilters]=React.useState([1,2,3,4,5])
+
+
+  React.useEffect(()=>{
+    setSort(sortFunction(sort, pageData))
+  },[sort,discount])
+
+  React.useEffect(()=>{
+    fetch(` http://localhost:8080/furniture`)
+    .then(res=>res.json())
+    .then(data=>setPageData(data.sofas))
+    .catch(err=>console.log(err))
+  },[])
+
+
 
   return (
     <div
@@ -239,7 +286,11 @@ export const ProductsPage = () => {
       <hr />
       <div>below the navbar</div>
       <hr />
-      <div>filters section</div>
+      <div>
+        {
+          <div style={{display:"flex", margin:"5px", padding:"5px", flexDirection:"row",width:"auto"}}>{}</div>
+        }
+      </div>
       <div style={{ display: "flex" }}>
         <div
           style={{
@@ -266,13 +317,14 @@ export const ProductsPage = () => {
               Sort by
             </Heading>
             <h4 style={{ textAlign: "left" }}></h4>
-            <RadioGroup onChange={setSort} sort={sort}>
+            <RadioGroup onChange={setSort} sort={sort} >
               <Stack direction="column">
                 <Radio
                   size="lg"
                   colorScheme="orange"
                   value="rel"
                   defaultChecked
+                  border="2px solid grey"
                 >
                   Relevance
                 </Radio>
@@ -324,23 +376,23 @@ export const ProductsPage = () => {
             >
               Price
             </Heading>
-            <Checkbox size="md">Under ₹ 5,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange">Under ₹ 5,000</Checkbox>
             <br />
-            <Checkbox size="md">₹ 5,001 to 10,000</Checkbox>
+            <Checkbox size="lg">₹ 5,001 to 10,000</Checkbox>
             <br />
-            <Checkbox size="md">₹ 10,001 to 20,000</Checkbox>
+            <Checkbox size="lg">₹ 10,001 to 20,000</Checkbox>
             <br />
-            <Checkbox size="md">₹ 20,001 to 30,000</Checkbox>
+            <Checkbox size="lg">₹ 20,001 to 30,000</Checkbox>
             <br />
-            <Checkbox size="md">₹ 30,001 to 40,000</Checkbox>
+            <Checkbox size="lg">₹ 30,001 to 40,000</Checkbox>
             <br />
-            <Checkbox size="md">₹ 40,001 to 50,000</Checkbox>
+            <Checkbox size="lg">₹ 40,001 to 50,000</Checkbox>
             <br />
-            <Checkbox size="md">₹ 50,001 to 60,000 </Checkbox>
+            <Checkbox size="lg">₹ 50,001 to 60,000 </Checkbox>
             <br />
-            <Checkbox size="md">₹ 70,001 to 80,000</Checkbox>
+            <Checkbox size="lg">₹ 70,001 to 80,000</Checkbox>
             <br />
-            <Checkbox size="md">₹ 80,001 to 90,000</Checkbox>
+            <Checkbox size="lg">₹ 80,001 to 90,000</Checkbox>
           </div>
           <hr />
           <div>
@@ -359,39 +411,39 @@ export const ProductsPage = () => {
                 justifyContent: "left",
                 padding: "0px",
                 margin: "0px",
-                overflow: "hidden",
+                overflow: "auto",
                 height: "280px",
                 onMouseOver: "this.style.overflow='scroll'",
                 onMouseOut: "this.style.overflow='hidden'",
               }}
             >
-              <Checkbox size="md">Fabric</Checkbox>
+              <Checkbox size="lg">Fabric</Checkbox>
               <br />
-              <Checkbox size="md">Velvet Fabric</Checkbox>
+              <Checkbox size="lg">Velvet Fabric</Checkbox>
               <br />
-              <Checkbox size="md">Leatherette</Checkbox>
+              <Checkbox size="lg">Leatherette</Checkbox>
               <br />
-              <Checkbox size="md">Sheesham Wood</Checkbox>
+              <Checkbox size="lg">Sheesham Wood</Checkbox>
               <br />
-              <Checkbox size="md">Polyester</Checkbox>
+              <Checkbox size="lg">Polyester</Checkbox>
               <br />
-              <Checkbox size="md">Pine Wood</Checkbox>
+              <Checkbox size="lg">Pine Wood</Checkbox>
               <br />
-              <Checkbox size="md">Leather </Checkbox>
+              <Checkbox size="lg">Leather </Checkbox>
               <br />
-              <Checkbox size="md">Half Leather</Checkbox>
+              <Checkbox size="lg">Half Leather</Checkbox>
               <br />
-              <Checkbox size="md">Rubber Wood </Checkbox>
+              <Checkbox size="lg">Rubber Wood </Checkbox>
               <br />
-              <Checkbox size="md">{"Fabric & Leatherette"}</Checkbox>
+              <Checkbox size="lg">{"Fabric & Leatherette"}</Checkbox>
               <br />
-              <Checkbox size="md">{"Teak Wood "}</Checkbox>
+              <Checkbox size="lg">{"Teak Wood "}</Checkbox>
               <br />
-              <Checkbox size="md">{"Engineered Wood"}</Checkbox>
+              <Checkbox size="lg">{"Engineered Wood"}</Checkbox>
               <br />
-              <Checkbox size="md">{"MDF"}</Checkbox>
+              <Checkbox size="lg">{"MDF"}</Checkbox>
               <br />
-              <Checkbox size="md">{"Mango Wood"}</Checkbox>
+              <Checkbox size="lg">{"Mango Wood"}</Checkbox>
             </div>
           </div>
           <hr />
@@ -572,7 +624,7 @@ export const ProductsPage = () => {
             marginRight: "80px",
           }}
         >
-          {productDetails.map((ele) => ProductCard(ele))}
+          {pageData?.map((ele) => ProductCard(ele))}
         </div>
       </div>
       <div>above the footer</div>
