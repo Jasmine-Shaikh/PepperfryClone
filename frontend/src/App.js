@@ -8,9 +8,9 @@ import ProductDetails from "./pages/ProductDetails";
 
 function App() {
   return (
-        <Routes>
-          <Route path="/" element={<Pages />}/>
-        </Routes>
+    <Routes>
+      <Route path="/" element={<Pages />} />
+    </Routes>
 
   );
 }
