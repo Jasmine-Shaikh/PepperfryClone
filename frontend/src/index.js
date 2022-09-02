@@ -17,7 +17,6 @@ const colors = {
 };
 const theme = extendTheme({ colors });
 
-
 root.render(
   <React.StrictMode>
       <LoginContextProvider>
