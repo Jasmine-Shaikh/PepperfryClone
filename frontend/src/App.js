@@ -1,22 +1,27 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
-import { ChakraProvider, theme } from "@chakra-ui/react";
-import { ColorModeSwitcher } from "./ColorModeSwitcher";
-import Cart from "./components/cart";
-import Header from "./components/header";
-import Address from "./components/address";
+
+import { Route, Routes } from 'react-router-dom';
+import React from 'react';
+import Pages from './pages/Pages';
+import ProductCategory from "./pages/ProductCategory";
+import ProductDetails from "./pages/ProductDetails";
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import { ProductsPage } from './pages/ProductsPage';
+
 
 function App() {
-  return (
-    <ChakraProvider theme={theme}>
-      {/* <ColorModeSwitcher justifySelf="flex-end" /> */}
-      <Header />
-      <Routes>
-        <Route path="/" element={<Cart />}></Route>
-        <Route path="/cart" element={<Cart />}></Route>
-        <Route path="/address" element={<Address />}></Route>
-      </Routes>
-    </ChakraProvider>
+  return (<>
+    <Routes>
+      <Route path="/" element={<Pages />} >
+        <Route index element={<Home />} />
+        <Route path='ProductCategory' element={<ProductCategory />} />
+        <Route path='ProductsPage' element={<ProductsPage />} />
+        <Route path='productDetails' element={<ProductDetails />} />
+      </Route>
+    </Routes>
+  </>
+
   );
 }
 

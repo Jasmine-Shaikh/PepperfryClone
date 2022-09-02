@@ -1,21 +1,34 @@
-import { ColorModeScript } from "@chakra-ui/react";
-import React, { StrictMode } from "react";
-import * as ReactDOM from "react-dom/client";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter } from "react-router-dom";
 
-const container = document.getElementById("root");
-const root = ReactDOM.createRoot(container);
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
+import { LoginContextProvider } from './context/LoginContext';
+const root = ReactDOM.createRoot(document.getElementById("root"));
+const colors = {
+  brand: {
+    900: "#1a365d",
+    800: "#153e75",
+    700: "#2a69ac",
+  },
+  pepperfry : {
+    orange : "#e75a16"
+  }
+};
+const theme = extendTheme({ colors });
 
 root.render(
-  <>
-    <ColorModeScript />
+  <React.StrictMode>
+      <LoginContextProvider>
     <BrowserRouter>
-      <App />
+      <ChakraProvider theme={theme}>
+        <App />
+      </ChakraProvider>
     </BrowserRouter>
-  </>
+    </LoginContextProvider>
+  </React.StrictMode>
+
 );
 
 // If you want your app to work offline and load faster, you can change
