@@ -2,7 +2,7 @@ import React from "react";
 import { v4 as uuid } from "uuid";
 import { StarIcon } from "@chakra-ui/icons";
 import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+// import "react-responsive-carousel/lib/styles/carousel.min.css"
 import {
   Select,
   Box,
@@ -39,7 +39,7 @@ const ProductDetails = () => {
   const [product, setProduct] = React.useState({});
 
   React.useEffect(() => {
-    fetch("http://localhost:8080/products/sofas/2")
+    fetch("http://localhost:8080/products/sofas/3")
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, []);
@@ -73,7 +73,7 @@ const ProductDetails = () => {
         spacing={{ base: 8, md: 10 }}
         py={{ base: 18, md: 24 }}
       >
-        <Flex>
+        <Flex  >
           <Box w="100%" p={4} color="white">
             <Carousel
               useKeyboardArrows

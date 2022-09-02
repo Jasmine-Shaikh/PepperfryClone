@@ -1,11 +1,11 @@
-<<<<<<< HEAD
+
 @font-face {
     font-family: "Manrope";
     src: local("Manrope"),
      url("./assets/fonts/Manrope-VariableFont_wght.ttf") format("truetype");
     font-weight: regular;
 }
-=======
+
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -20,4 +20,3 @@ body {
       monospace;
   }
   
->>>>>>> main

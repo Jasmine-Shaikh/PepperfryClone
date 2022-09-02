@@ -27,4 +27,6 @@ const productSchema = new Schema(
 
 const sofasDB = mongoose.model('sofa', productSchema)
 
+
+
 module.exports = sofasDB
