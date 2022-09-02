@@ -3,6 +3,8 @@ import { v4 as uuid } from "uuid";
 import { StarIcon } from "@chakra-ui/icons";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import ReactImageMagnify from 'react-image-magnify';
+
 import {
   Select,
   Box,
@@ -27,6 +29,7 @@ import {
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { MdLocalShipping } from "react-icons/md";
+import ReactImageZoom from "react-image-zoom";
 import {
   DrawerOverlay,
   DrawerBody,
@@ -67,7 +70,7 @@ const ProductDetails = () => {
   };
 
   return (
-    <Container fontFamily={"Manrope, sans-serif"} maxW={"7xl"}>
+    <Container marginBottom={'5%'} fontFamily={"Manrope, sans-serif"} maxW={"7xl"}>
       <SimpleGrid
         columns={{ base: 1, lg: 2 }}
         spacing={{ base: 8, md: 10 }}
@@ -83,8 +86,26 @@ const ProductDetails = () => {
               infiniteLoop
             >
               {product?.img?.map((images) => {
+                
                 return (
                   <div>
+                    <ReactImageMagnify {...{
+    smallImage: {
+        alt: 'Wristwatch by Ted Baker London',
+        isFluidWidth: true,
+        src:images
+    },
+    largeImage: {
+        src: images,
+        width: 1200,
+        height: 1800
+    },
+    enlargedImageContainerDimensions: {
+      marginTop:'10%'
+      width: '150%',
+      height: '150%',
+  },
+}} />
                     <img
                       rounded={"md"}
                       alt={"product image"}
