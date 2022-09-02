@@ -6,6 +6,8 @@ import {
     BreadcrumbSeparator,
 } from '@chakra-ui/react'
 
+import logo from '../images/pf-logo-21.svg';
+
 function CartNav() {
   return (
       <>
