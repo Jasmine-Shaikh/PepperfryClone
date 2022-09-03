@@ -101,7 +101,6 @@ const ProductDetails = () => {
         height: 1800
     },
     enlargedImageContainerDimensions: {
-      marginTop:'10%'
       width: '150%',
       height: '150%',
   },
