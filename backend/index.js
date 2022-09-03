@@ -3,7 +3,6 @@ require("dotenv").config()
 const express = require('express');
 const cors = require('cors');
 const connectDatabase = require("./db");
-const sofas = require("./routes/furniture/products");
 const products = require("./routes/furniture/products");
 const app = express()
 const port = process.env.PORT || 8080

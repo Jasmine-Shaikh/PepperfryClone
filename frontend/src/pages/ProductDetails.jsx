@@ -4,7 +4,6 @@ import { StarIcon } from "@chakra-ui/icons";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import ReactImageMagnify from 'react-image-magnify';
-
 import {
   Select,
   Box,
@@ -42,7 +41,7 @@ const ProductDetails = () => {
   const [product, setProduct] = React.useState({});
 
   React.useEffect(() => {
-    fetch("http://localhost:8080/products/sofas/2")
+    fetch("http://localhost:8080/products/sofas/4")
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, []);
@@ -76,7 +75,7 @@ const ProductDetails = () => {
         spacing={{ base: 8, md: 10 }}
         py={{ base: 18, md: 24 }}
       >
-        <Flex>
+        <Flex  >
           <Box w="100%" p={4} color="white">
             <Carousel
               useKeyboardArrows
@@ -89,22 +88,6 @@ const ProductDetails = () => {
                 
                 return (
                   <div>
-                    <ReactImageMagnify {...{
-    smallImage: {
-        alt: 'Wristwatch by Ted Baker London',
-        isFluidWidth: true,
-        src:images
-    },
-    largeImage: {
-        src: images,
-        width: 1200,
-        height: 1800
-    },
-    enlargedImageContainerDimensions: {
-      width: '150%',
-      height: '150%',
-  },
-}} />
                     <img
                       rounded={"md"}
                       alt={"product image"}
