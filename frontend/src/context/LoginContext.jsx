@@ -13,8 +13,8 @@ export function LoginContextProvider({ children }) {
           headers: {
             "Content-Type": "application/json",
             token: token,
-          },
-        });
+          }
+        })
         let data = await res.json();
         if (data.token) {
           setUser(data.token);

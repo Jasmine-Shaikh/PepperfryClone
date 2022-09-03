@@ -1,5 +1,6 @@
 import { Stack } from "@chakra-ui/react";
 import React from "react";
+import HomeCarousel from "../components/HomeCarousel";
 
 function Home() {
   return (
@@ -12,14 +13,11 @@ function Home() {
       }}
     >
       {/* -----------------------Caurousel--------------------- */}
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", justifyContent: "center", width: "90%", marginLeft:  "60px"}}>
+      
+        <HomeCarousel />
         <img
-          style={{ maxHeight: "433px", marginRight: "15px" }}
-          src="https://ii3.pepperfry.com/media/wysiwyg/banners/HeroBanners_02_2X_280722.jpg"
-          alt="banner"
-        />
-        <img
-          style={{ maxHeight: "433px" }}
+          style={{ maxHeight: "433px", marginLeft: "-15px" }}
           src="https://ii2.pepperfry.com/media/wysiwyg/banners/Web_RHS_Features_270722.jpg"
           alt="features_emi"
         />

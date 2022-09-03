@@ -73,10 +73,12 @@ const Navbar = () => {
       let res = await data.json();
       console.log(res);
       if (res.message) {
-        return alert(res.message);
+       alert(res.message)  }
+      
+      if(res.message === "Registeration Complete!" || res.message === "Account already exists! Please Log In."){
+         handleLoginSignUp()
       }
-      alert("Registration Sucessfull!");
-      handleLoginSignUp();
+     
     } catch (error) {
       console.log(error);
     }
@@ -92,6 +94,7 @@ const Navbar = () => {
 
   const handleLoginForm = async (e) => {
     e.preventDefault();
+     console.log("loginData",loginData)
     try {
       let data = await fetch("http://localhost:3080/login", {
         method: "POST",
@@ -100,17 +103,21 @@ const Navbar = () => {
         },
         body: JSON.stringify(loginData),
       });
-
+       
       let res = await data.json();
-      console.log(res);
+      console.log(res.token);
       let token = res.token;
       localStorage.setItem("token", token);
       setUser(token);
-      alert("User logged in successfully");
-      onClose();
+      alert(res.message);
+      if(res.message === "User logged in succesfully"){
+         onClose();
+      }
+     
     } catch (error) {
       console.log(error);
     }
+
   };
 
   return (

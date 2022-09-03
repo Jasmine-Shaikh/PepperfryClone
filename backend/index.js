@@ -15,5 +15,6 @@ dbConnect()
 app.use(userRouter)
 app.use('/products', products)
 
+
 app.listen(port, () => { console.log(`app running on http://localhost:${port}`); })
 
