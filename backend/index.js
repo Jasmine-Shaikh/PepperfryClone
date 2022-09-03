@@ -2,15 +2,18 @@
 require("dotenv").config()
 const express = require('express');
 const cors = require('cors');
-const dbConnect = require("./dbConnect");
-const sellerRouter = require("./routes/sellerRoutes");
+const sofas = require("./routes/furniture/products");
+const products = require("./routes/furniture/products");
+const userRouter = require('./routes/user');
 const app = express()
 const port = process.env.PORT || 8080
 app.use(express.json())
 app.use(cors())
+app.use(userRouter)
+app.use('/products', products)
 
-dbConnect()
 
-app.use(sellerRouter)
+
+// app.use(sellerRouter)
 
 app.listen(port, () => { console.log(`app running on http://localhost:${port}`); })
