@@ -15,6 +15,7 @@ import trophy from "../images/icon-ck-footer-trophy-21.svg";
 import versign from "../images/icon-ck-footer-verisign-21-2x.webp";
 import psidss from "../images/icon-ck-footer-pci-21-2x.png";
 import image from "../images/monster-ultimate--t--gaming-chair-in-black.webp";
+import image1 from "../images/high-back-executive-chair-in-black-color-by-valuewud-high-back-executive-chair-in-black-color-by-val-qyqaob.webp";
 import location from "../images/w21-locate-orange-icon.svg";
 
 const Address = () => {
@@ -44,7 +45,7 @@ const Address = () => {
       assembly: 720,
       credit: 134,
       delivery_date: "wed,o8 Sep",
-      image: `https://www.pepperfry.com/high-back-executive-chair-in-black-color-by-valuewud-1964282.html?type=cart`,
+      image: image1,
       id: 2,
     },
   ]);
@@ -61,8 +62,20 @@ const Address = () => {
       pincode: 123001,
     });
     console.log(addresses);
+    setisshow("hidden");
   };
   // const [total, settotal] = useState(0)
+  const [name, setname] = useState("");
+  const [numberb, setnumberb] = useState("");
+  const [pincodeb, setpincodeb] = useState("");
+  const [address1, setaddress1] = useState("");
+  const [street, setstreet] = useState("");
+  const [address2, setaddress2] = useState("");
+  const [city, setcity] = useState("");
+  const [state, setstate] = useState("");
+  const [location, setlocation] = useState("");
+  const [isshow, setisshow] = useState("show");
+  const [deliver, setdeliver] = useState(false);
   console.log(cartitem);
   console.log(addresses);
   let dollarIndianLocale = Intl.NumberFormat("en-IN");
@@ -92,16 +105,19 @@ const Address = () => {
     <div>
       <div className="page">
         <div className="jsp1">
-          <h2 className="estimates">
+          <h2 className={` ${deliver == true ? "hidden" : "estimates"} `}>
             Delivery Estimates{" "}
             <span className="estimatea">
               ({cartitem.length} {cartitem.length > 1 ? "items" : "item"})
             </span>
           </h2>
+          <h2 className={` ${deliver == true ? "estimates " : "hidden"} `}>
+            Deliver Here
+          </h2>
         </div>
         <div className="jsp2">
           <div className="page-left">
-            <div className="jsp2-data">
+            <div className={` ${deliver == true ? "hidden" : "jsp2-data"} `}>
               <div className="cart-lista">
                 {cartitem?.map((item) => (
                   <div className="card" key={item.id}>
@@ -134,26 +150,45 @@ const Address = () => {
                 ))}
               </div>
             </div>
+            <div className={` ${deliver == true ? "hidden" : "jsd1"} `}>
+              <h5 className="select-address">Select Delivery Address</h5>
+              <span className="modifyaddres">Add Or Change Address</span>
+            </div>
             <div className="getaddress">
-              <div className="jsd1">
-                <h5 onClick={() => updateaddress(0)}>
-                  Select Delivery Address
-                </h5>
-                <span className="modifyaddress">Add New Address</span>
+              <div
+                className={` ${isshow == "show" ? "hidden" : "your-address"} `}
+              >
+                <h6 className="edit-addr">Edit Address</h6>
+                <div className="nameb">
+                  <span className="namec">{name} </span>
+                  <span className="locationd"> {location}</span>
+                </div>
+                <div className="adr">
+                  {address1}, {address2} <br /> {state} - {pincodeb} <br />
+                  {state}
+                </div>
+                <div className="mnumber">Mobile: {numberb}</div>
               </div>
-              <div className="jsd2">
-                <h6>Default Address</h6>
-                <div className="jsd3">
+              <div className={` ${isshow == "show" ? "jsd2 " : " hidden"} `}>
+                {/* <h6>Default Address</h6> */}
+                <div className={` ${deliver == true ? "hidden" : "jsd3"} `}>
                   <div className="addressinput">
                     <div className="addr-row">
                       <div className="leftc">
-                        <input className="inputbox" placeholder="Enter Name" />
+                        <input
+                          className="inputbox"
+                          value={name}
+                          onChange={(e) => setname(e.target.value)}
+                          placeholder="Enter Name"
+                        />
                         <div className="err-message"></div>
                       </div>
                       <div className="rightc">
                         <input
                           type="text"
                           className="inputbox"
+                          value={numberb}
+                          onChange={(e) => setnumberb(e.target.value)}
                           placeholder="Enter Mobile Number"
                         />
                         <div className="err-message"></div>
@@ -161,7 +196,12 @@ const Address = () => {
                     </div>
                     <div className="addr-row">
                       <div className="leftc">
-                        <input className="inputbox" placeholder="Pincode" />
+                        <input
+                          className="inputbox"
+                          value={pincodeb}
+                          onChange={(e) => setpincodeb(e.target.value)}
+                          placeholder="Pincode"
+                        />
                         <div className="err-message"></div>
                       </div>
                       <div className="rightc">
@@ -179,6 +219,8 @@ const Address = () => {
                       <div className="centrea">
                         <input
                           className="inputbox"
+                          value={address1}
+                          onChange={(e) => setaddress1(e.target.value)}
                           placeholder="House/Flat/Block Number"
                         />
                         <div className="err-message"></div>
@@ -188,6 +230,8 @@ const Address = () => {
                       <div className="centrea">
                         <input
                           className="inputbox"
+                          value={address2}
+                          onChange={(e) => setaddress2(e.target.value)}
                           placeholder="Apartment/Building/Society Name"
                         />
                         <div className="err-message"></div>
@@ -195,23 +239,73 @@ const Address = () => {
                     </div>
                     <div className="addr-row">
                       <div className="leftc">
-                        <input className="inputbox" placeholder="Select City" />
+                        <input
+                          className="inputbox"
+                          value={city}
+                          onChange={(e) => setcity(e.target.value)}
+                          placeholder="Select City"
+                        />
                         <div className="err-message"></div>
                       </div>
                       <div className="rightc">
-                        <input className="inputbox" placeholder="State" />
+                        <input
+                          className="inputbox"
+                          value={state}
+                          onChange={(e) => setstate(e.target.value)}
+                          placeholder="State"
+                        />
                         <div className="err-message"></div>
                       </div>
                     </div>
                     <div className="addr-row align-lefta" id="align-lefta">
                       <div className="leftc">
-                        <input className="inputbox" placeholder="India" />
+                        <input
+                          className="inputbox"
+                          value={"India"}
+                          onChange={(e) => setstate(e.target.value)}
+                          placeholder="Currently"
+                        />
                         <div className="err-message"></div>
                       </div>
                     </div>
-                    <div className="addr-row"></div>
+                    <div className="addr-row">
+                      <div className="leftc">
+                        <div className="type-of-address">Type of Address</div>
+                        <div className="select-type">
+                          <div
+                            onClick={() => setlocation("Home")}
+                            className="homeb"
+                          >
+                            Home
+                          </div>
+                          <div
+                            onClick={() => setlocation("Work")}
+                            className="homeb officeb"
+                          >
+                            Work
+                          </div>
+                          <div
+                            onClick={() => setlocation("Others")}
+                            className="homeb othersb"
+                          >
+                            others
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <div className="addr-row">
                       <Checkbox>Set this as your default address</Checkbox>
+                    </div>
+                    <div className="addr-row">
+                      <div className="centrea">
+                        <div className="butt-save cancelb">Cancel</div>
+                        <div
+                          onClick={() => updateaddress(0)}
+                          className="butt-save saveb"
+                        >
+                          Save
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -264,15 +358,17 @@ const Address = () => {
                   <div className="rinfob">
                     <span>
                       <span className="emi">EMI </span>
-                      Starting ₹{Math.floor(total / 30).toLocaleString("en-IN")}
+                      Starting ₹{Math.floor(total / 33).toLocaleString("en-IN")}
                       /month
                     </span>
                     <span className="emi">No Cost EMI Available</span>
                   </div>
                 </div>
 
-                <div className="checkout">
-                  <p className="p1a">PLACE ORDER</p>
+                <div className={` ${deliver == true ? "hidden" : "checkout"} `}>
+                  <p className="p1a" onClick={() => setdeliver(true)}>
+                    PLACE ORDER
+                  </p>
                 </div>
               </div>
             </div>
