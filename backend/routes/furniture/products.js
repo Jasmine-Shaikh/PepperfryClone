@@ -8,6 +8,8 @@ products.get('/sofas', async (req, res) => {
     res.send(sofasDoc)
 })
 
+
+
 products.get('/sofas/:id', async (req, res) => {
     const id = +req.params.id;
     let sofasDoc = await sofasDB.findOne({ "id": id })
