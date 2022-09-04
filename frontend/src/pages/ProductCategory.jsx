@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Container,
     SimpleGrid,
@@ -49,11 +49,192 @@ const needHelp = [{ imgUrl: 'https://ii1.pepperfry.com/media/wysiwyg/banners/hp_
 
 function ProductCategory() {
     const [title, setTitle] = useState("Furniture")
+    const [img, setImg] = useState("https://ii2.pepperfry.com/media/wysiwyg/banners/Furniture_Clp_web_banner_04082022.jpg")
+    const [types, setTypes] = useState([
+        "Sofas and Recliners",
+        "Seating",
+        "Chairs",
+        "Beds",
+        "Cabinetry",
+        "Tables",
+        "Dining",
+        "Kids and Teens",
+        "Home Office",
+        "Sofa Chairs"])
+    const [alwaysInTrendImgs, setAlwaysInTrendImgs] = useState([])
     const n = useParams()
-console.log(n)
+    function setSplitWithImg() {
+        if (n.name === "furniture" || "modular") {
+            setImg("https://ii2.pepperfry.com/media/wysiwyg/banners/Furniture_Clp_web_banner_04082022.jpg")
+            setTitle("Furniture")
+            setTypes(["Sofas and Recliners",
+                "Seating",
+                "Chairs",
+                "Beds",
+                "Cabinetry",
+                "Tables",
+                "Dining",
+                "Kids and Teens",
+                "Home Office",
+                "Sofa Chairs"])
+        }
+        if (n.name === "sofas") {
+            setImg("https://ii2.pepperfry.com/media/wysiwyg/banners/Web_2_Sofa&Recliners_2386X686_2x_160522.jpg")
+            setTitle("Sofas & Recliners")
+            setTypes(["3 Seater Sofas",
+                "2 Seater Sofas",
+                "1 Seater Sofas",
+                "Sofa Sets",
+                "Sectional Sofas",
+                "Recliners",
+                "Chaise Loungers",
+                "Sofa Cum Beds",
+                "Futons"])
+        }
+        if (n.name === "beds") {
+            setImg("https://ii2.pepperfry.com/media/wysiwyg/banners/Web_4_Bed&Mattresses_2386X686_2x_160522.jpg")
+            setTitle("Beds & Mattresses")
+            setTypes(["Queen Size Beds",
+                "King Size Beds",
+                "Single Beds",
+                "Mattresses",
+                "Queen Size Bed Mattresses",
+                "King size bed Mattresses",
+                "Single Bed Mattresses",
+                "Upholstered Beds",
+                "Kids Beds",
+                "Bunk Beds"])
+        }
+        if (n.name === "storage") {
+            setImg("https://ii2.pepperfry.com/media/wysiwyg/banners/Web_3_Storage_2386X686_2x_160522.jpg")
+            setTitle("Storage")
+            setTypes([
+                "Wardrobes",
+                "Cabinets & Sideboards",
+                "Chest of Drawers",
+                "Shoe Racks",
+                "Book Shelves",
+                "Book Cases",
+                "Wall Shelves",
+                "Wall Cabinets",
+                "Table Organizers"
+            ])
+        }
+        if (n.name === "dining") {
+            setImg("https://ii2.pepperfry.com/media/wysiwyg/banners/Web_48_Tableware_2386X686_2x_170522.jpg")
+            setTitle("Dining & Bar")
+            setTypes([
+                "Dinnerware",
+                "Serveware",
+                "Drinkware",
+                "Barware",
+                "Teaware",
+                "Bakeware",
+                "Table Linen",
+                "Dining Furniture",
+                "Bar Furniture",
+            ])
+        }
+        if (n.name === "wall") {
+            setImg("https://ii1.pepperfry.com/media/wysiwyg/banners/Web_6_WallAccents_2386X686_2x_160522.jpg")
+            setTitle("Wall Accents")
+            setTypes(["Mirrors",
+                "Clocks",
+                "Photo Frames",
+                "Wall Shelves",
+                "Wall Cabinets",
+                "Canvas Paintings",
+                "Wall Art"])
+        }
+        if (n.name === "decor") {
+            setImg("https://ii2.pepperfry.com/media/wysiwyg/banners/Web_7_Decor_2386X686_2x_160522.jpg")
+            setTitle("Decor")
+            setTypes([
+                "Table Decor",
+                "Wall Shelves & Cabinets",
+                "Wall Art",
+                "Spiritual",
+                "Kids Decor",
+                "Mirrors",
+                "Clocks",
+                "Home Garden",
+                "Tableware",
+                "Screens & Dividers",
+            ])
+        }
+        if (n.name === "light") {
+            setImg("https://ii2.pepperfry.com/media/wysiwyg/banners/Web_8_Lighting_2386X686_2x_160522.jpg")
+            setTitle("Lighting")
+            setTypes(["Floor Lamps",
+                "Table Lamps",
+                "Wall Lights",
+                "Ceiling Lights",
+                "Chandeliers",
+                "LED Lights",
+                "Smart Lights",
+                "Outdoor Lights",
+                "Festive Lights",
+                "Lampshades",])
+        }
+        if (n.name === "furnishing") {
+            setImg("https://ii1.pepperfry.com/media/wysiwyg/banners/Furnishings_2386-X-686-27012021.jpg")
+            setTitle("Furnishings")
+            setTypes(["Bed Linen",
+                "Curtains",
+                "Blankets & Comforters",
+                "Cushions & Covers",
+                "Carpets & Dhurries",
+                "Bath Linen",
+                "Kids Furnishings",
+                "Table Linen",
+                "Organisers",
+                "Essentials",])
+        }
+        if (n.name === "carpet") {
+            setImg("https://ii2.pepperfry.com/media/wysiwyg/banners/Web_10_Carpet_2386X686_2x_160522.jpg")
+            setTitle("Carpets and Dhurries")
+            setTypes(["Carpets",
+                "Dhurries",
+                "Runners",
+                "Doormats",])
+        }
+        if (n.name === "garden") {
+            setImg("https://ii2.pepperfry.com/media/wysiwyg/banners/Web_11_Garden_Outdoor_2386X686_2x_210622.jpg")
+            setTitle("Garden and Outdoor")
+            setTypes([
+                "Pots & Planters",
+                "Planter Stands",
+                "Natural Plants",
+                "Artificial Plants & Flowers",
+                "Garden Decor",
+                "Outdoor Furniture",
+            ])
+        }
+        if (n.name === "appliances") {
+            setImg("https://ii2.pepperfry.com/media/wysiwyg/banners/Web_AppliancesCLP_2X_TopBanner_080822.jpg")
+            setTitle("Appliances")
+            setTypes(["Mixers & Processors",
+                "Breakfast Appliances",
+                "OTGs",
+                "Cooktops",
+                "Chimneys",
+                "Heating & Cooling",
+                "Televisions",
+                "Home Audio",
+                "Refrigerators",
+                "Laundry"])
+        }
+
+    }
+
+    useEffect(() => {
+      setSplitWithImg()
+    }, [n])
+    
+    console.log(n)
     return (
         <Container maxW={'90%'}>
-            <SplitWithImage title={title} />
+            <SplitWithImage title={title} img={img} types={types} />
             <AlwaysInTrend />
             <GridImgSplit />
             <GridImgSplit2 />
@@ -77,13 +258,13 @@ function SplitWithImage({ title = "Beds and Mattress", types = ["Single Bed, Mat
     "Kids Beds",
     "Bunk Beds",
     "Bedding",
-    "Blankets and Comforters"] }) {
+    "Blankets and Comforters"], img = "https://ii2.pepperfry.com/media/wysiwyg/banners/Web_4_Bed&Mattresses_2386X686_2x_160522.jpg" }) {
     return (
         <Container p={0} maxW={'100%'}>
             <SimpleGrid templateColumns={'repeat(6, 1fr)'} columns={{ base: 1, md: 3 }}>
                 <GridItem >
                     <Stack>
-                        <Heading size={"md"}>{title}</Heading>
+                        <Text fontWeight={"800"} fontFamily={"Playfair Display"} size={"1.25rem"}>{title}</Text>
                         <Stack h={"60"} overflowY={"auto"}>
                             {
                                 types.map((type) => {
@@ -97,9 +278,7 @@ function SplitWithImage({ title = "Beds and Mattress", types = ["Single Bed, Mat
                     <Image
                         rounded={'md'}
                         alt={'feature image'}
-                        src={
-                            'https://ii2.pepperfry.com/media/wysiwyg/banners/Web_4_Bed&Mattresses_2386X686_2x_160522.jpg'
-                        }
+                        src={img}
                     />
                 </GridItem>
             </SimpleGrid>
