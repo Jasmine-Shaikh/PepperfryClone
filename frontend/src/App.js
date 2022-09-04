@@ -11,6 +11,7 @@ import { ProductsPage } from './pages/ProductsPage';
 // import Cart from './pages/Cart';
 import Cart from './components/Cart';
 import Checkout from './pages/Checkout';
+import Address from './components/address';
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
       <Route path='/checkout' element={ <Checkout />}>
       <Route index element={<Cart />} />
         {/* <Route index element={<Cart />} /> */}
-        {/* <Route path='address' element={} /> */}
+        <Route path='address' element={<Address/>} />
       </Route>
     </Routes>
   </>
