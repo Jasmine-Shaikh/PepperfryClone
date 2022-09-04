@@ -15,6 +15,7 @@ const getRatings = (id) => {
     return stars;
   };
 export const ProductCard=(props)=> {
+  console.log(props)
     const [enableBt, setEnableBt]=useState(false)
     const {
       id,
@@ -41,7 +42,6 @@ export const ProductCard=(props)=> {
           textAlign: "left",
           padding: "10px",
         }}
-        // onMouseEnter={()=>setEnableBt(true)} 
       >
         <div>
         <div style={{position: "relative", textAlign: "center",  color: "white"}}>
@@ -68,7 +68,7 @@ export const ProductCard=(props)=> {
         <AiOutlineHeart />
           </div>
         </div>
-        <Link to={"/ProductDetails"}>
+        <Link to={"/ProductDetails/type/id"}>
         <div
           style={{
             display: "flex",

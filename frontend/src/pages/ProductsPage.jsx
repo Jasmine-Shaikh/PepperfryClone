@@ -419,7 +419,7 @@ const handlePriceFiltering=(e)=>{
             marginRight: "80px",
           }}
         >
-          {pageData?.map((ele) =><ProductCard key={ele.id} product={ele}/>)}
+          {pageData?.map((ele) =><ProductCard key={ele.id} product={ele} type={type}/>)}
         </div>
       </div>
       <hr />
