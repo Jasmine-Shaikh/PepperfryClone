@@ -23,13 +23,60 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { LoginContext } from "../context/LoginContext";
 import CartSideBar from "./CartSideBar";
+import { Appliances, Beds, Carpets, Decor, Dining, Furnishing, Furniture, Garden, Lighting, Modular, Sofas, Storage, Wall } from "./DropDownElements";
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [showPassword, setShowPassword] = React.useState(false);
   const handlePasswordVisibility = () => setShowPassword(!showPassword);
   const [modalToggle, setModalToggle] = React.useState(false);
+  const [showDropdown, setShowDropdown] = React.useState(false);
+  const [dropCategory, setdropCategory] = React.useState(null);
   const handleLoginSignUp = () => setModalToggle(!modalToggle);
   const { user, setUser } = React.useContext(LoginContext);
+  const [searchFor, setSearchFor] = React.useState("");
+  const [searchResults, setSearchResults] = React.useState();
+  const searchStore = [
+    "table linen",
+    "table lamps",
+    "table decor",
+    "table clocks",
+    "study table",
+    "table",
+    "dining table",
+    "coffee table",
+    "dressing table",
+    "office table",
+    "bed wedges",
+    "bed covers",
+    "sofa cum bed",
+    "bed",
+    "single bed",
+    "bedside table",
+    "bunk bed",
+    "bed sheets",
+    "outdoor furniture",
+    "furniture cover",
+    "bar furniture",
+    "office furniture",
+    "desk",
+    "office desk",
+    "standing desk",
+    "computer desk",
+    "study desk",
+    "work desk",
+    "desktop table",
+    "executive desk",
+    "chair pads",
+    "chair",
+    "office chair",
+    "gaming chair",
+    "study chair",
+    "dinning chair",
+    "rocking chair",
+    "wing chair",
+    "plastic chairs",
+    "wooden chairs",
+  ];
 
   const handleRegisterChange = (e) => {
     const { name, value } = e.target;
@@ -64,7 +111,7 @@ const Navbar = () => {
   const handleRegisterForm = async (e) => {
     console.log(registerData);
     try {
-      let data = await fetch("http://localhost:3080/register", {
+      let data = await fetch("http://localhost:8080/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -74,10 +121,15 @@ const Navbar = () => {
       let res = await data.json();
       console.log(res);
       if (res.message) {
-        return alert(res.message);
+        alert(res.message);
       }
-      alert("Registration Sucessfull!");
-      handleLoginSignUp();
+
+      if (
+        res.message === "Registeration Complete!" ||
+        res.message === "Account already exists! Please Log In."
+      ) {
+        handleLoginSignUp();
+      }
     } catch (error) {
       console.log(error);
     }
@@ -93,8 +145,9 @@ const Navbar = () => {
 
   const handleLoginForm = async (e) => {
     e.preventDefault();
+    console.log("loginData", loginData);
     try {
-      let data = await fetch("http://localhost:3080/login", {
+      let data = await fetch("http://localhost:8080/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -103,12 +156,31 @@ const Navbar = () => {
       });
 
       let res = await data.json();
-      console.log(res);
+      console.log(res.token);
       let token = res.token;
       localStorage.setItem("token", token);
       setUser(token);
-      alert("User logged in successfully");
-      onClose();
+      alert(res.message);
+      if (res.message === "User logged in succesfully") {
+        onClose();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //-----------------------------------------Search-------------------------------------------
+  const handleSearch = async () => {
+    try {
+      let searchData = searchStore.filter((e) => {
+        return e.includes(searchFor);
+      });
+      
+      if (searchData.length === 0) {
+        return setSearchResults(["No results found"]);
+      } else {
+        return setSearchResults(searchData);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -193,13 +265,38 @@ const Navbar = () => {
                   type="text"
                   fontSize={"15px"}
                   placeholder="Your door to happiness starts with a search"
+                  onChange={(e) => {
+                    setSearchFor(e.target.value);
+                    handleSearch()
+                  }}
                 />
                 <InputRightElement
                   pointerEvents="none"
                   children={<Search2Icon />}
                 />
               </InputGroup>
+              {/* ---------------------------------------------Search results--------------------------- */}
+              {searchFor === "" ? null : (
+                <div
+                  style={{
+                    position: "absolute",
+                    boxShadow: "0 2px 12px 0 rgb(0 0 0 / 21%)",
+                    backgroundColor: "#fff",
+                    zIndex: 1,
+                    width: "360px",
+                    padding: "12px 18px",
+
+                    left: "270px",
+                    top: "98px"
+                  }}
+                >
+                  {searchResults.map((e) => {
+                    return <p key={e}>{e}</p>;
+                  })}
+                </div>
+              )}
             </Box>
+
             <Stack direction={["row"]} spacing="10px">
               <button
                 style={{
@@ -211,33 +308,34 @@ const Navbar = () => {
                 }}
               ></button>
               <Menu>
-                <MenuButton  sx={{
-                      width: "40px",
-                      verticalAlign: "middle",
-                      backgroundSize: "40px",
-                      fill: "orange",
-                      background:
-                        "url(https://ii1.pepperfry.com/images/svg/icon-profile-21.svg?v=1) no-repeat center",
-                    }}
-                    onClick={onOpen}>
-                  
-                    {user ? (
-                      <span
-                        style={{
-                          padding: "0px",
-                          margin: "0px",
-                          backgroundColor: "orange",
-                          fontSize: "1px",
-                          position: "relative",
-                          border: "5px solid orange",
-                          borderRadius: "100%",
-                          top: -17,
-                          left: 5,
-                        }}
-                      ></span>
-                    ) : (
-                      <>.</>
-                    )}
+                <MenuButton
+                  sx={{
+                    width: "40px",
+                    verticalAlign: "middle",
+                    backgroundSize: "40px",
+                    fill: "orange",
+                    background:
+                      "url(https://ii1.pepperfry.com/images/svg/icon-profile-21.svg?v=1) no-repeat center",
+                  }}
+                  onClick={onOpen}
+                >
+                  {user ? (
+                    <span
+                      style={{
+                        padding: "0px",
+                        margin: "0px",
+                        backgroundColor: "orange",
+                        fontSize: "1px",
+                        position: "relative",
+                        border: "5px solid orange",
+                        borderRadius: "100%",
+                        top: -17,
+                        left: 5,
+                      }}
+                    ></span>
+                  ) : (
+                    <>.</>
+                  )}
                 </MenuButton>
                 {user ? (
                   <MenuList>
@@ -283,78 +381,91 @@ const Navbar = () => {
             padding: "15px 0px",
           }}
         >
-          <Stack direction={["row"]} spacing="20px">
+          <Stack direction={["row"]} spacing="20px" onMouseEnter={()=>{setShowDropdown(true)}} onMouseLeave={()=>{setShowDropdown(false);setdropCategory(null)}} >
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="/ProductCategory">Furniture</Link>
+              <Link to="/ProductCategory/furniture"  onMouseEnter={()=>{setdropCategory("furniture")}}>Furniture</Link>
+              {showDropdown && dropCategory === "furniture" ? <Furniture/> : null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="">Sofas & Recliners</Link>
+              <Link to="/ProductCategory/sofas" onMouseEnter={()=>{setdropCategory("sofas")}}>Sofas & Recliners</Link>
+              {showDropdown && dropCategory === "sofas" ? <Sofas/>: null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="">Beds & Mattresses</Link>
+              <Link to="/ProductCategory/beds" onMouseEnter={()=>{setdropCategory("beds")}}>Beds & Mattresses</Link>
+              {showDropdown && dropCategory === "beds" ? <Beds/> : null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="">Storage</Link>
+              <Link to="/ProductCategory/storage" onMouseEnter={()=>{setdropCategory("storage")}}>Storage</Link>
+              {showDropdown && dropCategory === "storage" ? <Storage/>: null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="">Dining & Bar</Link>
+              <Link to="/ProductCategory/dining" onMouseEnter={()=>{setdropCategory("dining")}}>Dining & Bar</Link>
+              {showDropdown && dropCategory === "dining" ? <Dining/> : null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="">Wall Accents</Link>
+              <Link to="/ProductCategory/wall" onMouseEnter={()=>{setdropCategory("wall")}}>Wall Accents</Link>
+              {showDropdown && dropCategory === "wall" ? <Wall/> : null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="">Decor</Link>
+              <Link to="/ProductCategory/decor" onMouseEnter={()=>{setdropCategory("decor")}}>Decor</Link>
+              {showDropdown && dropCategory === "decor" ? <Decor/> : null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="">Lighting</Link>
+              <Link to="/ProductCategory/light" onMouseEnter={()=>{setdropCategory("light")}}>Lighting</Link>
+              {showDropdown && dropCategory === "light" ? <Lighting/>: null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="">Furnishings</Link>
+              <Link to="/ProductCategory/furnishing" onMouseEnter={()=>{setdropCategory("furnishing")}}>Furnishings</Link>
+              {showDropdown && dropCategory === "furnishing" ? <Furnishing/> : null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="">Carpets</Link>
+              <Link to="/ProductCategory/carpet" onMouseEnter={()=>{setdropCategory("carpet")}}>Carpets</Link>
+              {showDropdown && dropCategory === "carpet" ? <Carpets/> : null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="">Garden & Outdoor</Link>
+              <Link to="/ProductCategory/garden" onMouseEnter={()=>{setdropCategory("garden")}}>Garden & Outdoor</Link>
+              {showDropdown && dropCategory === "garden" ? <Garden/> : null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="">Appliances</Link>
+              <Link to="/ProductCategory/appliances" onMouseEnter={()=>{setdropCategory("appliances")}}>Appliances</Link>
+              {showDropdown && dropCategory === "appliances" ? <Appliances/> : null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="">Modular</Link>
+              <Link to="/ProductCategory/modular" onMouseEnter={()=>{setdropCategory("modular")}}>Modular</Link>
+              {showDropdown && dropCategory === "modular" ? <Modular/> : null}
             </li>
           </Stack>
         </Box>
       </Box>
       <hr />
       {/* ---------------------Log In/ Register Modal------------------------------- */}
-      {!user ? 
+      {!user ? (
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent minWidth={"700px"} borderRadius={"0px"}>
@@ -631,7 +742,7 @@ const Navbar = () => {
             </ModalBody>
           </ModalContent>
         </Modal>
-       : null}
+      ) : null}
       {/* ---------------------------After Log In ------------------------------------- */}
     </header>
   );

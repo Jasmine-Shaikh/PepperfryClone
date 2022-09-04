@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     Container,
     SimpleGrid,
@@ -11,7 +11,7 @@ import {
     Img,
     Box,
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const inWithTheNew = [
     {
@@ -48,9 +48,12 @@ const needHelp = [{ imgUrl: 'https://ii1.pepperfry.com/media/wysiwyg/banners/hp_
 { imgUrl: "https://ii3.pepperfry.com/media/wysiwyg/banners/hp_need_help_p_6.jpg", subTitle: "" }]
 
 function ProductCategory() {
+    const [title, setTitle] = useState("Furniture")
+    const n = useParams()
+console.log(n)
     return (
         <Container maxW={'90%'}>
-            <SplitWithImage />
+            <SplitWithImage title={title} />
             <AlwaysInTrend />
             <GridImgSplit />
             <GridImgSplit2 />
