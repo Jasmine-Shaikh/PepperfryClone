@@ -49,8 +49,88 @@ const needHelp = [{ imgUrl: 'https://ii1.pepperfry.com/media/wysiwyg/banners/hp_
 
 function ProductCategory() {
     const [title, setTitle] = useState("Furniture")
+    const [img, setImg] = useState("https://ii2.pepperfry.com/media/wysiwyg/banners/Furniture_Clp_web_banner_04082022.jpg")
+    const [types, setTypes] = useState([
+        "Sofas and Recliners",
+        "Seating",
+        "Chairs",
+        "Beds",
+        "Cabinetry",
+        "Tables",
+        "Dining",
+        "Kids and Teens",
+        "Home Office",
+        "Sofa Chairs",])
+    const [first, setfirst] = useState(second)
     const n = useParams()
-console.log(n)
+    function setSplitWithImg() {
+        if (n.name === "furniture") {
+            setImg("")
+            setTitle("")
+            setTypes([])
+        }
+        if (n.name === "sofas") {
+            setImg("")
+            setTitle("")
+            setTypes([])
+        }
+        if (n.name === "beds") {
+            setImg("")
+            setTitle("")
+            setTypes([])
+        }
+        if (n.name === "storage") {
+            setImg("")
+            setTitle("")
+            setTypes([])
+        }
+        if (n.name === "dining") {
+            setImg("")
+            setTitle("")
+            setTypes([])
+        }
+        if (n.name === "wall") {
+            setImg("")
+            setTitle("")
+            setTypes([])
+        }
+        if (n.name === "decor") {
+            setImg("")
+            setTitle("")
+            setTypes([])
+        }
+        if (n.name === "light") {
+            setImg("")
+            setTitle("")
+            setTypes([])
+        }
+        if (n.name === "furnishing") {
+            setImg("")
+            setTitle("")
+            setTypes([])
+        }
+        if (n.name === "carpet") {
+            setImg("")
+            setTitle("")
+            setTypes([])
+        }
+        if (n.name === "garden") {
+            setImg("")
+            setTitle("")
+            setTypes([])
+        }
+        if (n.name === "appliances") {
+            setImg("")
+            setTitle("")
+            setTypes([])
+        }
+        if (n.name === "modular") {
+            setImg("")
+            setTitle("")
+            setTypes([])
+        }
+    }
+    console.log(n)
     return (
         <Container maxW={'90%'}>
             <SplitWithImage title={title} />
@@ -77,7 +157,7 @@ function SplitWithImage({ title = "Beds and Mattress", types = ["Single Bed, Mat
     "Kids Beds",
     "Bunk Beds",
     "Bedding",
-    "Blankets and Comforters"] }) {
+    "Blankets and Comforters"], img = "https://ii2.pepperfry.com/media/wysiwyg/banners/Web_4_Bed&Mattresses_2386X686_2x_160522.jpg" }) {
     return (
         <Container p={0} maxW={'100%'}>
             <SimpleGrid templateColumns={'repeat(6, 1fr)'} columns={{ base: 1, md: 3 }}>
@@ -97,9 +177,7 @@ function SplitWithImage({ title = "Beds and Mattress", types = ["Single Bed, Mat
                     <Image
                         rounded={'md'}
                         alt={'feature image'}
-                        src={
-                            'https://ii2.pepperfry.com/media/wysiwyg/banners/Web_4_Bed&Mattresses_2386X686_2x_160522.jpg'
-                        }
+                        src={img}
                     />
                 </GridItem>
             </SimpleGrid>
