@@ -65,6 +65,7 @@ const filterSort=(sort, priceFilters, pageData)=>{
 
 export const ProductsPage = () => {
   const {type}=useParams()
+
   const [sort, setSort] = useState("");
   const [productsData, setProductsData]=useState([])
   const [discount, setDiscount] = React.useState("");
@@ -419,7 +420,7 @@ const handlePriceFiltering=(e)=>{
             marginRight: "80px",
           }}
         >
-          {pageData?.map((ele) =><ProductCard key={ele.id} product={ele} type={type}/>)}
+          {pageData.length==0?(<Heading padding={"250px 0px 0px 40px"} textAlign="center" color="#FF7135" as='h2' size='xl'> {`Their is no ${type} under ₹ ${priceFilters}/- please Change the filter`}</Heading>): (pageData?.map((ele) =><ProductCard key={ele.id} product={ele} type={type}/>))}
         </div>
       </div>
       <hr />

@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import { AiOutlineHeart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { v4 as uuid } from "uuid";
+import AddToCartBT from './AddToCartBT';
+import CartSideBar from './CartSideBar';
 const getRatings = (id) => {
     let k=Math.floor((Math.random()*(5-3))+3)
     const stars = [];
@@ -15,7 +17,7 @@ const getRatings = (id) => {
     return stars;
   };
 export const ProductCard=(props)=> {
-  console.log(props)
+  const {type}=props
     const [enableBt, setEnableBt]=useState(false)
     const {
       id,
@@ -47,28 +49,12 @@ export const ProductCard=(props)=> {
         <div style={{position: "relative", textAlign: "center",  color: "white"}}>
           
           <img style={{ width: "100%", height: "350px" }} src={img[0]} onMouseOver={()=>setEnableBt(true)} onMouseLeave={()=>setEnableBt(false)}  alt="Product"/>
-        <div style={{position: "absolute",bottom: "50px",left: "85px"}}>{enableBt? (<Button
-                    rounded={"none"}
-                    w={"full"}
-                    mt={8}
-                    size={"lg"}
-                    h={"50px"}
-                    bg={"#FF7135"}
-                    // color={useColorModeValue("white", "gray.900")}
-                    textTransform={"uppercase"}
-                    _hover={{
-                      transform: "translateY(2px)",
-                      boxShadow: "lg",
-                    }}
-                    onClick={(e)=>{console.log(id)}}
-                  >
-                    Add to cart
-                  </Button>) : null}</div>
+        <div style={{position: "absolute",bottom: "50px",left: "85px"}}>{enableBt? (<AddToCartBT color={"orange"}/>) : null}</div>
         <div style={{position: "absolute",bottom: "22px",right: "8px"}}>{getRatings(id)}</div>
         <AiOutlineHeart />
           </div>
         </div>
-        <Link to={"/ProductDetails/type/id"}>
+        <Link to={`/ProductDetails/${type}/${id}`}>
         <div
           style={{
             display: "flex",
