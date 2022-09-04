@@ -1,5 +1,5 @@
 const express = require("express")
-const sofasDB = require("../../models/products")
+const { sofasDB, cabinetryDB } = require("../../models/products")
 
 const products = express.Router()
 
