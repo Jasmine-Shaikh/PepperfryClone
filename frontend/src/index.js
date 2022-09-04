@@ -19,7 +19,6 @@ const colors = {
 const theme = extendTheme({ colors });
 
 root.render(
-  <React.StrictMode>
       <LoginContextProvider>
     <BrowserRouter>
       <ChakraProvider theme={theme}>
@@ -27,6 +26,5 @@ root.render(
       </ChakraProvider>
     </BrowserRouter>
     </LoginContextProvider>
-  </React.StrictMode>
 
 );

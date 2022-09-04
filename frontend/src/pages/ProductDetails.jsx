@@ -40,8 +40,7 @@ import { Link } from "react-router-dom";
 
 const ProductDetails = () => {
 const [product, setProduct] = React.useState({});
-
-const {type,id} = useParams ()
+const {type,id} = useParams()
 
 
 

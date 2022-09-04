@@ -1,7 +1,10 @@
 /* eslint-disable jsx-a11y/aria-proptypes */
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { StarIcon } from "@chakra-ui/icons";
+import { AiOutlineHeart } from "react-icons/ai";
 import {
   border,
+  Button,
   Heading,
   Radio,
   RadioGroup,
@@ -21,7 +24,8 @@ import {
   SliderThumb,
   SliderMark,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { ProductCard } from "../components/ProductCard";
 
 const filterCard=(ele)=>{
 
@@ -34,86 +38,6 @@ const filterCard=(ele)=>{
   )
 }
 
-function ProductCard(product) {
-  const {
-    id,
-    name,
-    img,
-    madeBy,
-    offer_price,
-    actual_price,
-    total_savings,
-    price,
-    seater,
-    details,
-  } = product;
-  return (
-
-    <Link to={"/ProductDetails"}>
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "320px",
-        // height: "500px",
-        textAlign: "left",
-        padding: "10px",
-      }}
-    >
-      <div>
-        <img
-          style={{ width: "100%", height: "350px" }}
-          src={img[0]}
-          alt="Product"
-        />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignContent: "left",
-          padding: "10px",
-        }}
-      >
-        <Text fontSize="lg" padding="10px 0px 0px 0px">
-          {name}
-        </Text>
-        <p style={{ color: "gray", padding: "10px 0px 0px 0px" }}>{madeBy}</p>
-        <div
-          style={{
-            display: "flex",
-            width: "55%",
-            justifyContent: "space-between",
-            margin: "0px",
-            padding: "10px 0px 0px 0px",
-          }}
-        >
-          {
-            <>
-              <Heading as="h5" size="sm" color="tomato">
-                {"₹ " + offer_price}
-              </Heading>
-              <s style={{ color: "grey" }}>
-                {" "}
-                <p>{"₹ " + actual_price}</p>
-              </s>
-            </>
-          }
-        </div>
-        <Heading as="h6" size="xs" color="green.500" padding="10px 0px 0px 0px">
-          {total_savings}
-        </Heading>
-        <p style={{ padding: "10px 0px 0px 0px" }}>
-          {"Earn cashback ₹ " + Math.floor(price / 2)}
-        </p>
-        <p style={{ padding: "10px 0px 0px 0px" }}>
-          {`Ships in 1 day`}
-        </p>
-      </div>
-      </div>
-    </Link>
-  );
-}
 const sortFunction=(sort, pageData)=>{
   if(sort!==""){
       if(sort=="lh"){
@@ -133,30 +57,43 @@ const sortFunction=(sort, pageData)=>{
     return pageData
 }
 
-const dataFiltering=()=>{
 
+const filterSort=(sort, priceFilters, pageData)=>{
+  const processedData=pageData.filter(ele=> ele.price<=(+priceFilters))
+  return sortFunction(sort, processedData)
 }
+
 export const ProductsPage = () => {
-  const [sort, setSort] = React.useState("");
+  const {type}=useParams()
+
+  const [sort, setSort] = useState("");
+  const [productsData, setProductsData]=useState([])
   const [discount, setDiscount] = React.useState("");
   const [units, setUnits] = React.useState(false);
-  const [depth, setDepth] =React.useState(false);
-  const [width, setWidth] =React.useState(false);
-  const [height, setHeight] =React.useState(false);
+  const [depth, setDepth] =React.useState([0, 100]);
+  const [width, setWidth] =React.useState([0, 100]);
+  const [height, setHeight] =React.useState([0, 100]);
   const [pageData, setPageData]=React.useState([]);
-  const [rateFilter, setRateFilter]=React.useState([])
-  const [filters, setFilters]=React.useState([1,2,3,4,5]);
+  const [priceFilters, setPriceFilters]=React.useState(Infinity);
+  const [num, setNum]=useState(0)
+  const [enableBt, setEnableBt]=useState(false)
 
 
+const handlePriceFiltering=(e)=>{
+  if(e.target.checked){
+     setPriceFilters(e.target.value)
+  }
+ 
+}
+  useEffect(()=>{
+    setPageData(filterSort(sort, priceFilters, productsData));
+  },[sort,priceFilters])
 
-  React.useEffect(()=>{
-    setSort(sortFunction(sort, pageData))
-  },[sort,discount])
-
-  React.useEffect(()=>{
-    fetch(` http://localhost:8080/furniture`)
+  useEffect(()=>{
+    fetch(`http://localhost:8080/products/${type}`)
     .then(res=>res.json())
-    .then(data=>setPageData(data.sofas))
+    .then(data=>{setPageData(data)
+    setProductsData(data)})
     .catch(err=>console.log(err))
   },[])
 
@@ -182,7 +119,6 @@ export const ProductsPage = () => {
               display: "flex",
               flexDirection: "column",
               justifyContent: "centre",
-              // border: "2px solid red",
               alignItems: "centre"
             }}
           >
@@ -196,9 +132,6 @@ export const ProductsPage = () => {
             </Heading>
             <RadioGroup onChange={setSort} sort={sort}>
               <Stack direction="column">
-                {/* <Radio size="lg" colorScheme="orange" value="rel" border="2px solid grey">
-                  Relevance
-                </Radio> */}
                 <Radio size="lg" colorScheme="orange" value="rel">
                 Relevance
                 </Radio>
@@ -218,17 +151,6 @@ export const ProductsPage = () => {
             </RadioGroup>
           </div>
           <hr />
-          <div>
-            <Heading
-              as="h5"
-              size="sm"
-              textAlign="left"
-              padding="15px 0px 15px 0px"
-            >
-              Brand
-            </Heading>
-          </div>
-          <hr />
           <div
             style={{
               display: "flex",
@@ -236,7 +158,7 @@ export const ProductsPage = () => {
               justifyContent: "left",
               padding: "0px",
               margin: "0px",
-              overflow: "hidden",
+              overflow: "auto",
               height: "280px",
               onMouseOver: "this.style.overflow='scroll'",
               onMouseOut: "this.style.overflow='hidden'",
@@ -250,23 +172,23 @@ export const ProductsPage = () => {
             >
               Price
             </Heading>
-            <Checkbox size="lg" colorScheme="orange" value={5000} onChange={(e)=>{console.log(e.target.value)}}>Under ₹ 5,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={5000} onChange={(e)=>{handlePriceFiltering(e)}}>Under ₹ 5,000</Checkbox>
             <br />
-            <Checkbox size="lg" colorScheme="orange" value={10000}>₹ 5,001 to 10,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={10000} onChange={(e)=>{handlePriceFiltering(e)}}>₹ 5,001 to 10,000</Checkbox>
             <br />
-            <Checkbox size="lg" colorScheme="orange" value={20000}>₹ 10,001 to 20,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={20000} onChange={(e)=>{handlePriceFiltering(e)}}>₹ 10,001 to 20,000</Checkbox>
             <br />
-            <Checkbox size="lg" colorScheme="orange" value={30000}>₹ 20,001 to 30,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={30000} onChange={(e)=>{handlePriceFiltering(e)}}>₹ 20,001 to 30,000</Checkbox>
             <br />
-            <Checkbox size="lg" colorScheme="orange" value={40000}>₹ 30,001 to 40,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={40000} onChange={(e)=>{handlePriceFiltering(e)}}>₹ 30,001 to 40,000</Checkbox>
             <br />
-            <Checkbox size="lg" colorScheme="orange" value={50000}>₹ 40,001 to 50,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={50000} onChange={(e)=>{handlePriceFiltering(e)}}>₹ 40,001 to 50,000</Checkbox>
             <br />
-            <Checkbox size="lg" colorScheme="orange" value={60000}>₹ 50,001 to 60,000 </Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={60000} onChange={(e)=>{handlePriceFiltering(e)}}>₹ 50,001 to 60,000 </Checkbox>
             <br />
-            <Checkbox size="lg" colorScheme="orange" value={80000}>₹ 70,001 to 80,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={80000} onChange={(e)=>{handlePriceFiltering(e)}}>₹ 70,001 to 80,000</Checkbox>
             <br />
-            <Checkbox size="lg" colorScheme="orange" value={90000}>₹ 80,001 to 90,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={90000} onChange={(e)=>{handlePriceFiltering(e)}}>₹ 80,001 to 90,000</Checkbox>
           </div>
           <hr />
           <div>
@@ -498,11 +420,10 @@ export const ProductsPage = () => {
             marginRight: "80px",
           }}
         >
-          {pageData?.map((ele) => ProductCard(ele))}
+          {pageData.length==0?(<Heading padding={"250px 0px 0px 40px"} textAlign="center" color="#FF7135" as='h2' size='xl'> {`Their is no ${type} under ₹ ${priceFilters}/- please Change the filter`}</Heading>): (pageData?.map((ele) =><ProductCard key={ele.id} product={ele} type={type}/>))}
         </div>
       </div>
-      <div>above the footer</div>
-      <div>footer</div>
+      <hr />
     </div>
   );
 };

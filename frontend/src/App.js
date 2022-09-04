@@ -19,7 +19,7 @@ function App() {
       <Route path="/" element={<Pages />} >
         <Route index element={<Home />} />
         <Route path='ProductCategory/:name' element={<ProductCategory />} />
-        <Route path='ProductsPage' element={<ProductsPage />} />
+        <Route path='/ProductsPage/:type' element={<ProductsPage />} />
         <Route path='productDetails/:type/:id' element={<ProductDetails />} />
       </Route>
       <Route path='/checkout' element={ <Checkout />}>

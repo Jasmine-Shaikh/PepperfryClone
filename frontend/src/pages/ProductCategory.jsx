@@ -116,7 +116,7 @@ function AlwaysInTrend({ items = [{ imgUrl: "https://ii3.pepperfry.com/media/wys
                 {
                     items?.map(item =>
                         <GridItem w='100%' >
-                            <Link to={"/ProductsPage"}>
+                            <Link to={`/ProductsPage/${item.title}`}>
                                 <Img src={item.imgUrl} />
                                 <Text fontSize={"xl"} >{item.title}</Text>
                             </Link>
