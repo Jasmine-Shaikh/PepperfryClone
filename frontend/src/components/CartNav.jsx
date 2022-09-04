@@ -11,15 +11,17 @@ import {
 } from '@chakra-ui/react'
 
 import logo from '../images/pf-logo-21.svg';
+import { Link } from 'react-router-dom';
 
 function CartNav() {
     return (
         <>
             <Flex justify={"space-between"} margin={"20px 60px"} >
+                <Link to={"/"}>
                 <Box  >
                     <Image boxSize={"90%"} src={logo} alt="" />
                 </Box>
-
+                </Link>
                 <Center margin={"0 250px"}>
                     <Breadcrumb separator='-----------------'>
                         <BreadcrumbItem>

@@ -34,6 +34,7 @@ import {
   DrawerContent,
   DrawerCloseButton,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const ProductDetails = () => {
   const [product, setProduct] = React.useState({});
@@ -256,6 +257,7 @@ const ProductDetails = () => {
                 >
                   Add to cart
                 </Button>
+                <Link to={"/checkout"}>
                 <Button
                   rounded={"none"}
                   w={"full"}
@@ -271,7 +273,8 @@ const ProductDetails = () => {
                   }}
                 >
                   Buy Now
-                </Button>
+                  </Button>
+                </Link>
               </SimpleGrid>
             </VStack>
             <Divider />
