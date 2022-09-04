@@ -64,9 +64,7 @@ const filterSort=(sort, priceFilters, pageData)=>{
 }
 
 export const ProductsPage = () => {
-  const { id }=useParams();
   const {type}=useParams()
-  console.log(type, id)
   const [sort, setSort] = useState("");
   const [productsData, setProductsData]=useState([])
   const [discount, setDiscount] = React.useState("");
