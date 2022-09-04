@@ -35,12 +35,17 @@ import {
   DrawerCloseButton,
 } from "@chakra-ui/react";
 import AddToCartBT from "../components/AddToCartBT";
+import { useParams } from "react-router-dom";
 
 const ProductDetails = () => {
-  const [product, setProduct] = React.useState({});
+const [product, setProduct] = React.useState({});
+
+const {type,id} = useParams ()
+
+
 
   React.useEffect(() => {
-    fetch("http://localhost:8080/products/sofas/4")
+    fetch(`http://localhost:8080/products/${type}/${id}`)
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, []);
