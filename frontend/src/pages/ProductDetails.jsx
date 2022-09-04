@@ -3,7 +3,6 @@ import { v4 as uuid } from "uuid";
 import { StarIcon } from "@chakra-ui/icons";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import ReactImageMagnify from 'react-image-magnify';
 import {
   Select,
   Box,
@@ -28,7 +27,6 @@ import {
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { MdLocalShipping } from "react-icons/md";
-import ReactImageZoom from "react-image-zoom";
 import {
   DrawerOverlay,
   DrawerBody,
