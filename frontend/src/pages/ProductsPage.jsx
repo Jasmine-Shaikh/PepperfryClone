@@ -4,6 +4,7 @@ import { StarIcon } from "@chakra-ui/icons";
 import { AiOutlineHeart } from "react-icons/ai";
 import {
   border,
+  Button,
   Heading,
   Radio,
   RadioGroup,
@@ -23,7 +24,8 @@ import {
   SliderThumb,
   SliderMark,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { ProductCard } from "../components/ProductCard";
 
 const filterCard=(ele)=>{
 
@@ -36,100 +38,6 @@ const filterCard=(ele)=>{
   )
 }
 
-
-const getRatings = () => {
-  let k=Math.floor((Math.random()*(5-3))+3)
-  const stars = [];
-  for (var i = 0; i < k; i++) {
-    stars.push(
-      <StarIcon mx={"2px"} w={4} h={4} color={"#FFAA1F"}  />
-    );
-  }
-  return stars;
-};
-function productCard(product) {
-
-  const {
-    id,
-    name,
-    img,
-    madeBy,
-    offer_price,
-    actual_price,
-    total_savings,
-    price,
-    seater,
-    details,
-  } = product;
-  return (
-
-    <Link to={"/ProductDetails"}>
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "320px",
-        // height: "500px",
-        textAlign: "left",
-        padding: "10px",
-      }}
-    >
-      <div>
-      <div style={{position: "relative", textAlign: "center",  color: "white"}}>
-        
-        <img style={{ width: "100%", height: "350px" }} src={img[0]} alt="Product"/>
-      <div style={{position: "absolute",bottom: "8px",left: "16px"}}>Bottom Left</div>
-      <div style={{position: "absolute",bottom: "22px",right: "8px"}}>{getRatings()}</div>
-      <AiOutlineHeart />
-        </div>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignContent: "left",
-          padding: "10px",
-        }}
-      >
-        <Text fontSize="lg" padding="10px 0px 0px 0px">
-          {name}
-        </Text>
-        <p style={{ color: "gray", padding: "10px 0px 0px 0px" }}>{madeBy}</p>
-        <div
-          style={{
-            display: "flex",
-            width: "55%",
-            justifyContent: "space-between",
-            margin: "0px",
-            padding: "10px 0px 0px 0px",
-          }}
-        >
-          {
-            <>
-              <Heading as="h5" size="sm" color="tomato">
-                {"₹ " + offer_price}
-              </Heading>
-              <s style={{ color: "grey" }}>
-                {" "}
-                <p>{"₹ " + actual_price}</p>
-              </s>
-            </>
-          }
-        </div>
-        <Heading as="h6" size="xs" color="green.500" padding="10px 0px 0px 0px">
-          {total_savings}
-        </Heading>
-        <p style={{ padding: "10px 0px 0px 0px" }}>
-          {"Earn cashback ₹ " + Math.floor(price / 2)}
-        </p>
-        <p style={{ padding: "10px 0px 0px 0px" }}>
-          {`Ships in 1 day`}
-        </p>
-      </div>
-      </div>
-    </Link>
-  );
-}
 const sortFunction=(sort, pageData)=>{
   if(sort!==""){
       if(sort=="lh"){
@@ -156,6 +64,9 @@ const filterSort=(sort, priceFilters, pageData)=>{
 }
 
 export const ProductsPage = () => {
+  const { id }=useParams();
+  const {type}=useParams()
+  console.log(type, id)
   const [sort, setSort] = useState("");
   const [productsData, setProductsData]=useState([])
   const [discount, setDiscount] = React.useState("");
@@ -165,7 +76,8 @@ export const ProductsPage = () => {
   const [height, setHeight] =React.useState([0, 100]);
   const [pageData, setPageData]=React.useState([]);
   const [priceFilters, setPriceFilters]=React.useState(Infinity);
-
+  const [num, setNum]=useState(0)
+  const [enableBt, setEnableBt]=useState(false)
 
 
 const handlePriceFiltering=(e)=>{
@@ -179,10 +91,10 @@ const handlePriceFiltering=(e)=>{
   },[sort,priceFilters])
 
   useEffect(()=>{
-    fetch(`http://localhost:8080/furniture`)
+    fetch(`http://localhost:8080/products/${type}`)
     .then(res=>res.json())
-    .then(data=>{setPageData(data.sofas)
-    setProductsData(data.sofas)})
+    .then(data=>{setPageData(data)
+    setProductsData(data)})
     .catch(err=>console.log(err))
   },[])
 
@@ -509,7 +421,7 @@ const handlePriceFiltering=(e)=>{
             marginRight: "80px",
           }}
         >
-          {pageData?.map((ele) => productCard(ele))}
+          {pageData?.map((ele) =><ProductCard key={ele.id} product={ele}/>)}
         </div>
       </div>
       <hr />
