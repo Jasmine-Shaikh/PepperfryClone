@@ -22,6 +22,7 @@ import { Search2Icon } from "@chakra-ui/icons";
 import React from "react";
 import { Link } from "react-router-dom";
 import { LoginContext } from "../context/LoginContext";
+import CartSideBar from "./CartSideBar";
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [showPassword, setShowPassword] = React.useState(false);
@@ -112,6 +113,14 @@ const Navbar = () => {
       console.log(error);
     }
   };
+
+   //------------------------------------cart sidebar-------------------------------------------
+
+  const { isOpen: cartSideBarIsOpen, onOpen: cartSideBarOnOpen, onClose: cartSideBarOnClose } = useDisclosure()
+
+  function toggleCartDrawer() {
+    cartSideBarOnOpen()
+  }
 
   return (
     <header>
@@ -254,6 +263,7 @@ const Navbar = () => {
                 }}
               ></button>
               <button
+                onClick={toggleCartDrawer}
                 style={{
                   width: "30px",
                   verticalAlign: "middle",
@@ -262,6 +272,7 @@ const Navbar = () => {
                     "url(https://ii1.pepperfry.com/images/svg/icon-cart-21.svg) no-repeat center",
                 }}
               ></button>
+              <CartSideBar isOpen={cartSideBarIsOpen} onOpen={cartSideBarOnOpen} onClose={cartSideBarOnClose} />
             </Stack>
           </div>
         </Box>
