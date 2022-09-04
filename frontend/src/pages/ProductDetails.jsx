@@ -34,13 +34,19 @@ import {
   DrawerContent,
   DrawerCloseButton,
 } from "@chakra-ui/react";
+import AddToCartBT from "../components/AddToCartBT";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const ProductDetails = () => {
-  const [product, setProduct] = React.useState({});
+const [product, setProduct] = React.useState({});
+
+const {type,id} = useParams ()
+
+
 
   React.useEffect(() => {
-    fetch("http://localhost:8080/products/sofas/2")
+    fetch(`http://localhost:8080/products/${type}/${id}`)
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, []);
@@ -68,13 +74,13 @@ const ProductDetails = () => {
   };
 
   return (
-    <Container fontFamily={"Manrope, sans-serif"} maxW={"7xl"}>
+    <Container marginBottom={'5%'} fontFamily={"Manrope, sans-serif"} maxW={"7xl"}>
       <SimpleGrid
         columns={{ base: 1, lg: 2 }}
         spacing={{ base: 8, md: 10 }}
         py={{ base: 18, md: 24 }}
       >
-        <Flex>
+        <Flex  >
           <Box w="100%" p={4} color="white">
             <Carousel
               useKeyboardArrows
@@ -84,6 +90,7 @@ const ProductDetails = () => {
               infiniteLoop
             >
               {product?.img?.map((images) => {
+                
                 return (
                   <div>
                     <img
@@ -240,23 +247,7 @@ const ProductDetails = () => {
                   </option>
                   {selectQuantity()}
                 </Select>
-                <Button
-                  rounded={"none"}
-                  w={"full"}
-                  mt={8}
-                  size={"lg"}
-                  h={"60px"}
-                  bg={"none"}
-                  border="1px solid black"
-                  color={useColorModeValue("black", "white.900")}
-                  textTransform={"uppercase"}
-                  _hover={{
-                    transform: "translateY(2px)",
-                    boxShadow: "lg",
-                  }}
-                >
-                  Add to cart
-                </Button>
+                <AddToCartBT/>
                 <Link to={"/checkout"}>
                 <Button
                   rounded={"none"}
