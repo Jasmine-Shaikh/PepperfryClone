@@ -76,10 +76,13 @@ const Address = () => {
   const [location, setlocation] = useState("");
   const [isshow, setisshow] = useState("show");
   const [deliver, setdeliver] = useState(false);
+  const [checkout, setcheckout] = useState("");
   console.log(cartitem);
   console.log(addresses);
   let dollarIndianLocale = Intl.NumberFormat("en-IN");
-
+  const opencheckout = (value) => {
+    setcheckout(value);
+  };
   var cartvalue = 0;
   var delieverya = 0;
   var assembly = 0;
@@ -110,9 +113,6 @@ const Address = () => {
             <span className="estimatea">
               ({cartitem.length} {cartitem.length > 1 ? "items" : "item"})
             </span>
-          </h2>
-          <h2 className={` ${deliver == true ? "estimates " : "hidden"} `}>
-            Deliver Here
           </h2>
         </div>
         <div className="jsp2">
@@ -154,6 +154,9 @@ const Address = () => {
               <h5 className="select-address">Select Delivery Address</h5>
               <span className="modifyaddres">Add Or Change Address</span>
             </div>
+            <h2 className={` ${deliver == true ? "estimates " : "hidden"} `}>
+              Deliver Here
+            </h2>
             <div className="getaddress">
               <div
                 className={` ${isshow == "show" ? "hidden" : "your-address"} `}
@@ -274,7 +277,9 @@ const Address = () => {
                         <div className="select-type">
                           <div
                             onClick={() => setlocation("Home")}
-                            className="homeb"
+                            className={` ${
+                              location == "Home" ? "homeb" : "homeb homea"
+                            } `}
                           >
                             Home
                           </div>
@@ -306,6 +311,249 @@ const Address = () => {
                           Save
                         </div>
                       </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className={` ${isshow == "show" ? "hidden" : "jsd4"} `}>
+              <span className="billing_adr">
+                Billing Address Same As Shipping Address
+              </span>
+              <span className="billing-adr-change">Change</span>
+            </div>
+            <div className={` ${deliver == true ? "payment-box" : "hidden"} `}>
+              <h5 className="choose-method">Choose Payment Method</h5>
+              <div className="payment-opt">
+                <div className="checkout-debit-card">
+                  <span
+                    className={` ${
+                      checkout == "debit" ? "circlea thik" : "circlea"
+                    } `}
+                  ></span>{" "}
+                  <span
+                    className="checkout-card check-debit"
+                    onClick={() => opencheckout("debit")}
+                  >
+                    ATM/DEBIT CARD
+                  </span>
+                  <div
+                    className={` ${
+                      checkout == "debit"
+                        ? "proceed-to-pay debit-card"
+                        : "hidden"
+                    } `}
+                  >
+                    <div className="proceeda">
+                      <span>
+                        PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="checkout-debit-card">
+                  <span
+                    className={` ${
+                      checkout == "paylater" ? "circlea thik" : "circlea"
+                    } `}
+                  ></span>
+                  <span
+                    className="checkout-card check-paylater"
+                    onClick={() => opencheckout("paylater")}
+                  >
+                    CARDLESS EMI / PAYLATER
+                  </span>
+                  <div
+                    className={` ${
+                      checkout == "paylater"
+                        ? "proceed-to-pay paylater"
+                        : "hidden"
+                    } `}
+                  >
+                    <div className="proceeda">
+                      <span>
+                        PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="checkout-debit-card">
+                  <span
+                    className={` ${
+                      checkout == "credit" ? "circlea thik" : "circlea"
+                    } `}
+                  ></span>
+                  <span
+                    className="checkout-card check-debit"
+                    onClick={() => opencheckout("credit")}
+                  >
+                    CREDIT CARD
+                  </span>
+                  <div
+                    className={` ${
+                      checkout == "credit"
+                        ? "proceed-to-pay credit-card"
+                        : "hidden"
+                    } `}
+                  >
+                    <div className="proceeda">
+                      <span>
+                        PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="checkout-debit-card">
+                  <span
+                    className={` ${
+                      checkout == "emi" ? "circlea thik" : "circlea"
+                    } `}
+                  ></span>
+                  <span
+                    className="checkout-card check-emi"
+                    onClick={() => opencheckout("emi")}
+                  >
+                    EMI
+                  </span>
+                  <div
+                    className={` ${
+                      checkout == "emi" ? "proceed-to-pay emi" : "hidden"
+                    } `}
+                  >
+                    <div className="proceeda">
+                      <span>
+                        PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="checkout-debit-card">
+                  <span
+                    className={` ${
+                      checkout == "internet" ? "circlea thik" : "circlea"
+                    } `}
+                  ></span>
+                  <span
+                    className="checkout-card check-internet"
+                    onClick={() => opencheckout("internet")}
+                  >
+                    INTERNET BANKING
+                  </span>
+                  <div
+                    className={` ${
+                      checkout == "internet"
+                        ? "proceed-to-pay debit-card"
+                        : "hidden"
+                    } `}
+                  >
+                    <div className="proceeda">
+                      <span>
+                        PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="checkout-debit-card">
+                  <span
+                    className={` ${
+                      checkout == "gift" ? "circlea thik" : "circlea"
+                    } `}
+                  ></span>
+                  <span
+                    className="checkout-card check-gift"
+                    onClick={() => opencheckout("gift")}
+                  >
+                    PEPPERFRY GIFT CARD
+                  </span>
+                  <div
+                    className={` ${
+                      checkout == "gift"
+                        ? "proceed-to-pay debit-card"
+                        : "hidden"
+                    } `}
+                  >
+                    <div className="proceeda">
+                      <span>
+                        PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="checkout-debit-card">
+                  <span
+                    className={` ${
+                      checkout == "google" ? "circlea thik" : "circlea"
+                    } `}
+                  ></span>
+                  <span
+                    className="checkout-card check-google"
+                    onClick={() => opencheckout("google")}
+                  >
+                    GOOGLE PAY/UPI
+                  </span>
+                  <div
+                    className={` ${
+                      checkout == "google"
+                        ? "proceed-to-pay debit-card"
+                        : "hidden"
+                    } `}
+                  >
+                    <div className="proceeda">
+                      <span>
+                        PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="checkout-debit-card">
+                  <span
+                    className={` ${
+                      checkout == "wallet" ? "circlea thik" : "circlea"
+                    } `}
+                  ></span>
+                  <span
+                    className="checkout-card check-wallet"
+                    onClick={() => opencheckout("wallet")}
+                  >
+                    WALLET
+                  </span>
+                  <div
+                    className={` ${
+                      checkout == "wallet"
+                        ? "proceed-to-pay debit-card"
+                        : "hidden"
+                    } `}
+                  >
+                    <div className="proceeda">
+                      <span>
+                        PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="checkout-debit-card">
+                  <span
+                    className={` ${
+                      checkout == "international" ? "circlea thik" : "circlea"
+                    } `}
+                  ></span>
+                  <span
+                    className="checkout-card check-international"
+                    onClick={() => opencheckout("international")}
+                  >
+                    INTERNATIONAL CARDS
+                  </span>
+                  <div
+                    className={` ${
+                      checkout == "international"
+                        ? "proceed-to-pay debit-card"
+                        : "hidden"
+                    } `}
+                  >
+                    <div className="proceeda">
+                      <span>
+                        PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
+                      </span>
                     </div>
                   </div>
                 </div>

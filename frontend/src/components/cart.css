@@ -17,6 +17,13 @@ h2 {
     margin-inline-end: 0px;
     font-weight: bold;
 }
+h5 {    
+    margin: 0;
+    padding: 0;
+    font-stretch: normal;
+    font-family: 'Playfair Display',serif;
+    font-weight: bold;
+}
 .header {
         position: relative;
     background-color: #fff;
@@ -140,10 +147,17 @@ h2 {
     text-align: center; 
     color: #67ad5b;        
     font-weight: 700;   
-    background-image: url(data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%2367AD5BFF' stroke-width='3' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e)
+    background-image: url(data:image/svg+xml,%3csvg) width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%2367AD5BFF' stroke-width='3' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e
 }
 .page-left {
     width: 58%;
+    margin-bottom: 20px;
+}
+.addr-row {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+
 }
 .page-right {    
     width: 32%;
@@ -152,9 +166,35 @@ h2 {
 .page-righta {
     margin-top: -20px;
 }
+.jsd1 {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.select-address {
+    font-size: 1.5rem;
+    width: calc(100% - 215px);
+    float: left;
+    padding-bottom: 40px;
+    font-weight: bold;
+}
+.modifyaddres {
+    cursor: pointer;
+    font-size: .875rem;
+    width: 210px;
+    padding: 12px;
+    font-weight: 500;
+    /* float: right; */
+    margin-top: 10px;
+    margin-bottom: -12px;
+    text-align: center;
+    background: #fff;
+    border-radius: 2px;
+    border: solid 1px #121212;
+}
 .addressinput {
     padding: 16px 28px 25px;
     background-color: #f4f4f4;
+    margin-bottom: 60px;
 }
 .rcoupon {
     display: block;
@@ -169,10 +209,91 @@ h2 {
     font-size: .875rem;
     font-weight: 500;
 }
+.inputbox {
+    font-size: .875rem;
+    padding: 18px 20px;
+    border-radius: 2px;
+    letter-spacing: .56px;
+    border: solid 1px #eee;
+    display: block;
+    width: 100%;
+    color: #121212;
+    text-decoration: none;
+    border: none;
+    outline: none;
+}
+.your-address {
+        border-radius: 2px;
+    background-color: #f4f4f4;
+    padding: 20px 116px 20px 28px;
+    line-height: 16px;
+    position: relative;
+    font-family: Manrope,sans-serif;
+    word-break: break-all;
+}
+.edit-addr {
+    font-size: 1.25rem;
+    margin: 0 0 24px;
+    font-weight: 400;
+    display: block;
+}
+.hidden {
+  display: none;  
+}
+.nameb {
+    margin-bottom: 20px;
+    display: inline-block;
+    font-size: 1.125rem;
+    font-weight: 600;
+    font-family: Manrope,sans-serif;
+}
+.locationd {
+    margin-left: 20px;
+    color: #ff7035;
+}
+.adr {
+    font-size: 1rem;
+    line-height: 24px;
+    margin-bottom: 15px;
+    word-break: break-all;
+    letter-spacing: 0;
+    font-family: Manrope,sans-serif;
+}
+#align-lefta {
+    align-self: left;
+}
+.leftc {
+    padding-right: 10px;
+    flex-basis: 50%;
+    max-width: 50%;
+}
+.rightc {
+    padding-right: 10px;
+    flex-basis: 50%;
+    max-width: 50%;
+}
+.centrea {
+    padding-right: 10px;
+    flex-basis: 100%;
+    max-width: 100%;
+}
 .locate {
     display: flex;
-    padding-left: 10%;
+    padding-left: 40px;
     gap: 4px;
+    width: 100%;
+    color: #ff7035;
+    cursor: pointer;
+    background: url(../images/w21-locate-orange-icon.svg) no-repeat 4px center;
+     background-size: 26px;
+}
+.locatea {
+    margin-top: 18px;
+    box-sizing: border-box;
+    text-align: left;
+    width: 220px;
+    color: #ff7035;
+    text-decoration: underline;
 }
 .discount {
     border-bottom: 1px solid #e0e0e0;
@@ -304,12 +425,89 @@ h2 {
     display: flex;
     justify-content: space-between;
 }
+.checkb input {
+    cursor: pointer;
+    padding: 0%;
+    margin: 0%;
+    height: 19px;
+    width: 20px;
+    border-radius: 3px;
+    background-color: #ff7035;
+}
+.type-of-address {
+    font-weight: 500;
+    line-height: 15px;
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 11px;
+}
+.butt-save {
+    padding: 12px;
+    width: 260px;    
+    text-align: center;
+    font-size: .875rem;
+    border-radius: 2px;
+    display: inline-block;
+    color: inherit;
+    cursor: pointer;
+}
+.cancelb {
+    background-color: #fff;
+}
+.saveb {
+    padding: 14px;
+    width: 260px;
+    display: inline-block;
+    background-color: #ff7035;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    font-size: .875rem;
+    margin-left: 8px;
+    border-radius: 2px;
+}
+.homeb {
+    background: url(../images/icon-addr-type-home-active-21.svg) no-repeat 8px center;
+    border: solid 1px #ff7035;
+    color: #ff7035;
+    font-weight: 700;
+    font-size: .95rem;
+    display: inline-block;
+    border-radius: 2px;
+    border: solid 1px #e0e0e0;
+    padding: 10px 12px 10px 34px;
+    margin-right: 11px;
+    /* font-size: .688rem; */
+    font-weight: 500;
+    box-sizing: border-box;
+}
+.homea{
+    background: url(../images/icon-addr-type-home-21.svg) no-repeat 8px center;
+    color: inherit;    
+}
+.officeb {
+    background: url(../images/icon-addr-type-office-active-21.svg) no-repeat 8px center;
+}
+.officea {
+    background: url(../images/icon-addr-type-office-21.svg) no-repeat 8px center;    
+    border: solid 1px #e0e0e0;
+    text-decoration: none;
+    color: inherit;
+
+}
+.othersb {
+   background: url(../images/icon-addr-type-other-21.svg) no-repeat 8px center;  
+    border: solid 1px #e0e0e0;
+    text-decoration: none;
+    color: inherit;
+}
 .raddress {
     display: flex;
     margin-right: 10px;
+    width: 550px;
     border-radius: 4px;
     border: 1px solid #eee;
-        padding: 12px 12px 12px 12px;
+    padding: 12px 12px 12px 12px;
     height: 50px;
 }
 .input1 {
@@ -360,6 +558,100 @@ h2 {
 }
 .fd2 img{
     width: 70px;
+}
+.payment-box {
+    margin-top: 2em;
+}
+.choose-method {
+    font-size: 1.375rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-family: 'Playfair Display',serif;
+}
+.circlea {
+    padding-left: 17px;
+    font-size: small;
+    height: 4px;
+    border: 1.59px solid #121212;
+    border-radius: 50%;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.checkout-debit-card {    
+    border-bottom: 1px solid #ebebeb;
+    padding-top: 14px;
+    padding-bottom: 13px;
+}
+.checkout-card {
+    font-size: 1rem;
+    padding: 15px 0 15px 56px;
+    font-weight: 600;
+    letter-spacing: .64px;
+    text-transform: uppercase;
+    margin-left: 0;
+    background: url(../images/w21-pay-debit-credit-card-icon.png) no-repeat 4px center;
+    background-size: 46px;
+    line-height: 24px;
+    /* font-family: Manrope,sans-serif; */
+    cursor: pointer;
+    vertical-align: middle;
+}
+.proceed-to-pay {    
+    padding: 0 0 15px 55px;  
+}
+.proceeda {
+    padding: 12px 34px;
+    margin-top: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 2px;
+    background-color: #ff7035;
+    color: #fff;
+    font-size: .875rem;
+    width: fit-content;
+    cursor: pointer;
+}
+.payment-opt {
+    padding: 15px 25px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 40px;
+}
+.thik {    
+    border: 7px solid #ff7035;
+    padding-left: 8px;
+    font-size: 6px;
+}
+
+.check-paylater {
+    background: url(../images/w21-pay-cardless-emi-icon.png) no-repeat 4px center;
+    background-size: 46px;
+}
+.check-emi {
+    background: url(../images/w21-pay-emi-icon.png) no-repeat 4px center;
+    background-size: 46px;
+}
+/* .check-debit {
+    background: url(../images/w21-pay-debit-credit-card-icon.png) no-repeat 4px center;
+} */
+.check-internet {
+    background: url(../images/w21-pay-internet-banking-icon.png) no-repeat 4px center;
+    background-size: 46px;
+}
+.check-gift {
+    background: url(../images/w21-pay-gift-card-icon.png) no-repeat 4px center;
+    background-size: 46px;
+}
+.check-google {
+    background: url(../images/w21-pay-upi-id-icon.png) no-repeat 4px center;
+    background-size: 46px;
+}
+.check-wallet {
+    background: url(../images/w21-pay-wallet-icon.png) no-repeat 4px center;
+    background-size: 46px;
+}
+.check-international {
+    background: url(../images/w21-pay-debit-credit-card-icon.png) no-repeat 4px center;
+    background-size: 46px;
 }
 
 @media only screen and (min-width: 1280px) {
