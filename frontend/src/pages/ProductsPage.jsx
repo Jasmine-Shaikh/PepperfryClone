@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/aria-proptypes */
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { StarIcon } from "@chakra-ui/icons";
+import { AiOutlineHeart } from "react-icons/ai";
 import {
   border,
   Heading,
@@ -34,7 +36,19 @@ const filterCard=(ele)=>{
   )
 }
 
-function ProductCard(product) {
+
+const getRatings = () => {
+  let k=Math.floor((Math.random()*(5-3))+3)
+  const stars = [];
+  for (var i = 0; i < k; i++) {
+    stars.push(
+      <StarIcon mx={"2px"} w={4} h={4} color={"#FFAA1F"}  />
+    );
+  }
+  return stars;
+};
+function productCard(product) {
+
   const {
     id,
     name,
@@ -61,11 +75,13 @@ function ProductCard(product) {
       }}
     >
       <div>
-        <img
-          style={{ width: "100%", height: "350px" }}
-          src={img[0]}
-          alt="Product"
-        />
+      <div style={{position: "relative", textAlign: "center",  color: "white"}}>
+        
+        <img style={{ width: "100%", height: "350px" }} src={img[0]} alt="Product"/>
+      <div style={{position: "absolute",bottom: "8px",left: "16px"}}>Bottom Left</div>
+      <div style={{position: "absolute",bottom: "22px",right: "8px"}}>{getRatings()}</div>
+      <AiOutlineHeart />
+        </div>
       </div>
       <div
         style={{
@@ -133,30 +149,40 @@ const sortFunction=(sort, pageData)=>{
     return pageData
 }
 
-const dataFiltering=()=>{
 
+const filterSort=(sort, priceFilters, pageData)=>{
+  const processedData=pageData.filter(ele=> ele.price<=(+priceFilters))
+  return sortFunction(sort, processedData)
 }
+
 export const ProductsPage = () => {
-  const [sort, setSort] = React.useState("");
+  const [sort, setSort] = useState("");
+  const [productsData, setProductsData]=useState([])
   const [discount, setDiscount] = React.useState("");
   const [units, setUnits] = React.useState(false);
-  const [depth, setDepth] =React.useState(false);
-  const [width, setWidth] =React.useState(false);
-  const [height, setHeight] =React.useState(false);
+  const [depth, setDepth] =React.useState([0, 100]);
+  const [width, setWidth] =React.useState([0, 100]);
+  const [height, setHeight] =React.useState([0, 100]);
   const [pageData, setPageData]=React.useState([]);
-  const [rateFilter, setRateFilter]=React.useState([])
-  const [filters, setFilters]=React.useState([1,2,3,4,5]);
+  const [priceFilters, setPriceFilters]=React.useState(Infinity);
 
 
 
-  React.useEffect(()=>{
-    setSort(sortFunction(sort, pageData))
-  },[sort,discount])
+const handlePriceFiltering=(e)=>{
+  if(e.target.checked){
+     setPriceFilters(e.target.value)
+  }
+ 
+}
+  useEffect(()=>{
+    setPageData(filterSort(sort, priceFilters, productsData));
+  },[sort,priceFilters])
 
-  React.useEffect(()=>{
-    fetch(` http://localhost:8080/furniture`)
+  useEffect(()=>{
+    fetch(`http://localhost:8080/furniture`)
     .then(res=>res.json())
-    .then(data=>setPageData(data.sofas))
+    .then(data=>{setPageData(data.sofas)
+    setProductsData(data.sofas)})
     .catch(err=>console.log(err))
   },[])
 
@@ -182,7 +208,6 @@ export const ProductsPage = () => {
               display: "flex",
               flexDirection: "column",
               justifyContent: "centre",
-              // border: "2px solid red",
               alignItems: "centre"
             }}
           >
@@ -196,9 +221,6 @@ export const ProductsPage = () => {
             </Heading>
             <RadioGroup onChange={setSort} sort={sort}>
               <Stack direction="column">
-                {/* <Radio size="lg" colorScheme="orange" value="rel" border="2px solid grey">
-                  Relevance
-                </Radio> */}
                 <Radio size="lg" colorScheme="orange" value="rel">
                 Relevance
                 </Radio>
@@ -218,17 +240,6 @@ export const ProductsPage = () => {
             </RadioGroup>
           </div>
           <hr />
-          <div>
-            <Heading
-              as="h5"
-              size="sm"
-              textAlign="left"
-              padding="15px 0px 15px 0px"
-            >
-              Brand
-            </Heading>
-          </div>
-          <hr />
           <div
             style={{
               display: "flex",
@@ -236,7 +247,7 @@ export const ProductsPage = () => {
               justifyContent: "left",
               padding: "0px",
               margin: "0px",
-              overflow: "hidden",
+              overflow: "auto",
               height: "280px",
               onMouseOver: "this.style.overflow='scroll'",
               onMouseOut: "this.style.overflow='hidden'",
@@ -250,23 +261,23 @@ export const ProductsPage = () => {
             >
               Price
             </Heading>
-            <Checkbox size="lg" colorScheme="orange" value={5000} onChange={(e)=>{console.log(e.target.value)}}>Under ₹ 5,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={5000} onChange={(e)=>{handlePriceFiltering(e)}}>Under ₹ 5,000</Checkbox>
             <br />
-            <Checkbox size="lg" colorScheme="orange" value={10000}>₹ 5,001 to 10,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={10000} onChange={(e)=>{handlePriceFiltering(e)}}>₹ 5,001 to 10,000</Checkbox>
             <br />
-            <Checkbox size="lg" colorScheme="orange" value={20000}>₹ 10,001 to 20,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={20000} onChange={(e)=>{handlePriceFiltering(e)}}>₹ 10,001 to 20,000</Checkbox>
             <br />
-            <Checkbox size="lg" colorScheme="orange" value={30000}>₹ 20,001 to 30,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={30000} onChange={(e)=>{handlePriceFiltering(e)}}>₹ 20,001 to 30,000</Checkbox>
             <br />
-            <Checkbox size="lg" colorScheme="orange" value={40000}>₹ 30,001 to 40,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={40000} onChange={(e)=>{handlePriceFiltering(e)}}>₹ 30,001 to 40,000</Checkbox>
             <br />
-            <Checkbox size="lg" colorScheme="orange" value={50000}>₹ 40,001 to 50,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={50000} onChange={(e)=>{handlePriceFiltering(e)}}>₹ 40,001 to 50,000</Checkbox>
             <br />
-            <Checkbox size="lg" colorScheme="orange" value={60000}>₹ 50,001 to 60,000 </Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={60000} onChange={(e)=>{handlePriceFiltering(e)}}>₹ 50,001 to 60,000 </Checkbox>
             <br />
-            <Checkbox size="lg" colorScheme="orange" value={80000}>₹ 70,001 to 80,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={80000} onChange={(e)=>{handlePriceFiltering(e)}}>₹ 70,001 to 80,000</Checkbox>
             <br />
-            <Checkbox size="lg" colorScheme="orange" value={90000}>₹ 80,001 to 90,000</Checkbox>
+            <Checkbox size="lg" colorScheme="orange" value={90000} onChange={(e)=>{handlePriceFiltering(e)}}>₹ 80,001 to 90,000</Checkbox>
           </div>
           <hr />
           <div>
@@ -498,11 +509,10 @@ export const ProductsPage = () => {
             marginRight: "80px",
           }}
         >
-          {pageData?.map((ele) => ProductCard(ele))}
+          {pageData?.map((ele) => productCard(ele))}
         </div>
       </div>
-      <div>above the footer</div>
-      <div>footer</div>
+      <hr />
     </div>
   );
 };

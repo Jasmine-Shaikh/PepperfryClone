@@ -15,7 +15,7 @@ function App() {
   return (<>
     <Routes>
       <Route path="/" element={<Pages />} >
-        <Route index element={<Home />} />
+        <Route index element={<ProductsPage />} />
         <Route path='ProductCategory' element={<ProductCategory />} />
         <Route path='ProductsPage' element={<ProductsPage />} />
         <Route path='productDetails' element={<ProductDetails />} />
