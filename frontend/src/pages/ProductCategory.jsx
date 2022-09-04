@@ -80,7 +80,7 @@ function SplitWithImage({ title = "Beds and Mattress", types = ["Single Bed, Mat
             <SimpleGrid templateColumns={'repeat(6, 1fr)'} columns={{ base: 1, md: 3 }}>
                 <GridItem >
                     <Stack>
-                        <Heading size={"md"}>{title}</Heading>
+                        <Text fontWeight={"800"} fontFamily={"Playfair Display"} size={"1.25rem"}>{title}</Text>
                         <Stack h={"60"} overflowY={"auto"}>
                             {
                                 types.map((type) => {
