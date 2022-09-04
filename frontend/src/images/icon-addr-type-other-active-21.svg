@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 10 Copy</title>
+    <g id="Final" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-10-Copy">
+            <rect id="Rectangle" x="0" y="0" width="25" height="25"></rect>
+            <g id="Group-14-Copy" transform="translate(7.000000, 5.000000)" fill-rule="nonzero">
+                <path d="M11,5.65563077 C11,8.77922462 5.5,16 5.5,16 C5.5,16 0,8.77922462 0,5.65563077 C0,2.53216821 2.46242456,0 5.5,0 C8.53757544,0 11,2.53216821 11,5.65563077 Z" id="Path-2" fill="#FF7035"></path>
+                <path d="M8,5.5 C8,6.16310588 7.73661176,6.79896471 7.26776471,7.26781176 C6.79891765,7.73665882 6.16301176,8 5.5,8 C4.83698824,8 4.20103529,7.73665882 3.73223529,7.26781176 C3.26338824,6.79896471 3,6.16310588 3,5.5 C3,4.11929412 4.11929412,3 5.5,3 C6.16301176,3 6.79891765,3.26343529 7.26776471,3.73223529 C7.73661176,4.20112941 8,4.83698824 8,5.5 Z" id="Path-3" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

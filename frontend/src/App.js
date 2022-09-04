@@ -18,12 +18,12 @@ function App() {
     <Routes>
       <Route path="/" element={<Pages />} >
         <Route index element={<Home />} />
-        <Route path='ProductCategory' element={<ProductCategory />} />
+        <Route path='ProductCategory/:name' element={<ProductCategory />} />
         <Route path='ProductsPage' element={<ProductsPage />} />
         <Route path='productDetails/:type/:id' element={<ProductDetails />} />
       </Route>
       <Route path='/checkout' element={ <Checkout />}>
-      <Route path='cart' element={<Cart />} />
+      <Route index element={<Cart />} />
         {/* <Route index element={<Cart />} /> */}
         {/* <Route path='address' element={} /> */}
       </Route>

@@ -7,15 +7,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         select: false
-    },
-    // address: [{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //         ref: 'User'
-    //     }],
-    // cart: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Products'
-    // }
+    }
     },{
         timestamps: true
 });

@@ -37,7 +37,7 @@ const register = async (req, res) => {
     user = user.toJSON();
     delete user.password;
     console.log(newUser);
-    res.status(201).send("Registeration Complete!");
+    res.status(201).send({message : "Registeration Complete!"});
   } catch (error) {
     res.status(500).send({ message: error.message });
   }
@@ -46,6 +46,15 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log(res.body)
+    if (
+      email === "" ||
+      password === "" 
+    ) {
+      return res.status(400).send({
+        message: "Please fill all the below mentioned feilds",
+      });
+    }
     const user = await User.findOne({ email }).populate("password");
     if (!user) {
       return res.status(400).send({
@@ -57,7 +66,7 @@ const login = async (req, res) => {
           { id: user._id, email: user.email, name: user.name },
           process.env.SECRET_KEY
         );
-        return res.status(200).send({ token });
+        return res.status(200).send({ token ,message: "User logged in succesfully"});
       } else {
         return res.status(400).send({
           message: "Incorrect Password!",

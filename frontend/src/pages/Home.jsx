@@ -1,5 +1,6 @@
 import { Stack } from "@chakra-ui/react";
 import React from "react";
+import HomeCarousel from "../components/HomeCarousel";
 
 function Home() {
   return (
@@ -12,14 +13,11 @@ function Home() {
       }}
     >
       {/* -----------------------Caurousel--------------------- */}
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", justifyContent: "center", width: "90%", marginLeft:  "60px"}}>
+      
+        <HomeCarousel />
         <img
-          style={{ maxHeight: "433px", marginRight: "15px" }}
-          src="https://ii3.pepperfry.com/media/wysiwyg/banners/HeroBanners_02_2X_280722.jpg"
-          alt="banner"
-        />
-        <img
-          style={{ maxHeight: "433px" }}
+          style={{ maxHeight: "433px", marginLeft: "-15px", cursor : "pointer" }}
           src="https://ii2.pepperfry.com/media/wysiwyg/banners/Web_RHS_Features_270722.jpg"
           alt="features_emi"
         />
@@ -47,7 +45,7 @@ function Home() {
         <Stack direction={"row"}>
           <Stack direction={"column"}>
             <img
-              style={{ width: "288px" }}
+              style={{ width: "288px", cursor : "pointer"  }}
               src="https://ii2.pepperfry.com/media/wysiwyg/banners/Homepage_section3_web_28062022_1.jpg"
               alt=""
             />
@@ -57,7 +55,7 @@ function Home() {
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "288px" }}
+              style={{ width: "288px", cursor : "pointer"  }}
               src="https://ii3.pepperfry.com/media/wysiwyg/banners/Homepage_section3_web_28062022_2.jpg"
               alt=""
             />
@@ -65,7 +63,7 @@ function Home() {
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "288px" }}
+              style={{ width: "288px", cursor : "pointer"  }}
               src="	https://ii1.pepperfry.com/media/wysiwyg/banners/Homepage_section3_web_28062022_3.jpg"
               alt=""
             />
@@ -75,7 +73,7 @@ function Home() {
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "288px" }}
+              style={{ width: "288px", cursor : "pointer"  }}
               src="	https://ii2.pepperfry.com/media/wysiwyg/banners/Homepage_section3_web_28062022_4.jpg"
               alt=""
             />
@@ -102,14 +100,14 @@ function Home() {
             margin: "50px 0px 10px",
             textAlign: "left",
             width: "87%",
-          }}
+          cursor : "pointer" }}
         >
           You’ll Want To Deal In These
         </h5>
         <Stack direction={"row"}>
           <Stack direction={"column"}>
             <img
-              style={{ width: "288px" }}
+              style={{ width: "288px", cursor : "pointer"  }}
               src="https://ii3.pepperfry.com/media/wysiwyg/banners/Hp_deal_web_28072022_1.jpg"
               alt=""
             />
@@ -124,7 +122,7 @@ function Home() {
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "288px" }}
+              style={{ width: "288px", cursor : "pointer"  }}
               src="https://ii1.pepperfry.com/media/wysiwyg/banners/deals_block_2_13_08_22_web.jpg"
               alt=""
             />
@@ -139,7 +137,7 @@ function Home() {
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "288px" }}
+              style={{ width: "288px", cursor : "pointer"  }}
               src="https://ii2.pepperfry.com/media/wysiwyg/banners/Hp_deal_web_28072022_3.jpg"
               alt=""
             />
@@ -154,7 +152,7 @@ function Home() {
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "288px" }}
+              style={{ width: "288px", cursor : "pointer"  }}
               src="https://ii3.pepperfry.com/media/wysiwyg/banners/Hp_deal_web_28072022_4.jpg"
               alt=""
             />
@@ -186,14 +184,14 @@ function Home() {
             margin: "50px 0px 10px",
             textAlign: "left",
             width: "87%",
-          }}
+          cursor : "pointer" }}
         >
           What's #trending
         </h5>
         <Stack direction={"row"}>
           <Stack direction={"column"}>
             <img
-              style={{ width: "388px" }}
+              style={{ width: "388px", cursor : "pointer"  }}
               src="https://ii1.pepperfry.com/media/wysiwyg/banners/Hp_trendl_web_28072022_1.jpg"
               alt=""
             />
@@ -208,7 +206,7 @@ function Home() {
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "388px" }}
+              style={{ width: "388px", cursor : "pointer"  }}
               src="https://ii2.pepperfry.com/media/wysiwyg/banners/Hp_trendl_web_28072022_2.jpg"
               alt=""
             />
@@ -223,7 +221,7 @@ function Home() {
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "388px" }}
+              style={{ width: "388px", cursor : "pointer"  }}
               src="https://ii3.pepperfry.com/media/wysiwyg/banners/Hp_trendl_web_28072022_3.jpg"
               alt=""
             />
@@ -255,14 +253,14 @@ function Home() {
             margin: "50px 0px 10px",
             textAlign: "left",
             width: "87%",
-          }}
+          cursor : "pointer" }}
         >
           Make-over The Top
         </h5>
         <Stack direction={"row"}>
           <Stack direction={"column"}>
             <img
-              style={{ width: "288px" }}
+              style={{ width: "288px", cursor : "pointer"  }}
               src="https://ii1.pepperfry.com/media/wysiwyg/banners/Hp_makeover_web_28072022_1.jpg"
               alt=""
             />
@@ -278,7 +276,7 @@ function Home() {
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "288px" }}
+              style={{ width: "288px", cursor : "pointer"  }}
               src="https://ii2.pepperfry.com/media/wysiwyg/banners/Hp_makeover_web_28072022_2.jpg"
               alt=""
             />
@@ -294,7 +292,7 @@ function Home() {
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "288px" }}
+              style={{ width: "288px", cursor : "pointer"  }}
               src="https://ii3.pepperfry.com/media/wysiwyg/banners/Hp_makeover_web_28072022_3.jpg"
               alt=""
             />
@@ -310,7 +308,7 @@ function Home() {
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "288px" }}
+              style={{ width: "288px", cursor : "pointer"  }}
               src="https://ii1.pepperfry.com/media/wysiwyg/banners/Hp_makeover_web_28072022_4.jpg"
               alt=""
             />
@@ -343,23 +341,23 @@ function Home() {
             margin: "50px 0px 10px",
             textAlign: "left",
             width: "87%",
-          }}
+          cursor : "pointer" }}
         >
           They Say Your Style Chooses You
         </h5>
         <Stack direction={"row"}>
           <img
-            style={{ width: "388px" }}
+            style={{ width: "388px", cursor : "pointer"  }}
             src="https://ii2.pepperfry.com/media/wysiwyg/banners/Hp_style_web_28072022_1.jpg"
             alt=""
           />
           <img
-            style={{ width: "388px" }}
+            style={{ width: "388px", cursor : "pointer"  }}
             src="https://ii2.pepperfry.com/media/wysiwyg/banners/Hp_trendl_web_28072022_2.jpg"
             alt=""
           />
           <img
-            style={{ width: "388px" }}
+            style={{ width: "388px", cursor : "pointer"  }}
             src="https://ii3.pepperfry.com/media/wysiwyg/banners/Hp_trendl_web_28072022_3.jpg"
             alt=""
           />
@@ -382,14 +380,14 @@ function Home() {
             margin: "50px 0px 10px",
             textAlign: "left",
             width: "87%",
-          }}
+          cursor : "pointer" }}
         >
           It's Brand New! It's Selling Fast!
         </h5>
         <Stack direction={"row"}>
           <Stack direction={"column"}>
             <img
-              style={{ width: "288px" }}
+              style={{ width: "288px", cursor : "pointer"  }}
               src="https://ii2.pepperfry.com/media/wysiwyg/banners/Hp_brand_web_28072022_1.jpg"
               alt=""
             />
@@ -404,7 +402,7 @@ function Home() {
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "288px" }}
+              style={{ width: "288px", cursor : "pointer"  }}
               src="https://ii3.pepperfry.com/media/wysiwyg/banners/Hp_brand_web_28072022_2.jpg"
               alt=""
             />
@@ -419,7 +417,7 @@ function Home() {
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "288px" }}
+              style={{ width: "288px", cursor : "pointer"  }}
               src="https://ii1.pepperfry.com/media/wysiwyg/banners/Hp_brand_web_28072022_3.jpg"
               alt=""
             />
@@ -434,7 +432,7 @@ function Home() {
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "288px" }}
+              style={{ width: "288px", cursor : "pointer"  }}
               src="https://ii2.pepperfry.com/media/wysiwyg/banners/Hp_brand_web_28072022_4.jpg"
               alt=""
             />
@@ -466,14 +464,14 @@ function Home() {
             margin: "50px 0px 10px",
             textAlign: "left",
             width: "87%",
-          }}
+          cursor : "pointer" }}
         >
           The Inspiration You Have Been Looking For
         </h5>
         <Stack direction={"row"}>
           <Stack direction={"column"}>
             <img
-              style={{ width: "288px" }}
+              style={{ width: "288px", cursor : "pointer"  }}
               src="https://ii3.pepperfry.com/media/wysiwyg/banners/inspo_block1_web_20072022.jpg"
               alt=""
             />
@@ -494,7 +492,7 @@ function Home() {
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "288px" }}
+              style={{ width: "288px", cursor : "pointer"  }}
               src="https://ii1.pepperfry.com/media/wysiwyg/banners/inspo_block2_web_20072022.jpg"
               alt=""
             />
@@ -514,7 +512,7 @@ function Home() {
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "288px" }}
+              style={{ width: "288px", cursor : "pointer"  }}
               src="https://ii2.pepperfry.com/media/wysiwyg/banners/inspo_block3_web_20072022.jpg"
               alt=""
             />
@@ -531,7 +529,7 @@ function Home() {
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "288px" }}
+              style={{ width: "288px", cursor : "pointer"  }}
               src="https://ii3.pepperfry.com/media/wysiwyg/banners/inspo_block4_web_20072022.jpg"
               alt=""
             />
@@ -574,7 +572,7 @@ function Home() {
             margin: "50px 0px 10px",
             textAlign: "left",
             width: "87%",
-          }}
+          cursor : "pointer" }}
         >
           More From The Store
         </h5>
@@ -969,14 +967,14 @@ Outdoor Furniture<br/>
             margin: "50px 0px 10px",
             textAlign: "left",
             width: "87%",
-          }}
+          cursor : "pointer" }}
         >
           Happy Customers, Happy Us
         </h5>
         <Stack direction={"row"}>
           <Stack direction={"column"}>
             <img
-              style={{ width: "388px" }}
+              style={{ width: "388px", cursor : "pointer"  }}
               src="https://ii1.pepperfry.com/media/wysiwyg/banners/Testimonial_web_261221_7.jpg"
               alt=""
             />
@@ -1002,7 +1000,7 @@ Outdoor Furniture<br/>
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "388px" }}
+              style={{ width: "388px", cursor : "pointer" }}
               src="https://ii3.pepperfry.com/media/wysiwyg/banners/happy_customer_block_2_2906_0222.png"
               alt=""
             />
@@ -1028,7 +1026,7 @@ Outdoor Furniture<br/>
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "388px" }}
+              style={{ width: "388px", cursor : "pointer"  }}
               src="https://ii2.pepperfry.com/media/wysiwyg/banners/Testimonial_web_261221_9.jpg"
               alt=""
             />
@@ -1071,14 +1069,14 @@ Outdoor Furniture<br/>
             margin: "50px 0px 10px",
             textAlign: "left",
             width: "87%",
-          }}
+          cursor : "pointer" }}
         >
           Need Help Buying?
         </h5>
         <Stack direction={"row"}>
           <Stack direction={"column"}>
             <img
-              style={{ width: "188px" }}
+              style={{ width: "188px", cursor : "pointer"  }}
               src="https://ii1.pepperfry.com/media/wysiwyg/banners/hp_need_help_p_1.jpg"
               alt=""
             />
@@ -1095,7 +1093,7 @@ Outdoor Furniture<br/>
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "188px" }}
+              style={{ width: "188px", cursor : "pointer"  }}
               src="https://ii2.pepperfry.com/media/wysiwyg/banners/hp_need_help_p_2.jpg"
               alt=""
             />
@@ -1112,7 +1110,7 @@ Outdoor Furniture<br/>
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "188px" }}
+              style={{ width: "188px", cursor : "pointer"  }}
               src="https://ii3.pepperfry.com/media/wysiwyg/banners/hp_need_help_p_3.jpg"
               alt=""
             />
@@ -1129,7 +1127,7 @@ Outdoor Furniture<br/>
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "188px" }}
+              style={{ width: "188px", cursor : "pointer"  }}
               src="https://ii1.pepperfry.com/media/wysiwyg/banners/hp_need_help_p_4.jpg"
               alt=""
             />
@@ -1146,7 +1144,7 @@ Outdoor Furniture<br/>
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "188px" }}
+              style={{ width: "188px", cursor : "pointer"  }}
               src="https://ii2.pepperfry.com/media/wysiwyg/banners/hp_need_help_p_5.jpg"
               alt=""
             />
@@ -1163,7 +1161,7 @@ Outdoor Furniture<br/>
           </Stack>
           <Stack direction={"column"}>
             <img
-              style={{ width: "188px" }}
+              style={{ width: "188px", cursor : "pointer"  }}
               src="https://ii3.pepperfry.com/media/wysiwyg/banners/hp_need_help_p_6.jpg"
               alt=""
             />

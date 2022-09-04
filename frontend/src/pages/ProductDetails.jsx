@@ -36,6 +36,7 @@ import {
 } from "@chakra-ui/react";
 import AddToCartBT from "../components/AddToCartBT";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ProductDetails = () => {
 const [product, setProduct] = React.useState({});
@@ -247,6 +248,7 @@ const {type,id} = useParams ()
                   {selectQuantity()}
                 </Select>
                 <AddToCartBT/>
+                <Link to={"/checkout"}>
                 <Button
                   rounded={"none"}
                   w={"full"}
@@ -262,7 +264,8 @@ const {type,id} = useParams ()
                   }}
                 >
                   Buy Now
-                </Button>
+                  </Button>
+                </Link>
               </SimpleGrid>
             </VStack>
             <Divider />
