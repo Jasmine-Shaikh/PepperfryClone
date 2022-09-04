@@ -1,6 +1,6 @@
-import React from 'react'
-import './cart.css';
-import logo from '../images/pf-logo-21.svg';
+import React, { useState } from "react";
+import "./cart.css";
+import logo from "../images/pf-logo-21.svg";
 
 const Header = () => {
   return (
@@ -18,13 +18,15 @@ const Header = () => {
                 <div className="jss4ba">
                   <div className="jss4b">
                     <div className="jss4bb">
-                      <div className="jss4b1">
+                      <div className="jss4b1 header-cart">
                         <p>Cart</p>
                       </div>
-                      <div className="jss4b1">
+                      <span className="line"></span>
+                      <div className="jss4b1 header-address">
                         <p>Address</p>
                       </div>
-                      <div className="jss4b1">
+                      <div className="line"></div>
+                      <div className="jss4b1 header-payment">
                         <p>Payment</p>
                       </div>
                     </div>
@@ -37,6 +39,6 @@ const Header = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Header
+export default Header;

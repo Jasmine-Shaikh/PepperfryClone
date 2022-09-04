@@ -69,11 +69,42 @@ h5 {
     display: flex;
     width: 100%;
 }
+.line {
+    display: block;
+    width: 80px;
+    background-color: #848484;
+    height: 1px;
+    margin-top: 12px;
+    margin-bottom: 4px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
 .jss4b1 {
     background-size: 24px;
     padding-left: 33px;
     
     color: #848484;
+}
+.header-cart {
+    color: #ff7035;
+    font-weight: 700;
+    background: url(../images/icon-cart-orange-21.svg) no-repeat left center;
+}
+.header-address {
+    background: url(../images/icon-map-pin-21.svg) no-repeat left center;
+}
+.header-addressa {
+    color: #ff7035;
+    font-weight: 700;
+    background: url(../images/icon-map-pin-orange-21.svg) no-repeat left center;
+}
+.header-payment {
+    background: url(../images/icon-payment-21.svg) no-repeat left center;
+}
+.header-paymenta {
+    color: #ff7035;
+    font-weight: 700;
+    background: url(../images/icon-payment-orange-21.svg) no-repeat left center;
 }
 .footer {
         padding: 44px 0 63px;
@@ -137,6 +168,7 @@ h5 {
 }
 .cart-right {
     padding-top: 4px;
+    width: 100%;
 }
 .delivery5 {
     font-weight: 625;
@@ -350,13 +382,20 @@ h5 {
 }
 .card {
     padding: 20px 0;
+    display: flex;    
+    border-bottom: 1px solid #e0e0e0;
+}
+.carthead {
     display: flex;
+    justify-content: space-between;
+    margin-right: 30px;
+    cursor: pointer;
 }
 .carthead h2 {
     font-size: .875rem;
     cursor: pointer;
     font-weight: 500;
-    padding-right: 80px;
+    padding-right: 20px;
     line-height: 16px;
     font-family: Manrope,sans-serif;
 }
@@ -367,6 +406,71 @@ h5 {
     font-weight: 500;
     cursor: pointer;
     color: inherit;
+}
+.qty {
+    padding: 5px 12px 5px 40px;
+    border: 1px solid #b9c7ce;
+    font-size: .75rem;
+    border-radius: 2px;
+    width: 12%;
+    position: relative;
+    cursor: pointer;
+    background: #fff;
+    font-weight: 500;
+}
+.qty::before {
+    content: "Qty ";
+    position: absolute;
+    display: block;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4a4a4a;
+    letter-spacing: .3px;
+    font-size: .75rem;
+    font-weight: 600;
+    font-family: Manrope,sans-serif;
+}
+.qty::after {
+      top: 3px;
+    bottom: 0;
+    margin: auto;
+    width: 15px;
+    height: 15px;
+    background-size: 12px;
+    right: 3px;
+    position: absolute;
+    content: "";
+    background: url(../images/icon-down-arrow-21.svg) no-repeat;
+    transform-origin: center;
+}
+.qtya:after {
+    transform: rotate(180deg);
+}
+.select-items {
+    position: absolute;
+    z-index: 29;
+    max-height: 165px;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid #b9c7ce;
+    border-width: 0 1px 1px;
+    width: 80px;
+}
+.checked:after {
+    content: "";
+    position: relative;
+    background: url(../images/w21-light-green-tick.svg) center no-repeat;
+    padding: 1px 6px;
+    background-size: 10px;
+    margin-left: 10px;
+}
+.select-items div {
+    padding: 11px 10px;
+    font-size: .813em;
+}
+.select-items div:hover {
+    background: rgba(239,241,242,1);
 }
 .warrenty {
     font-weight: 480;
