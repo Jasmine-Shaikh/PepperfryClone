@@ -385,79 +385,79 @@ const Navbar = () => {
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="/ProductCategory" onMouseEnter={()=>{setdropCategory("furniture")}}>Furniture</Link>
+              <Link to="/ProductCategory/furniture"  onMouseEnter={()=>{setdropCategory("furniture")}}>Furniture</Link>
               {showDropdown && dropCategory === "furniture" ? <Furniture/> : null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="" onMouseEnter={()=>{setdropCategory("sofas")}}>Sofas & Recliners</Link>
+              <Link to="/ProductCategory/sofas" onMouseEnter={()=>{setdropCategory("sofas")}}>Sofas & Recliners</Link>
               {showDropdown && dropCategory === "sofas" ? <Sofas/>: null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="" onMouseEnter={()=>{setdropCategory("beds")}}>Beds & Mattresses</Link>
+              <Link to="/ProductCategory/beds" onMouseEnter={()=>{setdropCategory("beds")}}>Beds & Mattresses</Link>
               {showDropdown && dropCategory === "beds" ? <Beds/> : null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="" onMouseEnter={()=>{setdropCategory("storage")}}>Storage</Link>
+              <Link to="/ProductCategory/storage" onMouseEnter={()=>{setdropCategory("storage")}}>Storage</Link>
               {showDropdown && dropCategory === "storage" ? <Storage/>: null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="" onMouseEnter={()=>{setdropCategory("dining")}}>Dining & Bar</Link>
+              <Link to="/ProductCategory/dining" onMouseEnter={()=>{setdropCategory("dining")}}>Dining & Bar</Link>
               {showDropdown && dropCategory === "dining" ? <Dining/> : null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="" onMouseEnter={()=>{setdropCategory("wall")}}>Wall Accents</Link>
+              <Link to="/ProductCategory/wall" onMouseEnter={()=>{setdropCategory("wall")}}>Wall Accents</Link>
               {showDropdown && dropCategory === "wall" ? <Wall/> : null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="" onMouseEnter={()=>{setdropCategory("decor")}}>Decor</Link>
+              <Link to="/ProductCategory/decor" onMouseEnter={()=>{setdropCategory("decor")}}>Decor</Link>
               {showDropdown && dropCategory === "decor" ? <Decor/> : null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="" onMouseEnter={()=>{setdropCategory("light")}}>Lighting</Link>
+              <Link to="/ProductCategory/light" onMouseEnter={()=>{setdropCategory("light")}}>Lighting</Link>
               {showDropdown && dropCategory === "light" ? <Lighting/>: null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="" onMouseEnter={()=>{setdropCategory("furnishing")}}>Furnishings</Link>
+              <Link to="/ProductCategory/furnishing" onMouseEnter={()=>{setdropCategory("furnishing")}}>Furnishings</Link>
               {showDropdown && dropCategory === "furnishing" ? <Furnishing/> : null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="" onMouseEnter={()=>{setdropCategory("carpet")}}>Carpets</Link>
+              <Link to="/ProductCategory/carpet" onMouseEnter={()=>{setdropCategory("carpet")}}>Carpets</Link>
               {showDropdown && dropCategory === "carpet" ? <Carpets/> : null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="" onMouseEnter={()=>{setdropCategory("garden")}}>Garden & Outdoor</Link>
+              <Link to="/ProductCategory/garden" onMouseEnter={()=>{setdropCategory("garden")}}>Garden & Outdoor</Link>
               {showDropdown && dropCategory === "garden" ? <Garden/> : null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="" onMouseEnter={()=>{setdropCategory("appliances")}}>Appliances</Link>
+              <Link to="/ProductCategory/appliances" onMouseEnter={()=>{setdropCategory("appliances")}}>Appliances</Link>
               {showDropdown && dropCategory === "appliances" ? <Appliances/> : null}
             </li>
             <li
               style={{ listStyle: "none", fontSize: "14px", fontWeight: "500" }}
             >
-              <Link to="" onMouseEnter={()=>{setdropCategory("modular")}}>Modular</Link>
+              <Link to="/ProductCategory/modular" onMouseEnter={()=>{setdropCategory("modular")}}>Modular</Link>
               {showDropdown && dropCategory === "modular" ? <Modular/> : null}
             </li>
           </Stack>
