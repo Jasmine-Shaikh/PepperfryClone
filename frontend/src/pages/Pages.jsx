@@ -8,7 +8,6 @@ function Pages() {
     return (
         <>
         <Navbar />
-       
         <Home />
         <Footer />
         </>
