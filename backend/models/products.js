@@ -23,11 +23,19 @@ const productSchema = new Schema(
             "seating height": Number,
             "overview": String
         }
-})
+    })
 
 const sofasDB = mongoose.model('sofa', productSchema)
+const cabinetriesDB = mongoose.model('cabinetry', productSchema)
+const chairsDB = mongoose.model('chair', productSchema)
+const diningNBarsDB = mongoose.model('diningNbar', productSchema)
+const bedsDB = mongoose.model('bed', productSchema)
+const setteesDB = mongoose.model('settlee', productSchema)
+const furnituresDB = mongoose.model('furniture', productSchema)
+const tablesDB = mongoose.model('table', productSchema)
 
 
 
 
-module.exports = sofasDB
+module.exports = {sofasDB,cabinetriesDB,tablesDB,furnituresDB,
+                  setteesDB,bedsDB,diningNBarsDB,chairsDB}

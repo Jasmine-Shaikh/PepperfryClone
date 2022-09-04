@@ -36,6 +36,7 @@ import {
   DrawerContent,
   DrawerCloseButton,
 } from "@chakra-ui/react";
+import AddToCartBT from "../components/AddToCartBT";
 
 const ProductDetails = () => {
   const [product, setProduct] = React.useState({});
@@ -242,23 +243,7 @@ const ProductDetails = () => {
                   </option>
                   {selectQuantity()}
                 </Select>
-                <Button
-                  rounded={"none"}
-                  w={"full"}
-                  mt={8}
-                  size={"lg"}
-                  h={"60px"}
-                  bg={"none"}
-                  border="1px solid black"
-                  color={useColorModeValue("black", "white.900")}
-                  textTransform={"uppercase"}
-                  _hover={{
-                    transform: "translateY(2px)",
-                    boxShadow: "lg",
-                  }}
-                >
-                  Add to cart
-                </Button>
+                <AddToCartBT/>
                 <Button
                   rounded={"none"}
                   w={"full"}
