@@ -98,10 +98,5 @@ const appliances = [
   { imgUrl: "https://ii3.pepperfry.com/media/wysiwyg/banners/Trends_04_Web_AppliancesCLP_2X_08082022.jpg", title: "Water Geysers" },
 ];
 
-const modular = [
-  { imgUrl: "", title: "" },
-  { imgUrl: "", title: "" },
-  { imgUrl: "", title: "" },
-  { imgUrl: "", title: "" },
-];
 
+module.exports = {furnishing, furniture , appliances , garden, carpets , light , decor ,wall , dinning , beds, sofa, storage}
