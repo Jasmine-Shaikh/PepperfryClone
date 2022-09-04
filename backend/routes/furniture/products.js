@@ -21,7 +21,7 @@ products.get('/tables', async (req, res) => {
 })
 products.get('/tables/:id', async (req, res) => {
     const id = +req.params.id;
-    let Doc = await tablesDB.find({ "id": id })
+    let Doc = await tablesDB.findOne({ "id": id })
     res.send(Doc)
 })
 products.get('/settees', async (req, res) => {
@@ -30,7 +30,7 @@ products.get('/settees', async (req, res) => {
 })
 products.get('/settees/:id', async (req, res) => {
     const id = +req.params.id;
-    let Doc = await setteesDB.find({ "id": id })
+    let Doc = await setteesDB.findOne({ "id": id })
     res.send(Doc)
 })
 products.get('/beds', async (req, res) => {
@@ -39,7 +39,7 @@ products.get('/beds', async (req, res) => {
 })
 products.get('/beds/:id', async (req, res) => {
     const id = +req.params.id;
-    let Doc = await bedsDB.find({ "id": id })
+    let Doc = await bedsDB.findOne({ "id": id })
     res.send(Doc)
 })
 
@@ -50,7 +50,7 @@ products.get('/chairs', async (req, res) => {
 })
 products.get('/chairs/:id', async (req, res) => {
     const id = +req.params.id;
-    let Doc = await chairsDB.find({ "id": id })
+    let Doc = await chairsDB.findOne({ "id": id })
     res.send(Doc)
 })
 
@@ -61,7 +61,7 @@ products.get('/diningNbars', async (req, res) => {
 })
 products.get('/diningNbars/:id', async (req, res) => {
     const id = +req.params.id;
-    let Doc = await diningNBarsDB.find({ "id": id })
+    let Doc = await diningNBarsDB.findOne({ "id": id })
     res.send(Doc)
 })
 
@@ -71,7 +71,7 @@ products.get('/cabinetries', async (req, res) => {
 })
 products.get('/cabinet/:id', async (req, res) => {
     const id = +req.params.id;
-    let Doc = await cabinetriesDB.find({ "id": id })
+    let Doc = await cabinetriesDB.findOne({ "id": id })
     res.send(Doc)
 })
 
