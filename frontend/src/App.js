@@ -18,19 +18,16 @@ import Payment from './components/payment';
 
 
 function App() {
-  return (
-    <>
-      <Routes>
-        <Route path="/" element={<Pages />}>
-          <Route index element={<Home />} />
-          <Route path="ProductCategory" element={<ProductCategory />} />
-          <Route path="ProductsPage" element={<ProductsPage />} />
-          <Route path="productDetails" element={<ProductDetails />} />
-        </Route>
-        {/* <Route path="/checkout" element={<Checkout />}> */}
-        {/* <Route index element={<Cart />} /> */}
-        <Route
-          path={"/checkout/cart"}
+  return (<>
+    <Routes>
+      <Route path="/" element={<Pages />} >
+        <Route index element={<Home />} />
+        <Route path='ProductCategory/:name' element={<ProductCategory />} />
+        <Route path='/ProductsPage/:type' element={<ProductsPage />} />
+        <Route path='productDetails/:type/:id' element={<ProductDetails />} />
+      </Route>
+     <Route
+          path={"/checkout"}
           element={
             <>
               <Header>
@@ -51,9 +48,6 @@ function App() {
             </>
           }
         />
-
-
-
         <Route path={"/payment"} element={<Payment />} />
         {/* <Route path='address' element={} /> */}
         {/* </Route> */}

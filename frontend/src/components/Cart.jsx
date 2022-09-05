@@ -23,43 +23,12 @@ import deletebox from "../images/icon-cart-dustbin-21.svg";
 import location from "../images/w21-locate-orange-icon.svg";
 import image from "../images/monster-ultimate--t--gaming-chair-in-black.webp";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Cart = () => {
-  const { cartactive, setcartactive, addressactive, setaddressactive } =
-    useContext(AuthContext);
-  
-useEffect(() => {
-  setcartactive(true);
-  // setaddressactive(false);
-}, []);
-  const [cartitem, setcartitem] = useState([
-    {
-      heading:
-        "Monster Ultimate (T) Gaming Chair in Black & Grey Colour by Green Soul",
-      by: "Green Soul",
-      warrenty: "36 Months Warranty, 100% Genuine",
-      price: 35333,
-      delivery: 0,
-      assembly: 0,
-      discount: 12299,
-      credit: 1234,
-      image: image,
-      id: 1,
-    },
-    {
-      heading:
-        "Zeeyan Leatherette High Back Executive Chair In Black Color By Valuewud",
-      by: "ValueWud",
-      warrenty: "12 Months Warranty, 100% Genuine",
-      price: 12499,
-      discount: 1299,
-      delivery: 240,
-      assembly: 320,
-      credit: 134,
-      image: `https://www.pepperfry.com/high-back-executive-chair-in-black-color-by-valuewud-1964282.html?type=cart`,
-      id: 2,
-    },
-  ]);
+  const [addressactive, setaddressactive] = useState(false);
+  const { cartItems } = useSelector((store) => store.cart)
+  const [cartitem, setcartitem] = useState([...cartItems]);
   // const [total, settotal] = useState(0)
   console.log(cartitem[0]);
   let dollarIndianLocale = Intl.NumberFormat("en-IN");
