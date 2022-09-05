@@ -16,6 +16,7 @@ const Header = ({children}) => {
     deliveryactive,
     setdeliveryactive,
   } = useContext(AuthContext);
+  console.log(AuthContext)
   console.log(cartactive, setcartactive, addressactive, setaddressactive);
   return (
     <div>
