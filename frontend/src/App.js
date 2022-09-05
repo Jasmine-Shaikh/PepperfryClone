@@ -1,6 +1,6 @@
 
 import { Route, Routes } from 'react-router-dom';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Pages from './pages/Pages';
 import ProductCategory from "./pages/ProductCategory";
 import ProductDetails from "./pages/ProductDetails";
@@ -12,9 +12,26 @@ import { ProductsPage } from './pages/ProductsPage';
 import Cart from './components/Cart';
 import Checkout from './pages/Checkout';
 import Address from './components/address';
-
+import { getCartFromDB } from './cart/cartFunctions';
+import { useDispatch } from 'react-redux';
+import { addItem } from './redux/cartSlice';
 
 function App() {
+  const dispatch = useDispatch()
+  // console.log(a)
+  useEffect(() => {
+    
+    // getCartFromDB().then(res => {
+    //   res.forEach(item => {
+    //     dispatch(addItem(item))
+        
+    //   });
+    // })
+  
+    
+  }, [])
+  
+
   return (<>
     <Routes>
       <Route path="/" element={<Pages />} >

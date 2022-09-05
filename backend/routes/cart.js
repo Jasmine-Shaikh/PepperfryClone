@@ -10,7 +10,6 @@ cartRouter.get("/cart/ping", async (req, res) => {
 //CREATE
 cartRouter.post("/cart", async (req, res) => {
     console.log(req.body.cart)
-    let cartArray = []
     for (let i = 0; i < req.body.cart.length; i++) {
         let cart = req.body.cart[i]
         let cartItem = {
@@ -21,18 +20,18 @@ cartRouter.post("/cart", async (req, res) => {
             offer_price: cart.offer_price,
             actual_price: cart.actual_price
         }
-        cartArray.push(cartItem,"-----------------------cart item")
-    }
-    console.log(cartArray)
+        console.log(cartItem, "-----------------------cart item")
     
-    const newCart = new Cart({products:cartArray});
-    console.log(newCart,"--------------newcart")
-    // try {
-    //     const savedCart = await newCart.save();
-    //     res.status(200).json(savedCart);
-    // } catch (err) {
-    //     res.status(500).json(err);
-    // }
+    
+        const newCart = new Cart(cartItem);
+        console.log(newCart, "--------------newcart")
+        // try {
+        //     const savedCart = await newCart.save();
+        //     res.status(200).json(savedCart);
+        // } catch (err) {
+        //     res.status(500).json(err);
+        // }
+    }
     res.send("ok")
 });
 
@@ -71,6 +70,15 @@ cartRouter.get("/cart/find/:userId", async (req, res) => {
         res.status(500).json(err);
     }
 });
+cartRouter.get("/cart/all", async (req, res) => {
+    try {
+        const cart = await Cart.find();
+        res.status(200).json(cart);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 
 
 
