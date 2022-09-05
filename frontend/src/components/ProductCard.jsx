@@ -1,9 +1,11 @@
 import { StarIcon } from '@chakra-ui/icons';
-import { Heading, Text, Button } from '@chakra-ui/react';
+import { Heading, Text, Button, useDisclosure } from '@chakra-ui/react';
 import React, { useState } from 'react'
 import { AiOutlineHeart } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { v4 as uuid } from "uuid";
+import { addItem } from '../redux/cartSlice';
 import AddToCartBT from './AddToCartBT';
 import CartSideBar from './CartSideBar';
 const getRatings = (id) => {
@@ -16,7 +18,9 @@ const getRatings = (id) => {
     }
     return stars;
   };
-export const ProductCard=(props)=> {
+export const ProductCard = (props) => {
+ 
+
   const {type}=props
     const [enableBt, setEnableBt]=useState(false)
     const {
@@ -46,10 +50,13 @@ export const ProductCard=(props)=> {
         }}
       >
         <div>
-        <div style={{position: "relative", textAlign: "center",  color: "white"}}>
+          <div onMouseEnter={() => { setEnableBt(true); console.log("first") }} onMouseLeave={() => { setEnableBt(false); console.log("second") }} style={{position: "relative", textAlign: "center",  color: "white"}}>
           
-          <img style={{ width: "100%", height: "350px" }} src={img[0]} onMouseOver={()=>setEnableBt(true)} onMouseLeave={()=>setEnableBt(false)}  alt="Product"/>
-        <div style={{position: "absolute",bottom: "50px",left: "85px"}}>{enableBt? (<AddToCartBT color={"orange"}/>) : null}</div>
+            <img style={{ width: "100%", height: "350px" }} src={img[0]}   alt="Product"/>
+            <div style={{ position: "absolute", bottom: "50px", left: "85px" }}>{enableBt ? (
+              // calling action add item from redux store
+              <AddToCartBT color={"orange"} product={props.product} />
+              ) : null}</div>
         <div style={{position: "absolute",bottom: "22px",right: "8px"}}>{getRatings(id)}</div>
         <AiOutlineHeart />
           </div>

@@ -14,10 +14,15 @@ import {
 } from '@chakra-ui/react'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import CartItemCard from './CartItemCard'
 
 export default function CartSideBar({ isOpen, onOpen, onClose }) {
     // const { isOpen, onOpen, onClose } = useDisclosure()
+    const { cartItems } = useSelector((store) => store.cart)
     const btnRef = React.useRef()
+    const n = useNavigate()
 
     return (
         <>
@@ -47,15 +52,26 @@ export default function CartSideBar({ isOpen, onOpen, onClose }) {
                     <DrawerBody padding={"0"}>
                         <Tabs variant='enclosed'>
                             <Box bgColor={"black"} color="white">
-                            <TabList  >
-                                    <Tab _selected={{ color: 'black', bg: 'white' }} fontWeight={"400"} >MY CART</Tab>
+                                <TabList  >
+                                    <Tab _selected={{ color: 'black', bg: 'white' }} fontWeight={"400"} >MY CART <span style={{
+                                        "fontSize": "11px",
+                                        "background-color": "#f16521",
+                                        "color": "#fff",
+                                        "text-align": "center",
+                                        "border-radius": "10px",
+                                        "padding": "2px 6px",
+                                        "font-weight": "400",
+                                        "margin": "0 0 0 2px"
+                                    }}>{cartItems.length}</span> </Tab>
                                     <Tab _selected={{ color: 'black', bg: 'white' }} fontWeight={"400"} >MY WISHLIST</Tab>
                                     <Tab _selected={{ color: 'black', bg: 'white' }} fontWeight={"400"} >RECENTLY VIEWED</Tab>
-                            </TabList>
+                                </TabList>
                             </Box>
                             <TabPanels>
                                 <TabPanel>
-                                    <p>CART!</p>
+                                    {cartItems.map(item => (
+                                        <CartItemCard item={item} />
+                                    ))}
                                 </TabPanel>
                                 <TabPanel>
                                     <p>Wishlist!</p>
@@ -64,8 +80,10 @@ export default function CartSideBar({ isOpen, onOpen, onClose }) {
                         </Tabs>
                     </DrawerBody>
 
-                    <DrawerFooter>
-                        <Button width={"full"}   colorScheme='orange'>PROCEED TO PAY SECURELY</Button>
+                    <DrawerFooter width={"full"}>
+                      
+                        <Button width={"full"} onClick={() => { n("/checkout") }} colorScheme='orange'>PROCEED TO PAY SECURELY</Button>
+                       
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>

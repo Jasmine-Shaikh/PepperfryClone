@@ -23,10 +23,10 @@ function App() {
         <Route path='/ProductsPage/:type' element={<ProductsPage />} />
         <Route path='productDetails/:type/:id' element={<ProductDetails />} />
       </Route>
-      <Route path='/checkout' element={ <Checkout />}>
-      <Route index element={<Cart />} />
+      <Route path='/checkout' element={<Checkout />}>
+        <Route index element={<Cart />} />
+        <Route path='address' element={<Address />} />
         {/* <Route index element={<Cart />} /> */}
-        <Route path='address' element={<Address/>} />
       </Route>
     </Routes>
   </>
