@@ -20,6 +20,7 @@ import psidss from "../images/icon-ck-footer-pci-21-2x.png";
 import image from "../images/monster-ultimate--t--gaming-chair-in-black.webp";
 import image1 from "../images/high-back-executive-chair-in-black-color-by-valuewud-high-back-executive-chair-in-black-color-by-val-qyqaob.webp";
 import location from "../images/w21-locate-orange-icon.svg";
+import { Link } from "react-router-dom";
 
 const Address = () => {
   const {
@@ -87,7 +88,7 @@ const Address = () => {
   const [address2, setaddress2] = useState("");
   const [city, setcity] = useState("");
   const [state, setstate] = useState("");
-  const [location, setlocation] = useState("");
+  const [locationa, setlocation] = useState("Home");
   const [isshow, setisshow] = useState("show");
   const [deliver, setdeliver] = useState(false);
   const [checkout, setcheckout] = useState("");
@@ -174,19 +175,19 @@ const Address = () => {
               <h5 className="select-address">Select Delivery Address</h5>
               <span className="modifyaddres">Add Or Change Address</span>
             </div>
-            <h2 className={` ${isshow == "show" ? " hidden" : "estimates "} `}>
+            <h2 className={` ${deliver == true ? "estimates" : "hidden"} `}>
               Deliver Here
             </h2>
-            <h6 className={` ${isshow == "show" ? "hidden" : "edit-addr"} `}>
+            {/* <h6 className={` ${isshow == "show" ? "hidden" : "edit-addr"} `}>
               Edit Address
-            </h6>
+            </h6> */}
             <div className="getaddress">
               <div
                 className={` ${isshow == "show" ? "hidden" : "your-address"} `}
               >
                 <div className="nameb">
                   <span className="namec">{name} </span>
-                  <span className="locationd"> {location}</span>
+                  <span className="locationd"> {locationa}</span>
                 </div>
                 <div className="adr">
                   {address1}, {address2} <br /> {state} - {pincodeb} <br />
@@ -232,7 +233,7 @@ const Address = () => {
                       <div className="rightc">
                         <div className="locatea">
                           <div className="locate">
-                            <img src={location} alt="" />
+                            {/* <img src={location} alt="" /> */}
                             <p>Locate me</p>
                           </div>
                         </div>
@@ -300,20 +301,28 @@ const Address = () => {
                           <div
                             onClick={() => setlocation("Home")}
                             className={` ${
-                              location == "Home" ? "homeb" : "homeb homea"
+                              locationa == "Home" ? "homeb" : "homeb homea"
                             } `}
                           >
                             Home
                           </div>
                           <div
                             onClick={() => setlocation("Work")}
-                            className="homeb officeb"
+                            className={` ${
+                              locationa == "Work"
+                                ? "homeb officeb"
+                                : "homeb officea"
+                            } `}
                           >
                             Work
                           </div>
                           <div
                             onClick={() => setlocation("Others")}
-                            className="homeb othersb"
+                            className={` ${
+                              locationa == "Others"
+                                ? "homeb othersa"
+                                : "homeb othersb"
+                            } `}
                           >
                             others
                           </div>
@@ -339,10 +348,10 @@ const Address = () => {
               </div>
             </div>
             <div className={` ${isshow == "show" ? "hidden" : "jsd4"} `}>
-              <span className="billing_adr">
+              {/* <span className="billing_adr">
                 Billing Address Same As Shipping Address
-              </span>
-              <span className="billing-adr-change">Change</span>
+              </span> */}
+              {/* <span className="billing-adr-change">Change</span> */}
             </div>
             <div className={` ${deliver == true ? "payment-box" : "hidden"} `}>
               <h5 className="choose-method">Choose Payment Method</h5>
@@ -367,9 +376,11 @@ const Address = () => {
                     } `}
                   >
                     <div className="proceeda">
-                      <span>
-                        PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
-                      </span>
+                      <Link to={"/payment"}>
+                        <span>
+                          PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
+                        </span>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -393,9 +404,11 @@ const Address = () => {
                     } `}
                   >
                     <div className="proceeda">
-                      <span>
-                        PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
-                      </span>
+                      <Link to={"/payment"}>
+                        <span>
+                          PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
+                        </span>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -419,9 +432,11 @@ const Address = () => {
                     } `}
                   >
                     <div className="proceeda">
-                      <span>
-                        PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
-                      </span>
+                      <Link to={"/payment"}>
+                        <span>
+                          PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
+                        </span>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -443,9 +458,11 @@ const Address = () => {
                     } `}
                   >
                     <div className="proceeda">
-                      <span>
-                        PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
-                      </span>
+                      <Link to={"/payment"}>
+                        <span>
+                          PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
+                        </span>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -469,9 +486,11 @@ const Address = () => {
                     } `}
                   >
                     <div className="proceeda">
-                      <span>
-                        PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
-                      </span>
+                      <Link to={"/payment"}>
+                        <span>
+                          PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
+                        </span>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -495,9 +514,11 @@ const Address = () => {
                     } `}
                   >
                     <div className="proceeda">
-                      <span>
-                        PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
-                      </span>
+                      <Link to={"/payment"}>
+                        <span>
+                          PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
+                        </span>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -521,9 +542,11 @@ const Address = () => {
                     } `}
                   >
                     <div className="proceeda">
-                      <span>
-                        PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
-                      </span>
+                      <Link to={"/payment"}>
+                        <span>
+                          PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
+                        </span>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -547,9 +570,11 @@ const Address = () => {
                     } `}
                   >
                     <div className="proceeda">
+                      <Link to={"/payment"}>
                       <span>
                         PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
-                      </span>
+                        </span>
+                      </Link>
                     </div>
                   </div>
                 </div>

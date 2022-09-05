@@ -14,6 +14,7 @@ import Cart from './components/cart';
 import Checkout from './pages/Checkout';
 import Header from './components/header';
 import Address from './components/address';
+import Payment from './components/payment';
 
 
 function App() {
@@ -50,7 +51,8 @@ function App() {
             </>
           }
         />
-        {/* <Route path={"/checkout/address"} element={<Address />} /> */}
+
+        <Route path={"/payment"} element={<Payment />} />
         {/* <Route path='address' element={} /> */}
         {/* </Route> */}
       </Routes>

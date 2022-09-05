@@ -4,6 +4,7 @@ import logo from "../images/pf-logo-21.svg";
 import { AuthContext } from "./AuthContext";
 import Cart from "./cart";
 import Address from "./address";
+import { Link } from "react-router-dom";
 
 const Header = ({children}) => {
   
@@ -24,17 +25,18 @@ const Header = ({children}) => {
             <div className="jss3">
               <div className="jss4">
                 <div className="jss4a">
-                  <a href="https://www.pepperfry.com">
+                  <Link to={"/"}>
                     <img src={logo} alt="" />
-                  </a>
+                  </Link>
                 </div>
                 <div className="jss4ba">
                   <div className="jss4b">
                     <div className="jss4bb">
-                      
+                      <Link to={"/checkout/cart"}>
                       <div className="jss4b1 header-cart">
                         <p>Cart</p>
-                      </div>
+                        </div>
+                      </Link>
                       <span className="line"></span>
                       <div
                         className={` ${
