@@ -5,6 +5,8 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { LoginContextProvider } from './context/LoginContext';
+import { Provider } from 'react-redux';
+import { store } from "./redux/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const colors = {
   brand: {
@@ -12,19 +14,21 @@ const colors = {
     800: "#153e75",
     700: "#2a69ac",
   },
-  pepperfry : {
-    orange : "#e75a16"
+  pepperfry: {
+    orange: "#e75a16"
   }
 };
 const theme = extendTheme({ colors });
 
 root.render(
-      <LoginContextProvider>
-    <BrowserRouter>
-      <ChakraProvider theme={theme}>
-        <App />
-      </ChakraProvider>
-    </BrowserRouter>
+  <Provider store={store} >
+    <LoginContextProvider>
+      <BrowserRouter>
+        <ChakraProvider theme={theme}>
+          <App />
+        </ChakraProvider>
+      </BrowserRouter>
     </LoginContextProvider>
+  </Provider>
 
 );

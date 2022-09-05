@@ -246,7 +246,7 @@ const {type,id} = useParams()
                   </option>
                   {selectQuantity()}
                 </Select>
-                <AddToCartBT/>
+                <AddToCartBT product={product} />
                 <Link to={"/checkout"}>
                 <Button
                   rounded={"none"}

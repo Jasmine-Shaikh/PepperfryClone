@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./cart.css";
 import logo from "../images/pf-logo-21.svg";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -11,9 +12,9 @@ const Header = () => {
             <div className="jss3">
               <div className="jss4">
                 <div className="jss4a">
-                  <a href="https://www.pepperfry.com">
+                  <Link to={"/"}>
                     <img src={logo} alt="" />
-                  </a>
+                  </Link>
                 </div>
                 <div className="jss4ba">
                   <div className="jss4b">

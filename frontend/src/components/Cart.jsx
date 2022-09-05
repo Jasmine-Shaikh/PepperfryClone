@@ -311,7 +311,7 @@ const Cart = () => {
                 <div className="rinfoa">
                   <p>Use GSTIN For Business Purchase (Optional)</p>
                 </div>
-                <Link to={"/address"}>
+                <Link to={"/checkout/address"}>
                   <div
                     className="checkout"
                     onClick={() => setaddressactive(true)}
