@@ -930,7 +930,7 @@ h5 {
     height: 46px;
     margin: 20px 0px 20px 0px;
     cursor: pointer;
-    background: #5E27C9;
+    background: orange;
     border-radius: 6px;
     opacity: 1;
     border: 0px solid #ffffff;
@@ -948,7 +948,7 @@ h5 {
     cursor: pointer;
 }
 .paycolor {
-    background: #5E27C9;
+    background: orange;
 }
 @media only screen and (max-width:1700px) {
     .raddress {

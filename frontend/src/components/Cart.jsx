@@ -30,7 +30,7 @@ const Cart = () => {
   const { cartItems } = useSelector((store) => store.cart)
   const [cartitem, setcartitem] = useState([...cartItems]);
   // const [total, settotal] = useState(0)
-  console.log(cartitem[0]);
+  console.log(cartitem);
   let dollarIndianLocale = Intl.NumberFormat("en-IN");
   const [open, setopen] = useState(false);
   const [quantity, setquantity] = useState(1);
@@ -39,6 +39,15 @@ const Cart = () => {
     setquantity(id);
     setchecked(id);
   };
+  // const calculateSaving = () => {
+  //   let  total = 0
+  //   for (let i = 0; i < cartitem.length; i++) {
+  //       let a = cartitem[i].split(" ")
+  //     a = a[0]
+  //      console.log(a);
+  //   }
+  // }
+  // calculateSaving()
   //  const func = () => {
   //    props.myFunc(addressactive);
   //  };
@@ -51,13 +60,25 @@ const Cart = () => {
   var discount = 0;
   var credits = 0;
   var total = 0;
+function randomIntFromInterval(min, max) {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 
   for (let i = 0; i < cartitem.length; i++) {
-    cartvalue = cartvalue + cartitem[i]["price"];
-    delieverya = delieverya + cartitem[i]["delivery"];
-    assembly = assembly + cartitem[i]["assembly"];
-    discount = discount + cartitem[i]["discount"];
-    credits = credits + cartitem[i]["credit"];
+     
+    cartvalue =
+      cartvalue + parseInt(cartitem[i]["actual_price"].split(",").join(""));
+    const rndInta = randomIntFromInterval(50, 1000);
+    const rndIntb = randomIntFromInterval(50, 1000);
+    const rndIntc = randomIntFromInterval(50, 1000);
+    const rndIntd = randomIntFromInterval(50, 1000);
+    // console.log(rndInt);
+    delieverya = 399
+    assembly = 432;
+    discount = 599;
+    credits = 1189
     total = cartvalue + delieverya + assembly - discount - credits;
   }
   console.log(cartvalue);
@@ -88,10 +109,10 @@ const Cart = () => {
               <div className="cart-list">
                 {cartitem?.map((item) => (
                   <div className="card" key={item.id}>
-                    <img className="item-image" src={item.image} alt="" />
+                    <img className="item-image" src={item.img[0]} alt="" />
                     <div className="cart-right">
                       <div className="carthead">
-                        <h2>{item.heading}</h2>
+                        <h2>{item.name}</h2>
                         <div
                           className="delete"
                           onClick={() => deleteitem(item.id)}
@@ -99,20 +120,20 @@ const Cart = () => {
                           <img src={deletebox} alt="" />
                         </div>
                       </div>
-                      <div className="by">by {item.by}</div>
-                      <div className="warrenty">{item.warrenty} </div>
+                      <div className="by">by {item.madeBy}</div>
+                      <div className="warrenty">{item.details.warranty} </div>
                       <div className="amounta">
-                        ₹ {item.price - (item.discount + item.credit)}
+                        ₹ {item.price}
                         &nbsp;&nbsp;&nbsp;
                         <p className="line-through">
-                          ₹ {item.price.toLocaleString("en-IN")}
+                          {item.actual_price.toLocaleString("en-IN")}
                         </p>
                         &nbsp; &nbsp; &nbsp;
                         <p className="jspb1">
                           ( Saved ₹
                           {(
-                            item.price -
-                            (item.price - (item.discount + item.credit))
+                            parseInt(item.actual_price.split(",").join("")) -
+                            parseInt(item.price.split(",").join(""))
                           ).toLocaleString("en-IN")}
                           )
                         </p>

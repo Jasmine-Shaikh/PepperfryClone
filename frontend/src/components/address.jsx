@@ -21,6 +21,7 @@ import image from "../images/monster-ultimate--t--gaming-chair-in-black.webp";
 import image1 from "../images/high-back-executive-chair-in-black-color-by-valuewud-high-back-executive-chair-in-black-color-by-val-qyqaob.webp";
 import location from "../images/w21-locate-orange-icon.svg";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Address = () => {
   const {
@@ -31,39 +32,13 @@ const Address = () => {
     setdeliveryactive,
   } = useContext(AuthContext);
   useEffect(() => {
-    setcartactive(false)
-    setaddressactive(true)
-  }, [])
-  const [cartitem, setcartitem] = useState([
-    {
-      heading:
-        "Monster Ultimate (T) Gaming Chair in Black & Grey Colour by Green Soul",
-      by: "Green Soul",
-      warrenty: "36 Months Warranty, 100% Genuine",
-      price: 35333,
-      delivery: 399,
-      assembly: 0,
-      discount: 12299,
-      delivery_date: "wed,o8 Sep",
-      credit: 1234,
-      image: image,
-      id: 1,
-    },
-    {
-      heading:
-        "Zeeyan Leatherette High Back Executive Chair In Black Color By Valuewud",
-      by: "ValueWud",
-      warrenty: "12 Months Warranty, 100% Genuine",
-      price: 12499,
-      discount: 1299,
-      delivery: 999,
-      assembly: 720,
-      credit: 134,
-      delivery_date: "wed,o8 Sep",
-      image: image1,
-      id: 2,
-    },
-  ]);
+    setcartactive(false);
+    setaddressactive(true);
+  }, []);
+  
+  const { cartItems } = useSelector((store) => store.cart);
+  const [cartitem, setcartitem] = useState([...cartItems]);
+  console.log(cartitem)
   const [addresses, setaddresses] = useState([
     {
       name: "lucky",
@@ -104,13 +79,22 @@ const Address = () => {
   var discount = 0;
   var credits = 0;
   var total = 0;
-
+function randomIntFromInterval(min, max) {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
   for (let i = 0; i < cartitem.length; i++) {
-    cartvalue = cartvalue + cartitem[i]["price"];
-    delieverya = delieverya + cartitem[i]["delivery"];
-    assembly = assembly + cartitem[i]["assembly"];
-    discount = discount + cartitem[i]["discount"];
-    credits = credits + cartitem[i]["credit"];
+    cartvalue =
+      cartvalue + parseInt(cartitem[i]["actual_price"].split(",").join(""));
+    const rndInta = randomIntFromInterval(50, 1000);
+    const rndIntb = randomIntFromInterval(50, 1000);
+    const rndIntc = randomIntFromInterval(50, 1000);
+    const rndIntd = randomIntFromInterval(50, 1000);
+    // console.log(rndInt);
+    delieverya = 399
+    assembly = 432;
+    discount = 599
+    credits = 1189
     total = cartvalue + delieverya + assembly - discount - credits;
   }
   // console.log(cartvalue);
@@ -120,9 +104,9 @@ const Address = () => {
   // console.log(credits);
   // console.log(total);
   const makedelivery = () => {
-    setdeliver(true)
+    setdeliver(true);
     setdeliveryactive(true);
-  }
+  };
   // if (deliver == true) {
   // }
   return (
@@ -142,16 +126,14 @@ const Address = () => {
               <div className="cart-lista">
                 {cartitem?.map((item) => (
                   <div className="card" key={item.id}>
-                    <img className="item-image" src={item.image} alt="" />
+                    <img className="item-image" src={item.img[0]} alt="" />
                     <div className="cart-right cart-righta">
                       <div className="jss-top1">
                         <span className="deliveryby">Delivery by</span>
                         <span className="delivery3">
-                          <span className="delivery5">
-                            {item.delivery_date}
-                          </span>
+                          <span className="delivery5">wed,o8 Sep</span>
 
-                          <span className="delivery4">| ₹ {item.delivery}</span>
+                          <span className="delivery4">| ₹ {delieverya}</span>
                         </span>
                       </div>
                       <div className="jss-top1">
@@ -161,7 +143,7 @@ const Address = () => {
                             Can Be Self-Assembled
                           </span>
                           <span className="delivery4">
-                            {item.assembly === 0 ? "" : ` | ₹ ${item.assembly}`}
+                            {item.assembly === 0 ? "" : ` | ₹ ${assembly}`}
                           </span>
                         </span>
                       </div>
@@ -571,8 +553,8 @@ const Address = () => {
                   >
                     <div className="proceeda">
                       <Link to={"/payment"}>
-                      <span>
-                        PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
+                        <span>
+                          PROCEED TO PAY ₹ {total.toLocaleString("en-IN")}
                         </span>
                       </Link>
                     </div>
