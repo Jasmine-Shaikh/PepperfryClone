@@ -24,11 +24,13 @@ const theme = extendTheme({ colors });
 root.render(
   <Provider store={store} >
     <LoginContextProvider>
+      <AuthProvider>
       <BrowserRouter>
         <ChakraProvider theme={theme}>
           <App />
         </ChakraProvider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </AuthProvider>
     </LoginContextProvider>
   </Provider>
 
