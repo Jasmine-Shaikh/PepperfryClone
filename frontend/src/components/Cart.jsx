@@ -1,6 +1,8 @@
 import React from "react";
 import "./cart.css";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+
+import { AuthContext } from "./AuthContext";
 import { Select } from "@chakra-ui/react";
 
 import logo from "../images/pf-logo-21.svg";
@@ -289,7 +291,7 @@ const Cart = () => {
                 <Link to={"/checkout/address"}>
                   <div
                     className="checkout"
-                    onClick={() => setaddressactive(true)}
+                    // onClick={() => setaddressactive(true)}
                   >
                     <p className="p1a">PROCEED TO CHECKOUT</p>
                   </div>
