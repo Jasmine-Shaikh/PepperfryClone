@@ -1,6 +1,9 @@
 import { Checkbox, Input } from "@chakra-ui/react";
 import React from "react";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+
+import { AuthContext } from "./AuthContext";
+
 import visa from "../images/web21-footer-visacard-logo.png";
 import master from "../images/web21-footer-mastercard-logo.png";
 import maestro from "../images/web21-footer-maestrocard-logo.png";
@@ -19,6 +22,17 @@ import image1 from "../images/high-back-executive-chair-in-black-color-by-valuew
 import location from "../images/w21-locate-orange-icon.svg";
 
 const Address = () => {
+  const {
+    cartactive,
+    setcartactive,
+    addressactive,
+    setaddressactive,
+    setdeliveryactive,
+  } = useContext(AuthContext);
+  useEffect(() => {
+    setcartactive(false)
+    setaddressactive(true)
+  }, [])
   const [cartitem, setcartitem] = useState([
     {
       heading:
@@ -104,6 +118,12 @@ const Address = () => {
   // console.log(discount);
   // console.log(credits);
   // console.log(total);
+  const makedelivery = () => {
+    setdeliver(true)
+    setdeliveryactive(true);
+  }
+  // if (deliver == true) {
+  // }
   return (
     <div>
       <div className="page">
@@ -154,14 +174,16 @@ const Address = () => {
               <h5 className="select-address">Select Delivery Address</h5>
               <span className="modifyaddres">Add Or Change Address</span>
             </div>
-            <h2 className={` ${deliver == true ? "estimates " : "hidden"} `}>
+            <h2 className={` ${isshow == "show" ? " hidden" : "estimates "} `}>
               Deliver Here
             </h2>
+            <h6 className={` ${isshow == "show" ? "hidden" : "edit-addr"} `}>
+              Edit Address
+            </h6>
             <div className="getaddress">
               <div
                 className={` ${isshow == "show" ? "hidden" : "your-address"} `}
               >
-                <h6 className="edit-addr">Edit Address</h6>
                 <div className="nameb">
                   <span className="namec">{name} </span>
                   <span className="locationd"> {location}</span>
@@ -614,7 +636,7 @@ const Address = () => {
                 </div>
 
                 <div className={` ${deliver == true ? "hidden" : "checkout"} `}>
-                  <p className="p1a" onClick={() => setdeliver(true)}>
+                  <p className="p1a" onClick={() => makedelivery()}>
                     PLACE ORDER
                   </p>
                 </div>
@@ -623,7 +645,7 @@ const Address = () => {
           </div>
         </div>
       </div>
-      <div className="footer">
+      {/* <div className="footer">
         <div className="fcontainer">
           <div className="row footer-row1">
             <div className="fcol">
@@ -675,7 +697,7 @@ const Address = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -5,6 +5,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { LoginContextProvider } from './context/LoginContext';
+import { AuthProvider } from "./components/AuthContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const colors = {
   brand: {
@@ -20,12 +21,14 @@ const theme = extendTheme({ colors });
 
 root.render(
   <React.StrictMode>
-      <LoginContextProvider>
+    <LoginContextProvider>
+      <AuthProvider>
     <BrowserRouter>
       <ChakraProvider theme={theme}>
         <App />
       </ChakraProvider>
-    </BrowserRouter>
+        </BrowserRouter>
+      </AuthProvider>
     </LoginContextProvider>
   </React.StrictMode>
 

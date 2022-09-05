@@ -1,6 +1,8 @@
 import React from "react";
 import "./cart.css";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+
+import { AuthContext } from "./AuthContext";
 import { Select } from "@chakra-ui/react";
 
 import logo from "../images/pf-logo-21.svg";
@@ -23,7 +25,13 @@ import image from "../images/monster-ultimate--t--gaming-chair-in-black.webp";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const [addressactive, setaddressactive] = useState(false);
+  const { cartactive, setcartactive, addressactive, setaddressactive } =
+    useContext(AuthContext);
+  
+useEffect(() => {
+  setcartactive(true);
+  // setaddressactive(false);
+}, []);
   const [cartitem, setcartitem] = useState([
     {
       heading:
@@ -311,10 +319,10 @@ const Cart = () => {
                 <div className="rinfoa">
                   <p>Use GSTIN For Business Purchase (Optional)</p>
                 </div>
-                <Link to={"/address"}>
+                <Link to={"/checkout/address"}>
                   <div
                     className="checkout"
-                    onClick={() => setaddressactive(true)}
+                    // onClick={() => setaddressactive(true)}
                   >
                     <p className="p1a">PROCEED TO CHECKOUT</p>
                   </div>
