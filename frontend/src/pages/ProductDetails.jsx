@@ -37,11 +37,13 @@ import {
 import AddToCartBT from "../components/AddToCartBT";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { addToCartDB } from "../cart/cartFunctions";
+import { useSelector } from "react-redux";
 
 const ProductDetails = () => {
 const [product, setProduct] = React.useState({});
 const {type,id} = useParams()
-
+  const { cartItems } = useSelector((store) => store.cart)
 
 
   React.useEffect(() => {
@@ -248,7 +250,8 @@ const {type,id} = useParams()
                 </Select>
                 <AddToCartBT product={product} />
                 <Link to={"/checkout"}>
-                <Button
+                  <Button
+                    onClick={()=>addToCartDB(cartItems)}
                   rounded={"none"}
                   w={"full"}
                   mt={8}

@@ -15,12 +15,14 @@ import {
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 import CartItemCard from './CartItemCard'
 
 export default function CartSideBar({ isOpen, onOpen, onClose }) {
     // const { isOpen, onOpen, onClose } = useDisclosure()
     const { cartItems } = useSelector((store) => store.cart)
     const btnRef = React.useRef()
+    const n = useNavigate()
 
     return (
         <>
@@ -78,8 +80,10 @@ export default function CartSideBar({ isOpen, onOpen, onClose }) {
                         </Tabs>
                     </DrawerBody>
 
-                    <DrawerFooter>
-                        <Button width={"full"} colorScheme='orange'>PROCEED TO PAY SECURELY</Button>
+                    <DrawerFooter width={"full"}>
+                      
+                        <Button width={"full"} onClick={() => { n("/checkout") }} colorScheme='orange'>PROCEED TO PAY SECURELY</Button>
+                       
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>

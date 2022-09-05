@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const CartSchema = new mongoose.Schema(
     {
-        userId: { type: String, required: true },
         products: [
             {
                 productId: {
@@ -20,7 +19,7 @@ const CartSchema = new mongoose.Schema(
                 offer_price: {
                     type: String,
                 },
-                actul_price: {
+                actual_price: {
                     type: String,
                 },
                 quantity: {
