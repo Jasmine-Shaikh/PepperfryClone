@@ -12,4 +12,4 @@ async function addToCartDB(cart) {
         });
 }
 
-module.exports = {addToCartDB}
+// module.exports = {addToCartDB}
