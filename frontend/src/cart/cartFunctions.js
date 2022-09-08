@@ -1,7 +1,7 @@
 const { default: axios } = require("axios");
 
 async function addToCartDB(cart) {
-    axios.post('http://localhost:8080/cart/', {
+    axios.post('https://peppperfry.herokuapp.com/cart/', {
         cart
     })
         .then(function (response) {

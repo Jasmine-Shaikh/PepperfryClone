@@ -111,7 +111,7 @@ const Navbar = () => {
   const handleRegisterForm = async (e) => {
     console.log(registerData);
     try {
-      let data = await fetch("http://localhost:8080/register", {
+      let data = await fetch("https://peppperfry.herokuapp.com/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -147,7 +147,7 @@ const Navbar = () => {
     e.preventDefault();
     console.log("loginData", loginData);
     try {
-      let data = await fetch("http://localhost:8080/login", {
+      let data = await fetch("https://peppperfry.herokuapp.com/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -8,7 +8,7 @@ export function LoginContextProvider({ children }) {
   const checkUser = async (token) => {
     try {
       if (token) {
-        let res = await fetch(`http://localhost:8080/verifytoken`, {
+        let res = await fetch(`https://peppperfry.herokuapp.com/verifytoken`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

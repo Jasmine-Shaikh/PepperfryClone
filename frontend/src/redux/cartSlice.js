@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const url = 'http://localhost:8080/cart';
+const url = 'https://peppperfry.herokuapp.com/cart';
 
 const initialState = {
     cartItems: [],

@@ -47,7 +47,7 @@ const {type,id} = useParams()
 
 
   React.useEffect(() => {
-    fetch(`http://localhost:8080/products/${type}/${id}`)
+    fetch(`https://peppperfry.herokuapp.com/products/${type}/${id}`)
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, []);

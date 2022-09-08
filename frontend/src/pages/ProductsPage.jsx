@@ -90,7 +90,7 @@ const handlePriceFiltering=(e)=>{
   },[sort,priceFilters])
 
   useEffect(()=>{
-    fetch(`http://localhost:8080/products/${type}`)
+    fetch(`https://peppperfry.herokuapp.com/products/${type}`)
     .then(res=>res.json())
     .then(data=>{setPageData(data)
     setProductsData(data)})
