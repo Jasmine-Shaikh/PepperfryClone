@@ -60,7 +60,7 @@ const addToCart = (id) => {
   }
 };
 
-addToCart(4);
+// addToCart(4);
   const deleteitem = (id) => {
     setcartitem(cartitem.splice(id, 1));
   };

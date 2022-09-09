@@ -90,11 +90,13 @@ const handlePriceFiltering=(e)=>{
   },[sort,priceFilters])
 
   useEffect(()=>{
-    fetch(`http://localhost:8080/products/${type}`)
-    .then(res=>res.json())
-    .then(data=>{setPageData(data)
-    setProductsData(data)})
-    .catch(err=>console.log(err))
+    fetch(`https://peppperfry.herokuapp.com/products/sofas`)
+      .then((res) => res.json())
+      .then((data) => {
+        setPageData(data);
+        setProductsData(data);
+      })
+      .catch((err) => console.log(err));
   },[])
 
   return (
