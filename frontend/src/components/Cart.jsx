@@ -51,9 +51,20 @@ const Cart = () => {
   //  const func = () => {
   //    props.myFunc(addressactive);
   //  };
+  
+const addToCart = (id) => {
+  const i = cartitem.findIndex((item) => item.id === id);
+  if (i !== -1) {
+    cartitem[i].quantity++;
+    console.log("Quantity updated:", cartitem);
+  }
+};
+
+addToCart(4);
   const deleteitem = (id) => {
     setcartitem(cartitem.splice(id, 1));
   };
+
   var cartvalue = 0;
   var delieverya = 0;
   var assembly = 0;
